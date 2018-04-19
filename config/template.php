@@ -36,5 +36,8 @@ return [
         '__STATIC__'=>'/static',
         '__JS__' => '/static/javascript',
         '__ADMIN__' => '/admin',
-    ]
+        '__UI__' => '/ui',
+    ],
+    'layout_on'     =>  true,
+    'layout_name'   =>  'layout',
 ];

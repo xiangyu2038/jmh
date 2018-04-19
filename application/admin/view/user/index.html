@@ -1,14 +1,65 @@
-<!-- 页面容器 -->
-<div class="z-table-wrap">
-    <div class="z-tool" eui="clearfix">
-        <div eui="pull-left">
-            <a data-layer-title="添加会员信息" data-layer-url="/module/user/add.html" class="eui-btn" eui="primary"><i class="eui-icon-addition"></i> 添加</a>
-            <a class="eui-btn"><i class="eui-icon-document"></i> 表格导入</a>
-        </div>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">会员信息</a>
+        <a>
+          <cite>导航元素</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so">
+            <input class="layui-input" placeholder="开始日" name="start" id="start">
+            <input class="layui-input" placeholder="截止日" name="end" id="end">
+            <div class="layui-input-inline">
+                <select name="contrller">
+                    <option>支付状态</option>
+                    <option>已支付</option>
+                    <option>未支付</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="contrller">
+                    <option>支付方式</option>
+                    <option>支付宝</option>
+                    <option>微信</option>
+                    <option>货到付款</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="contrller">
+                    <option value="">订单状态</option>
+                    <option value="0">待确认</option>
+                    <option value="1">已确认</option>
+                    <option value="2">已收货</option>
+                    <option value="3">已取消</option>
+                    <option value="4">已完成</option>
+                    <option value="5">已作废</option>
+                </select>
+            </div>
+            <input type="text" name="username"  placeholder="请输入订单号" autocomplete="off" class="layui-input">
+            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+        </form>
     </div>
-    <table class="eui-table" eui="even">
+    <xblock>
+        <!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>-->
+        <button class="layui-btn" onclick="x_admin_show('添加用户','/admin/user/add')"><i class="layui-icon"></i>添加</button>
+        <form id="myform" action="{:url('admin/user/exports')}" style="display: none" class="layui-form" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="file"  >
+        </form>
+
+        <button id="export" class="layui-btn"><i class="layui-icon"></i>批量导入用户</button>
+        <button id="exports" class="layui-btn"><i class="layui-icon"></i>导出会员信息</button>
+        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
+    </xblock>
+    <table class="layui-table">
         <thead>
         <tr>
+            <!--<th>
+                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+            </th>-->
             <th>序号</th>
             <th>姓名</th>
             <th>电话</th>
@@ -17,65 +68,63 @@
             <th>小区</th>
             <th>室号</th>
             <th>操作</th>
+
         </tr>
         </thead>
         <tbody>
+        <?php $index=0; foreach($datas as  $v): ; ?>
         <tr>
-            <td>1</td>
-            <td>
-                张三
-            </td>
-            <td>
-                18612312312
-            </td>
-            <td>
-                12345674124124124
-            </td>
-            <td>
-                上海
-            </td>
-            <td>
-                上海某某某小区
-            </td>
-            <td>
-                上海市某某区某某路104弄2号楼2203
-            </td>
-            <td>
-                <a data-layer-title="修改会员信息" data-layer-url="/module/user/edit.html"  class="eui-icon-brush z-table-btn z-editor primary"></a>
+        <?php $index++ ; ?>
+
+           <!-- <td>
+                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+            </td>-->
+            <td>{$index}</td>
+            <td>{$v.user.name}</td>
+            <td>{$v.user.phone}</td>
+            <td>{$v.user.id_number}</td>
+            <td>{$v.project_name}</td>
+            <td>{$v.house_number}</td>
+            <td>{$v.city}</td>
+
+            <td class="td-manage">
+                <a title="查看"  onclick="x_admin_show('编辑','/admin/user/edit?project_id={$v.id}')" href="javascript:;">
+                    <i class="layui-icon">&#xe642;</i>
+                </a>
+                <a title="添加"  onclick="x_admin_show('添加项目','/admin/user/addProject?user_id={$v.user.id}')" href="javascript:;">
+                    <i class="layui-icon">&#xe654;</i>
+                </a>
+                <!-- <a title="删除" onclick="member_del(this,'')" href="javascript:;">
+                    <i class="layui-icon">&#xe640;</i>
+                </a>-->
             </td>
         </tr>
-        <tr>
-            <td>2</td>
-            <td>
-                李四
-            </td>
-            <td>
-                18612312312
-            </td>
-            <td>
-                12345674124124124
-            </td>
-            <td>
-                上海
-            </td>
-            <td>
-                上海某某某小区 <br> 上海阿斯蒂芬小区
-            </td>
-            <td>
-                上海市某某区某某路104弄2号楼2203 <br> 上海市某某区某某路1999弄3号楼1603
-            </td>
-            <td>
-                <a data-layer-title="修改会员信息" data-layer-url="/module/user/edit.html"  class="eui-icon-brush z-table-btn z-editor primary"></a>
-            </td>
-        </tr>
+        <?php endforeach ; ?>
         </tbody>
     </table>
-    <div class="eui-page" eui="text-right">
-        <a class="eui-page-first" data-pages-num="1" href="javascript:;">首页</a>
-        <a data-pages-num="1" class="active" href="javascript:;">1</a>
-        <a data-pages-num="2" href="javascript:;">2</a>
-        <a data-pages-num="3" href="javascript:;">3</a>
-        <a class="eui-page-next" data-pages-num="2" href="javascript:;">下一页</a>
-        <a class="eui-page-last" data-pages-num="17" href="javascript:;">末页</a>
+    <div class="page">
+      <?php echo $page ; ?>
+       <!-- <div>
+            <a class="prev" href="">&lt;&lt;</a>
+            <a class="num" href="">1</a>
+            <span class="current">2</span>
+            <a class="num" href="">3</a>
+            <a class="num" href="">489</a>
+            <a class="next" href="">&gt;&gt;</a>
+        </div>-->
     </div>
+
 </div>
+<script>
+    $('#export').click(function () {
+        $('#file').click();
+
+    })
+    $('#file').change(function () {
+$('#myform').submit();
+    });
+
+    $('#exports').click(function () {
+window.location.href='{:url("admin/User/export")}';
+    })
+</script>

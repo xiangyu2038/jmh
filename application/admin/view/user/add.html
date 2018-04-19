@@ -1,64 +1,91 @@
-<form class="eui-form">
-    <div class="eui-form-main">
-        <label class="eui-form-label">会员姓名</label>
-        <div class="eui-form-item">
-            <input eui-rule="required" placeholder="请输入会员姓名" class="eui-ipt" value="" name="name">
+<div class="x-body">
+    <form id="myform" class="layui-form" method="post">
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>姓名
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="name" name="name" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input">
+            </div>
         </div>
-    </div>
-    <div class="eui-form-main">
-        <label class="eui-form-label">联系电话</label>
-        <div class="eui-form-item">
-            <input eui-rule="required" maxlength="11" placeholder="请输入联系电话" class="eui-ipt" value="" name="name">
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>电话
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="phone" name="phone" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input">
+            </div>
         </div>
-    </div>
-    <div class="eui-form-main">
-        <label class="eui-form-label">证件号</label>
-        <div class="eui-form-item">
-            <input eui-rule="required" placeholder="请输入证件号" class="eui-ipt" value="" name="name">
+        <div class="layui-form-item">
+            <label  class="layui-form-label">
+                <span class="x-red">*</span>证件号
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="id_number" name="id_number" required=""
+                       autocomplete="off" class="layui-input">
+            </div>
         </div>
-    </div>
-    <div class="eui-form-main">
-        <label class="eui-form-label">房产信息</label>
-        <div class="eui-form-item">
-            <table class="eui-table table-no-num user-fangchan">
-                <thead>
-                <tr>
-                    <th>项目</th>
-                    <th>室号</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <select class="eui-linkage">
-                            <option value="0">请选择</option>
-                            <option value="1">上海某某某小区</option>
-                            <option value="1">上海某某某小区</option>
-                            <option value="1">上海某某某小区</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input placeholder="请输入详细室号" class="eui-ipt" value="">
-                    </td>
-                    <td>
-                        <a class="eui-btn tianjia-fangchan" eui="primary" href="javascript:;">添加</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+            </label>
+            <input type="button" id="submit" class="layui-btn" value="增加">
+
         </div>
-    </div>
-    <div class="eui-form-main">
-        <div class="eui-form-item">
-            <button type="button" class="eui-btn z-submit-btn" eui="primary">添加</button>
-            <button type="button" class="eui-btn eui-layer-shut">取消</button>
-        </div>
-    </div>
 </form>
+</div>
 <script>
-    submit({
-        validate:true,
-        url:"url"
+    layui.use(['form','layer'], function(){
+        $ = layui.jquery;
+        var form = layui.form
+            ,layer = layui.layer;
+
+        //自定义验证规则
+        form.verify({
+            nikename: function(value){
+                if(value.length < 5){
+                    return '昵称至少得5个字符啊';
+                }
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,repass: function(value){
+                if($('#L_pass').val()!=$('#L_repass').val()){
+                    return '两次密码不一致';
+                }
+            }
+        });
+
+        //监听提交
+
+       $('#submit').click(function () {
+var data=$('#myform').serialize();
+
+$.ajax({
+             type: "post",
+             url: "{:url('admin/user/add')}",
+             data: data,
+             dataType: "json",
+             success: function(data){
+                console.log(data);
+                 layer.alert(data.msg, {icon: 6},function () {
+
+                     // 获得frame索引
+                     var index = parent.layer.getFrameIndex(window.name);
+
+                     //关闭当前frame
+                     parent.layer.close(index);
+                 });
+                      }
+         });
+
+       });
+
     });
 </script>
+<script>var _hmt = _hmt || []; (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();</script>

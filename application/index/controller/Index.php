@@ -356,76 +356,7 @@ class Index extends Controller
         return $this->fetch();
     }
 
-    public function export()
-    {
-        return $this->fetch();
-    }
 
-    public function exports()
-    {
-        // 获取表单上传文件 例如上传了001.jpg
-        $file = request()->file('file');
-        // 移动到框架应用根目录/uploads/ 目录下
-        $info = $file->move('../uploads');
-        if ($info) {
-            // 成功上传后 获取上传信息
-            // 输出 jpg
-            //echo $info->getExtension();
-            // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
-            //echo $info->getSaveName();
-            // 输出 42a79759f284b767dfcb2a0197904287.jpg
-            // $filename= $info->getFilename();
-            $filename = BASEPATH . '\uploads\\' . $info->getSaveName();
-
-            $this->goods_import($filename);
-        } else {
-            // 上传失败获取错误信息
-            echo $file->getError();
-        }
-    }
-
-    protected function goods_import($filename, $exts = 'xlsx')
-    {
-        require_once BASEPATH . 'vendor/PHPExcel/PHPExcel.class.php';
-        //导入PHPExcel类库，因为PHPExcel没有用命名空间，只能inport导入
-
-        $PHPExcel = new \PHPExcel();
-
-
-        //如果excel文件后缀名为.xls，导入这个类
-        if ($exts == 'xls') {
-            $PHPReader = new \PHPExcel_Reader_Excel5();
-        } else if ($exts == 'xlsx') {
-
-            $PHPReader = new \PHPExcel_Reader_Excel2007();
-        }
-        /*import("Org.Util.PHPExcel.Reader.CSV");
-        $PHPReader = new \PHPExcel_Reader_CSV();*/
-
-        //载入文件
-        $PHPExcel = $PHPReader->load($filename);
-        //获取表中的第一个工作表，如果要获取第二个，把0改为1，依次类推
-        $currentSheet = $PHPExcel->getSheet(0);
-        //获取总列数
-        $allColumn = $currentSheet->getHighestColumn();
-
-        //获取总行数
-        $allRow = $currentSheet->getHighestRow();
-        ++$allColumn;
-        //循环获取表中的数据，$currentRow表示当前行，从哪行开始读取数据，索引值从0开始
-        for ($currentRow = 1; $currentRow <= $allRow; $currentRow++) {
-            //从哪列开始，A表示第一列
-            for ($currentColumn = 'A'; $currentColumn != $allColumn; $currentColumn++) {
-                //数据坐标
-                $address = $currentColumn . $currentRow;
-                //读取到的数据，保存到数组$arr中
-                $data[$currentRow][$currentColumn] = $currentSheet->getCell($address)->getValue();
-            }
-        }
-
-
-        $this->saveImport($data);
-    }
 
     public function uploads($server_id)
     {
@@ -443,68 +374,10 @@ class Index extends Controller
 
     }
 
-    public function saveImport($data)
-    {
 
-        $project_array = [];
-        foreach ($data as $key => $v) {
-
-            if ($key == 1) {
-                continue;
-            }
-
-            $res = UserModel::where('id_number', $v['G'])->first();
-
-            if ($res) {
-                ///已经保存用户
-                $v['user_id'] = $res->id;
-                $project_array[] = $this->getProjectArray($v);
-            } else {
-                ////去保存用户
-                $user_info = $this->getUserInfo($v);
-                $a = UserModel::create($user_info);
-                $v['user_id'] = $a->id;
-                $project_array[] = $this->getProjectArray($v);
-            }
-
-
-        }
-        $res = ProjectModel::Insert($project_array);
-   return json(['error_code' => 1, 'msg' => '成功']);
-    }
-
-    public function getProjectArray($data)
-    {
-        $array = [];
-        $array['user_id'] = $data['user_id'];
-        $array['project_name'] = $data['C'];
-        $array['house_number'] = $data['D'];
-        $array['city'] = $data['B'];
-        $array['created_at'] = date('Y-m-d H:i:s');
-        $array['updated_at'] = date('Y-m-d H:i:s');
-        return $array;
-    }
-
-    public function getUserInfo($data)
-    {
-        $array = [];
-        $array['name'] = $data['E'];
-        $array['id_number'] = $data['G'];
-        $array['phone'] = $this->formatePhone($data['F']);
-        return $array;
-
-    }
-
-    public function formatePhone($data)
-    {
-
-        $data = explode('.', $data);
-
-        return $data[0];
-    }
 
     public function uploadsOne($accessToken,$data){
-        $targetName = './uploads/' . date('YmdHis') . '.jpg';
+        $targetName = './public/uploads/' . date('YmdHis') . '.jpg';
 
         $ch = curl_init("http://file.api.weixin.qq.com/cgi-bin/media/get?access_token={$accessToken}&media_id={$data}");
         $fp = fopen(BASEPATH . $targetName, 'wb');
