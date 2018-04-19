@@ -1,0 +1,43 @@
+<form class="eui-form">
+    <div class="eui-form-main">
+        <label class="eui-form-label">账号</label>
+        <div class="eui-form-item">
+            <input eui-rule="required" placeholder="请输入账号" class="eui-ipt" value="" name="name">
+        </div>
+    </div>
+    <div class="eui-form-main">
+        <label class="eui-form-label">姓名</label>
+        <div class="eui-form-item">
+            <input eui-rule="required" placeholder="请输入姓名" class="eui-ipt" value="" name="name">
+        </div>
+    </div>
+    <div class="eui-form-main">
+        <label class="eui-form-label">联系电话</label>
+        <div class="eui-form-item">
+            <input eui-rule="required" maxlength="11" placeholder="请输入联系电话" class="eui-ipt" value="" name="name">
+        </div>
+    </div>
+
+    <div class="eui-form-main">
+        <label class="eui-form-label">角色</label>
+        <div class="eui-form-item">
+            <select class="eui-select">
+                <option value="0">请选择</option>
+                <option value="0">超级管理员</option>
+                <option value="0">房修工</option>
+            </select>
+        </div>
+    </div>
+    <div class="eui-form-main">
+        <div class="eui-form-item">
+            <button type="button" class="eui-btn z-submit-btn" eui="primary">添加</button>
+            <button type="button" class="eui-btn eui-layer-shut">取消</button>
+        </div>
+    </div>
+</form>
+<script>
+    submit({
+        validate:true,
+        url:"url"
+    });
+</script>

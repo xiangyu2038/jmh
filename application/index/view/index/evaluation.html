@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=640,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta name="format-detection" content="adress=no"/>
+
+    <title>评价</title>
+    <link rel="stylesheet" href="__STATIC__/css/style.css">
+    <link rel="stylesheet" href="__STATIC__/iconfont/iconfont.css">
+    <script src="__STATIC__/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+    <div class="head"></div>
+    <ul class="list">
+        <li class="star">
+            <label>整体满意度</label>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+        </li>
+        <li class="star">
+            <label>报修便利</label>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+        </li>
+        <li class="star">
+            <label>现场清洁</label>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+        </li>
+        <li class="star">
+            <label>方案清晰</label>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+        </li>
+        <li class="star">
+            <label>服务态度</label>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+            <i class="iconfont icon-star"></i>
+        </li>
+    </ul>
+    <ul class="list">
+        <li>
+            <label>房修师工号</label>
+            <input class="name" type="text">
+        </li>
+    </ul>
+    <div class="btn">
+        <a class="bg-color1 submit" href="javascript:;">提交</a>
+    </div>
+</div>
+<div class="wrap prompt hide">
+    <i class="iconfont icon-icon-success"></i>
+    <h1 class="tit">感谢您的评价</h1>
+    <p class="info">你的支持将是我们前进的动力</p>
+    <div class="type-repair btn bottom">
+        <a class="bg-color1" href="/repair/evaluation.html">待评价</a>
+    </div>
+</div>
+</body>
+</html>
+<script src="__STATIC__/js/script.js"></script>
+<script>
+    // 提交
+    $('.submit').click(function(){
+        // var note=$('.note').text();
+        // var name=$('.name').val();
+        // var phone=$('.phone').val();
+        // var time=$('.time').val();
+        // if(!note) return alert('请填写报修说明!');
+        // if(!name) return alert('请填写联系人!');
+        // if(!phone) return alert('请填写联系电话!');
+        // if(!time) return alert('请填写上门时间!');
+        Ajax('url');
+    });
+</script>

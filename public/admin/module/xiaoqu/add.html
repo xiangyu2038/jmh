@@ -1,0 +1,32 @@
+<form class="eui-form">
+    <div class="eui-form-main">
+        <label class="eui-form-label">城市</label>
+        <div class="eui-form-item">
+            <select id="lk1" class="eui-linkage" style="width: 48.5%;"></select>
+            <select id="lk2" class="eui-linkage" style="width: 49%;"></select>
+        </div>
+    </div>
+    <div class="eui-form-main">
+        <label class="eui-form-label">小区名称</label>
+        <div class="eui-form-item">
+            <input eui-rule="required" placeholder="请输入小区名称" class="eui-ipt" value="" name="name">
+        </div>
+    </div>
+    <div class="eui-form-main">
+        <div class="eui-form-item">
+            <button type="button" class="eui-btn z-submit-btn" eui="primary">添加</button>
+            <button type="button" class="eui-btn eui-layer-shut">取消</button>
+        </div>
+    </div>
+</form>
+<script src="/eui/js/eui-area.js"></script>
+<script>
+    eui.linkage({
+        el:'#lk1,#lk2',
+        data:eui.area
+    });
+    submit({
+        validate:true,
+        url:"url"
+    });
+</script>

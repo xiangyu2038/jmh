@@ -1,0 +1,20 @@
+<form class="eui-form" action="{:url('index/index/exports')}" method="post"  id="forminfo" enctype="multipart/form-data">
+    <input type="hidden" name="type" value="1">
+    <div class="eui-form-main">
+        <label class="eui-form-label">备注</label>
+        <div class="eui-form-item">
+            <input id="name" eui-rule="required" name="name" class="eui-ipt" placeholder="请输入备注名称" type="text">
+        </div>
+    </div>
+    <div class="eui-form-main">
+        <label class="eui-form-label">文件上传</label>
+        <div class="eui-form-item">
+            <input type="file" name="file" id="file" class="eui-ipt">
+        </div>
+    </div>
+    <div class="eui-form-main">
+        <div class="eui-form-item">
+            <button type="submit" id="doSubmit" class="eui-btn z-submit-btn" eui="primary">提交</button>
+        </div>
+    </div>
+</form>

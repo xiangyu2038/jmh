@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=640,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta name="format-detection" content="adress=no"/>
+
+    <title>我要报修</title>
+    <link rel="stylesheet" href="__STATIC__/css/style.css">
+    <link rel="stylesheet" href="__STATIC__/iconfont/iconfont.css">
+    <script src="__STATIC__/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+    <div class="head"></div>
+    <ul class="list">
+        <li>
+            <a href="javascript:;">
+                我的房产
+                <select name="project_id">
+                    <?php foreach($datas as $v): ; ?>
+                    <option  value="<?php echo $v->id ; ?>"><?php echo $v->project_name ; ?></option>
+                   <?php endforeach ; ?>
+                </select>
+            </a>
+        </li>
+        <li>
+            <label>报修说明</label>
+            <textarea class="note" name="note" cols="30" rows="3"></textarea>
+        </li>
+        <li class="update">
+            <label>上传照片</label>
+            <div class="img-list">
+                <div class="img-item">
+                    <!-- <i class="iconfont icon-close"></i> -->
+                    <i class="iconfont icon-add"></i>
+                </div>
+                <div class="img-item">
+                    <i class="iconfont icon-add"></i>
+                </div>
+                <div class="img-item">
+                    <i class="iconfont icon-add"></i>
+                </div>
+                <div class="img-item">
+                    <i class="iconfont icon-add"></i>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <ul class="list">
+        <input class="user_id" value="{$user_id}" type="hidden">
+        <li>
+            <label>联系人</label>
+            <input class="name" name="name" type="text">
+        </li>
+        <li>
+            <label>联系电话</label>
+            <input class="phone" name="phone" maxlength="11" type="tel">
+        </li>
+        <li>
+            <label>希望上门时间</label>
+            <input class="time" name="time" type="datetime-local">
+        </li>
+    </ul>
+    <div class="btn">
+        <a class="bg-color1 submit" href="javascript:;">提交</a>
+    </div>
+</div>
+<div class="wrap prompt hide">
+    <i class="iconfont icon-icon-success"></i>
+    <h1 class="tit">报修提交成功</h1>
+    <p class="info">请保持手机畅通</p>
+    <p class="num">我们将与你取得联系</p>
+    <div class="type-repair hide btn bottom">
+        <a class="bg-color1" href="{:url('index/index/evaluation')}">待评价</a>
+    </div>
+</div>
+</body>
+</html>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="__STATIC__/js/script.js"></script>
+<script>
+    // 提交
+    $('.submit').click(function(){
+        // var note=$('.note').text();
+        // var name=$('.name').val();
+        // var phone=$('.phone').val();
+        // var time=$('.time').val();
+        // if(!note) return alert('请填写报修说明!');
+        // if(!name) return alert('请填写联系人!');
+        // if(!phone) return alert('请填写联系电话!');
+        // if(!time) return alert('请填写上门时间!');
+        alert('调用Ajax');
+        Ajax('{:url("index/index/doEvaluation")}','img');
+    });
+</script>
