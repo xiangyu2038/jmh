@@ -73,9 +73,9 @@
     <h1 class="tit">报修提交成功</h1>
     <p class="info">请保持手机畅通</p>
     <p class="num">我们将与你取得联系</p>
-    <div class="type-repair btn bottom">
+  <!--  <div class="type-repair btn bottom">
         <a class="bg-color1" href="/index/index/evaluation?repair_id=3">待评价</a>
-    </div>
+    </div>-->
 </div>
 </body>
 </html>
@@ -92,7 +92,7 @@
         if(!name) return alert('请填写联系人!');
         if(!phone) return alert('请填写联系电话!');
         if(!time) return alert('请填写上门时间!');
-        alert('调用Ajax');
+//        alert('调用Ajax');
         Ajax('{:url("index/index/doRepair")}','img');
     });
 
@@ -100,7 +100,7 @@
 // 微信上传图片
 
 wx.config({
-    debug: true,
+    debug: false,
     appId: '<?php echo $signPackage["appId"];?>',
     timestamp: '<?php echo $signPackage["timestamp"];?>',
     nonceStr: '<?php echo $signPackage["nonceStr"];?>',

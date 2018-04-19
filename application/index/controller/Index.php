@@ -80,7 +80,7 @@ class Index extends Controller
     {
        $repair_id=Request::get('repair_id');
 
-       $this->assign(['repair_id',$repair_id]);
+       $this->assign(['repair_id'=>$repair_id]);
         return $this->fetch();
     }
 
@@ -107,20 +107,22 @@ class Index extends Controller
 
     public function repair()
     {
-        //$openid=$this->getOpenId();
-        $openid='oUPo2wRgPOudk-bPLzwahZ1YkDkc';
+        $openid=$this->getOpenId();
+       // $openid='oUPo2wRgPOudk-bPLzwahZ1YkDkc';
         $data = UserModel::where('openid', $openid)->first();
 
         if (!$data) {
+
             ///还没认证
-            $this->redirect(url('index/index/login'));
+            $this->redirect('index/index/login');
         }
         $user_id = $data->id;
         /////去寻找还有没有未评价保修
         $repair = RepairModel::where('user_id',$user_id)->where('status',1)->get();
         if($repair){
            $repair=$this->getRepairId($repair);
-            if($repair){
+
+           if($repair){
                 $this->redirect(url('index/index/prompt',['repair_id'=>$repair['id']]));
             }
 
@@ -181,7 +183,9 @@ class Index extends Controller
     public function evaluation()
     {
        $openid=$this->getOpenId();
+        //$openid='oUPo2we4EByx0XGxP5_1pU1nP5ZI';
        $repair_id=Request::get('repair_id');
+        //$repair_id=2;
       $this->assign(['openid'=>$openid,'repair_id'=>$repair_id]);
         return $this->fetch();
     }
@@ -213,9 +217,11 @@ class Index extends Controller
 
 
         $res = EvaluationModel::create($created_data);
+
         if (!$res) {
             return json(['error_code' => 3, 'msg' => '提交失败']);
         }
+        RepairModel::find($repair_id)->update(['status'=>2]);///修改为已评价
         return json(['error_code' => 1, 'msg' => '提交成功']);
 
     }
@@ -271,6 +277,14 @@ class Index extends Controller
     {
 
         $openid=$this->getOpenId();
+        $data = UserModel::where('openid', $openid)->first();
+
+        if (!$data) {
+
+            ///还没认证
+            $this->redirect('index/index/login');
+        }
+
         $this->assign(['openid'=>$openid]);
         return $this->fetch();
     }
@@ -280,7 +294,7 @@ class Index extends Controller
 
 
         $post=Request::post();
-      //  $post=cache('test');
+
 
       $note = $post['note'];
         $name = $post['name'];
@@ -312,7 +326,7 @@ class Index extends Controller
         if (!$res) {
             return json(['error_code' => 3, 'msg' => '保存表扬信息失败']);
         }
-        return json(['error_code' => 0, 'msg' => '成功']);//认证成功
+        return json(['error_code' => 1, 'msg' => '成功']);//认证成功
 
     }
 
@@ -331,6 +345,8 @@ class Index extends Controller
     public function complaints()
     {
         $openid=Request::get('openid');
+
+
         $jssdk = new Jssdk('wxcab7c014367d6f9a', 'ad3150cc8c690605cfcd638d1a7c399a');
 
         $signPackage = $jssdk->GetSignPackage();

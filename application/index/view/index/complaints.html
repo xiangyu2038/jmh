@@ -24,10 +24,7 @@
             <label>上传照片</label>
             <div class="img-list">
                 <div class="img-item">
-                    <i class="iconfont icon-close"></i>
-                    <div class="img-show">
-                        <img src="https://gss0.baidu.com/7LsWdDW5_xN3otqbppnN2DJv/dmas/pic/item/fb22720e0cf3d7ca9b75fde3fa1fbe096a63a9a1.jpg">
-                    </div>
+                    <i class="iconfont icon-add"></i>
                 </div>
                 <div class="img-item">
                     <i class="iconfont icon-add"></i>
@@ -51,7 +48,7 @@
             <input class="phone" name="phone" maxlength="11" type="tel">
 
             <input class="openid" name="openid" value="{$openid}"  type="hidden">
-            <input  name="type" value="1"  type="hidden">
+            <input  name="type" value="2"  type="hidden">
         </li>
     </ul>
     <div class="btn bottom">
@@ -62,9 +59,6 @@
     <i class="iconfont icon-icon-success"></i>
     <h1 class="tit">感谢您的评价</h1>
     <p class="info">你的支持将是我们前进的动力</p>
-    <div class="type-repair btn bottom">
-        <a class="bg-color1" href="/repair/evaluation.html">待评价</a>
-    </div>
 </div>
 </body>
 </html>
@@ -73,20 +67,20 @@
 <script>
     // 提交
     $('.submit').click(function(){
-        // var note=$('.note').val();
-        // var name=$('.name').val();
-        // var phone=$('.phone').val();
-        // if(!note) return alert('请填写投诉说明!');
-        // if(!name) return alert('请填写联系人!');
-        // if(!phone) return alert('请填写联系电话!');
-        Ajax('url');
+         var note=$('.note').val();
+         var name=$('.name').val();
+         var phone=$('.phone').val();
+         if(!note) return alert('请填写投诉说明!');
+         if(!name) return alert('请填写联系人!');
+         if(!phone) return alert('请填写联系电话!');
+        Ajax('/index/index/doSuggestion','img');
     });
 
 
 // 微信上传图片
 
 wx.config({
-    debug: true,
+    debug: false,
     appId: '<?php echo $signPackage["appId"];?>',
     timestamp: '<?php echo $signPackage["timestamp"];?>',
     nonceStr: '<?php echo $signPackage["nonceStr"];?>',

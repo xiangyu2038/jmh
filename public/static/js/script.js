@@ -28,7 +28,7 @@ var imgArr=[];
 var ajaxState=false;
 // 上传接口
 function Ajax(url,type){
-    alert('准备数据');
+    //alert('准备数据');
     if(ajaxState) return;
     ajaxState=true;
     var data={};
@@ -62,7 +62,7 @@ function Ajax(url,type){
             });
         };
     }
-    alert('上传数据');
+    // alert('上传数据');
     $.ajax({
         type:'post',
         url:url,

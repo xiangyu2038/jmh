@@ -47,7 +47,7 @@ class JsApiPay
 			//触发微信返回code码 TODO 这里加了www
             //.$_SERVER['QUERY_STRING']);
             //$baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);//http://shjmh.lanxigua.com
-            $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].$_SERVER['QUERY_STRING']);
+            $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
            // $baseUrl = 'http://www.'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             $url = $this->__CreateOauthUrlForCode($baseUrl);
 

@@ -73,9 +73,6 @@
     <i class="iconfont icon-icon-success"></i>
     <h1 class="tit">感谢您的评价</h1>
     <p class="info">你的支持将是我们前进的动力</p>
-    <div class="type-repair btn bottom">
-        <a class="bg-color1" href="/repair/evaluation.html">待评价</a>
-    </div>
 </div>
 </body>
 </html>
@@ -84,14 +81,14 @@
 <script>
     // 提交
     $('.submit').click(function(){
-        // var note=$('.note').val();
-        // var name=$('.name').val();
-        // var phone=$('.phone').val();
-        // var time=$('.time').val();
-        // if(!note) return alert('请填写报修说明!');
-        // if(!name) return alert('请填写联系人!');
-        // if(!phone) return alert('请填写联系电话!');
-        // if(!time) return alert('请填写上门时间!');
+         var note=$('.note').val();
+         var name=$('.name').val();
+         var phone=$('.phone').val();
+         var time=$('.time').val();
+         if(!note) return alert('请填写报修说明!');
+         if(!name) return alert('请填写联系人!');
+         if(!phone) return alert('请填写联系电话!');
+         if(!time) return alert('请填写上门时间!');
         Ajax('/index/index/doEvaluation','eva');
     });
 </script>
