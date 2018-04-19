@@ -35,11 +35,8 @@ class Index extends Controller
 
     public function login()
     {
-        $openid=Request::get('openid');
-      //  $openid='oUPo2we4EByx0XGxP5_1pU1nP5ZI';
-        if(!$openid){
-            $openid=$this->getOpenId();
-       }
+
+        $openid=$this->getOpenId();
 
        // $openid='oUPo2wRgPOudk-bPLzwahZ1YkDkcll';
       $res =  UserModel::where('openid',$openid)->first();
@@ -81,6 +78,9 @@ class Index extends Controller
 
     public function prompt()
     {
+       $repair_id=Request::get('repair_id');
+
+       $this->assign(['repair_id',$repair_id]);
         return $this->fetch();
     }
 
@@ -107,19 +107,23 @@ class Index extends Controller
 
     public function repair()
     {
-        $openid=$this->getOpenId();
+        //$openid=$this->getOpenId();
+        $openid='oUPo2wRgPOudk-bPLzwahZ1YkDkc';
         $data = UserModel::where('openid', $openid)->first();
 
         if (!$data) {
             ///还没认证
-            $this->redirect(url('index/index/login',['openid'=>$openid]));
+            $this->redirect(url('index/index/login'));
         }
         $user_id = $data->id;
         /////去寻找还有没有未评价保修
-        $repair = RepairModel::where('user_id',$user_id)->first();
+        $repair = RepairModel::where('user_id',$user_id)->where('status',1)->get();
         if($repair){
-            ///有未完成的
-            $this->redirect(url('index/index/login',['openid'=>$openid]));
+           $repair=$this->getRepairId($repair);
+            if($repair){
+                $this->redirect(url('index/index/prompt',['repair_id'=>$repair['id']]));
+            }
+
         }
         $datas = ProjectModel::where('user_id', $user_id)->get();
 
@@ -494,6 +498,26 @@ class Index extends Controller
         curl_close($ch);
         fclose($fp);
         return $targetName;
+
+    }
+
+    public function getRepairId($data){
+        foreach ($data as $v){
+            $res=$this->judgeStatus($v);
+            if($res){
+                return $v;
+            }
+        }
+        return [];
+    }
+    public function judgeStatus($data){
+        $before_time=$date = strtotime('-7 days');///前7天时间
+
+        $repair_time=strtotime($data['created_at']);////提交维修时间
+        if($repair_time<$before_time){
+            return false;
+        }
+        return true;
 
     }
 
