@@ -16,7 +16,7 @@
 <div class="wrap">
     <div class="head"></div>
     <ul class="list">
-        <li class="star">
+        <li class="star satisfied">
             <label>整体满意度</label>
             <i class="iconfont icon-star"></i>
             <i class="iconfont icon-star"></i>
@@ -24,7 +24,7 @@
             <i class="iconfont icon-star"></i>
             <i class="iconfont icon-star"></i>
         </li>
-        <li class="star">
+        <li class="star convenient">
             <label>报修便利</label>
             <i class="iconfont icon-star"></i>
             <i class="iconfont icon-star"></i>
@@ -32,7 +32,7 @@
             <i class="iconfont icon-star"></i>
             <i class="iconfont icon-star"></i>
         </li>
-        <li class="star">
+        <li class="star clean">
             <label>现场清洁</label>
             <i class="iconfont icon-star"></i>
             <i class="iconfont icon-star"></i>
@@ -40,7 +40,7 @@
             <i class="iconfont icon-star"></i>
             <i class="iconfont icon-star"></i>
         </li>
-        <li class="star">
+        <li class="star clear">
             <label>方案清晰</label>
             <i class="iconfont icon-star"></i>
             <i class="iconfont icon-star"></i>
@@ -48,7 +48,7 @@
             <i class="iconfont icon-star"></i>
             <i class="iconfont icon-star"></i>
         </li>
-        <li class="star">
+        <li class="star attitude">
             <label>服务态度</label>
             <i class="iconfont icon-star"></i>
             <i class="iconfont icon-star"></i>
@@ -60,7 +60,9 @@
     <ul class="list">
         <li>
             <label>房修师工号</label>
-            <input class="name" type="text">
+            <input class="name" name="workers" type="text">
+            <input class="openid" name="openid" value="{$openid}"  type="hidden">
+            <input class="repair_id" name="repair_id" value="{$repair_id}"  type="hidden">
         </li>
     </ul>
     <div class="btn">
@@ -77,11 +79,12 @@
 </div>
 </body>
 </html>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="__STATIC__/js/script.js"></script>
 <script>
     // 提交
     $('.submit').click(function(){
-        // var note=$('.note').text();
+        // var note=$('.note').val();
         // var name=$('.name').val();
         // var phone=$('.phone').val();
         // var time=$('.time').val();
@@ -89,6 +92,6 @@
         // if(!name) return alert('请填写联系人!');
         // if(!phone) return alert('请填写联系电话!');
         // if(!time) return alert('请填写上门时间!');
-        Ajax('url');
+        Ajax('/index/index/doEvaluation','eva');
     });
 </script>

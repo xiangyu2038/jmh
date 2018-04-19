@@ -18,7 +18,7 @@
     <ul class="list">
         <li>
             <label>投诉说明</label>
-            <textarea class="note" cols="30" rows="3"></textarea>
+            <textarea class="note" name="note" cols="30" rows="3"></textarea>
         </li>
         <li class="update">
             <label>上传照片</label>
@@ -44,11 +44,14 @@
     <ul class="list">
         <li>
             <label>联系人</label>
-            <input class="name" type="text">
+            <input class="name" name="name" type="text">
         </li>
         <li>
             <label>联系电话</label>
-            <input class="phone" maxlength="11" type="tel">
+            <input class="phone" name="phone" maxlength="11" type="tel">
+
+            <input class="openid" name="openid" value="{$openid}"  type="hidden">
+            <input  name="type" value="1"  type="hidden">
         </li>
     </ul>
     <div class="btn bottom">
@@ -65,11 +68,12 @@
 </div>
 </body>
 </html>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script src="__STATIC__/js/script.js"></script>
 <script>
     // 提交
     $('.submit').click(function(){
-        // var note=$('.note').text();
+        // var note=$('.note').val();
         // var name=$('.name').val();
         // var phone=$('.phone').val();
         // if(!note) return alert('请填写投诉说明!');
@@ -77,4 +81,44 @@
         // if(!phone) return alert('请填写联系电话!');
         Ajax('url');
     });
+
+
+// 微信上传图片
+
+wx.config({
+    debug: true,
+    appId: '<?php echo $signPackage["appId"];?>',
+    timestamp: '<?php echo $signPackage["timestamp"];?>',
+    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+    signature: '<?php echo $signPackage["signature"];?>',
+    jsApiList: [
+        'chooseImage',
+        'uploadImage'
+    ]
+});
+
+wx.ready(function () {
+    $('.img-list .img-item').click(function(){
+        var that=$(this);
+        var imgid='';
+        wx.chooseImage({
+            count: 1, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                imgid = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                that.html('<div class="img-show"><img src="'+imgid+'"></div>');
+                wx.uploadImage({
+                    localId: imgid.toString(), // 需要上传的图片的本地ID，由chooseImage接口获得
+                    isShowProgressTips: 1, // 默认为1，显示进度提示
+                    success: function (res) {
+                        alert(res.serverId);
+                        var serverId = res.serverId; // 返回图片的服务器端ID
+                        imgArr.push(serverId);
+                    }
+                });
+            }
+        });
+    });
+});
 </script>

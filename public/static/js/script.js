@@ -38,6 +38,9 @@ function Ajax(url,type){
         data.clean=$('.clean i.on').length;
         data.clear=$('.clear i.on').length;
         data.attitude=$('.attitude i.on').length;
+        data.openid=$('.openid').val();
+        data.repair_id=$('.repair_id').val();
+        data.name=$('.name').val();
     }else{
         $('input').each(function(){
             var key=$(this).attr('name');

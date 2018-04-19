@@ -50,7 +50,7 @@
         </li>
     </ul>
     <ul class="list">
-        <input class="user_id" value="{$user_id}" type="hidden">
+        <input class="user_id" name="user_id" value="{$user_id}" type="hidden">
         <li>
             <label>联系人</label>
             <input class="name" name="name" type="text">
@@ -73,8 +73,8 @@
     <h1 class="tit">报修提交成功</h1>
     <p class="info">请保持手机畅通</p>
     <p class="num">我们将与你取得联系</p>
-    <div class="type-repair hide btn bottom">
-        <a class="bg-color1" href="{:url('index/index/evaluation')}">待评价</a>
+    <div class="type-repair btn bottom">
+        <a class="bg-color1" href="/index/index/evaluation?repair_id=3">待评价</a>
     </div>
 </div>
 </body>
@@ -84,15 +84,55 @@
 <script>
     // 提交
     $('.submit').click(function(){
-        // var note=$('.note').text();
-        // var name=$('.name').val();
-        // var phone=$('.phone').val();
-        // var time=$('.time').val();
-        // if(!note) return alert('请填写报修说明!');
-        // if(!name) return alert('请填写联系人!');
-        // if(!phone) return alert('请填写联系电话!');
-        // if(!time) return alert('请填写上门时间!');
+        var note=$('.note').val();
+        var name=$('.name').val();
+        var phone=$('.phone').val();
+        var time=$('.time').val();
+        if(!note) return alert('请填写报修说明!');
+        if(!name) return alert('请填写联系人!');
+        if(!phone) return alert('请填写联系电话!');
+        if(!time) return alert('请填写上门时间!');
         alert('调用Ajax');
-        Ajax('{:url("index/index/doEvaluation")}','img');
+        Ajax('{:url("index/index/doRepair")}','img');
     });
+
+    
+// 微信上传图片
+
+wx.config({
+    debug: true,
+    appId: '<?php echo $signPackage["appId"];?>',
+    timestamp: '<?php echo $signPackage["timestamp"];?>',
+    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+    signature: '<?php echo $signPackage["signature"];?>',
+    jsApiList: [
+        'chooseImage',
+        'uploadImage'
+    ]
+});
+
+wx.ready(function () {
+    $('.img-list .img-item').click(function(){
+        var that=$(this);
+        var imgid='';
+        wx.chooseImage({
+            count: 1, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                imgid = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                that.html('<div class="img-show"><img src="'+imgid+'"></div>');
+                wx.uploadImage({
+                    localId: imgid.toString(), // 需要上传的图片的本地ID，由chooseImage接口获得
+                    isShowProgressTips: 1, // 默认为1，显示进度提示
+                    success: function (res) {
+                        alert(res.serverId);
+                        var serverId = res.serverId; // 返回图片的服务器端ID
+                        imgArr.push(serverId);
+                    }
+                });
+            }
+        });
+    });
+});
 </script>

@@ -10,6 +10,7 @@ use model\RepairModel;
 use model\SuggestionModel;
 use model\TestModel;
 use model\UserModel;
+use think\Cache;
 use think\Controller;
 use think\facade\Request;
 use think\Session;
@@ -35,7 +36,7 @@ class Index extends Controller
     public function login()
     {
         $openid=Request::get('openid');
-        //$openid='oUPo2we4EByx0XGxP5_1pU1nP5ZI';
+      //  $openid='oUPo2we4EByx0XGxP5_1pU1nP5ZI';
         if(!$openid){
             $openid=$this->getOpenId();
        }
@@ -106,19 +107,20 @@ class Index extends Controller
 
     public function repair()
     {
-
-
         $openid=$this->getOpenId();
+        $data = UserModel::where('openid', $openid)->first();
 
-
-       $data = UserModel::where('openid', $openid)->first();
         if (!$data) {
-
             ///还没认证
             $this->redirect(url('index/index/login',['openid'=>$openid]));
         }
         $user_id = $data->id;
-
+        /////去寻找还有没有未评价保修
+        $repair = RepairModel::where('user_id',$user_id)->first();
+        if($repair){
+            ///有未完成的
+            $this->redirect(url('index/index/login',['openid'=>$openid]));
+        }
         $datas = ProjectModel::where('user_id', $user_id)->get();
 
         $jssdk = new Jssdk('wxcab7c014367d6f9a', 'ad3150cc8c690605cfcd638d1a7c399a');
@@ -132,10 +134,6 @@ class Index extends Controller
 
     public function doRepair()
     {
-
-
-        // $data=Request::post();
-
         $data=Request::post();
 
         $user_id = $data['user_id'];
@@ -159,9 +157,10 @@ class Index extends Controller
 
         $res = RepairModel::create($created_data);
         if (!$res) {
-            return json(['error_code' => 2, 'msg' => '成功']);//认证成功
+            return json(['error_code' => 2, 'msg' => '失败']);
         }
        // return json(['error_code' => 1, 'msg' => '成功']);//认证成功
+        //cache('aa',$server_id);
         $img_data = $this->uploads($server_id);
 
 
@@ -169,30 +168,35 @@ class Index extends Controller
         $created_img = $this->getImg($img_data, $repair_id, $type = 1);
         $res = ImgModel::Insert($created_img);
         if (!$res) {
-            return json(['error_code' => 3, 'msg' => '成功']);//认证成功
+            return json(['error_code' => 3, 'msg' => '失败']);//认证成功
         }
-        return json(['error_code' => 1, 'msg' => '成功']);//认证成功
+        return json(['error_code' => 1, 'msg' => '成功','data'=>['repair_id'=>$repair_id]]);//认证成功
 
     }
 
     public function evaluation()
     {
-
-
-
+       $openid=$this->getOpenId();
+       $repair_id=Request::get('repair_id');
+      $this->assign(['openid'=>$openid,'repair_id'=>$repair_id]);
         return $this->fetch();
     }
 
     public function doEvaluation()
     {
-        dd($_POST);
-        $satisfy = '1';
-        $convenient = '2';
-        $clean = '3';
-        $plan = '4';
-        $serviece = '5';
-        $repair_man_id = '1';
-        $repair_id = '1';
+        $post=Request::post();
+
+        $satisfy = $post['satisfied'];
+        $convenient =$post['convenient'];
+        $clean = $post['clean'];
+        $plan = $post['clear'];
+        $serviece =$post['attitude'];
+        $openid=$post['openid'];
+        $repair_id = $post['repair_id'];
+        $repair_man_id = $post['name'];
+
+
+
         $created_data = [];
         $created_data['satisfy'] = $satisfy;
         $created_data['convenient'] = $convenient;
@@ -201,11 +205,14 @@ class Index extends Controller
         $created_data['serviece'] = $serviece;
         $created_data['repair_id'] = $repair_id;
         $created_data['repair_man_id'] = $repair_man_id;
+        $created_data['openid'] = $openid;
+
+
         $res = EvaluationModel::create($created_data);
         if (!$res) {
-            return json(0);//
+            return json(['error_code' => 3, 'msg' => '提交失败']);
         }
-        return json(1);//成功
+        return json(['error_code' => 1, 'msg' => '提交成功']);
 
     }
 
@@ -258,44 +265,74 @@ class Index extends Controller
 
     public function suggestion()
     {
+
+        $openid=$this->getOpenId();
+        $this->assign(['openid'=>$openid]);
         return $this->fetch();
     }
 
     public function doSuggestion()
     {
-        $note = 'dasad';
-        $name = 'name';
-        $phone = 'dasad';
-        $type = '1';
+
+
+        $post=Request::post();
+      //  $post=cache('test');
+
+      $note = $post['note'];
+        $name = $post['name'];
+        $phone = $post['phone'];
+        $openid=$post['openid'];
+        $type = $post['type'];//1为表扬
+        $server_id = $post['serverId'];
+
         $created_data = [];
         $created_data['note'] = $note;
         $created_data['name'] = $name;
         $created_data['phone'] = $phone;
+        $created_data['openid'] = $openid;
         $created_data['type'] = $type;
+
         $res = SuggestionModel::create($created_data);
+
         if (!$res) {
-            return json(0);//
+            return json(['error_code' => 3, 'msg' => '保存表扬信息失败']);
         }
 
+        $img_data = $this->uploads($server_id);
 
-        $img_data = $this->getImgData();
+
         $repair_id = $res->id;
-        $created_img = $this->getImg($img_data, $repair_id, 2);
+        $created_img = $this->getImg($img_data, $repair_id, $type = 1);
         $res = ImgModel::Insert($created_img);
+
         if (!$res) {
-            return json(0);//成功
+            return json(['error_code' => 3, 'msg' => '保存表扬信息失败']);
         }
-        return json(1);//成功
+        return json(['error_code' => 0, 'msg' => '成功']);//认证成功
 
     }
 
     public function praise()
     {
+        $openid=Request::get('openid');
+        $jssdk = new Jssdk('wxcab7c014367d6f9a', 'ad3150cc8c690605cfcd638d1a7c399a');
+
+        $signPackage = $jssdk->GetSignPackage();
+
+        $this->assign(['signPackage'=>$signPackage,'openid'=>$openid]);
+
         return $this->fetch();
     }
 
     public function complaints()
     {
+        $openid=Request::get('openid');
+        $jssdk = new Jssdk('wxcab7c014367d6f9a', 'ad3150cc8c690605cfcd638d1a7c399a');
+
+        $signPackage = $jssdk->GetSignPackage();
+
+        $this->assign(['signPackage'=>$signPackage,'openid'=>$openid]);
+
         return $this->fetch();
     }
 
