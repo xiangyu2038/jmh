@@ -79,7 +79,15 @@ function Ajax(url,type){
     });
 };
 
+// 选择房产
+$('[name=project_id]').change(function(){
+    proJect($(this).find("option:selected").text());
+});
 
+function proJect(txt){
+    $('.project').text(txt);
+};
+proJect($('[name=project_id]').find("option:selected").text());
 
 
 

@@ -11,15 +11,12 @@
 <div class="x-body">
     <div class="layui-row">
         <form action="{:url('admin/Repair/index')}" class="layui-form layui-col-md12 x-so" >
-
-
             <input type="text" name="keyword"  placeholder="请输入小区名" autocomplete="off" value="<?php if(isset($keyword)) echo $keyword ; ?>" class="layui-input">
             <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
     </div>
     <xblock>
         <!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>-->
-
         <button id="exports" class="layui-btn"><i class="layui-icon"></i>导出报修信息</button>
         <span class="x-right" style="line-height:40px">共有数据：{$datas->total()} 条</span>
     </xblock>
