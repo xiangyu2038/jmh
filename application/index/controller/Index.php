@@ -300,6 +300,7 @@ class Index extends Controller
 
         $post=Request::post();
 
+//cache('dada',$post);
 
       $note = $post['note'];
         $name = $post['name'];
