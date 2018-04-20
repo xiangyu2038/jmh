@@ -16,7 +16,7 @@
                 <select lay-filter="test"> name="pro">
                     <option value="请选择小区">请选择小区</option>
                     <?php foreach($project_list as $pv): ; ?>
-                        <option<?php if(isset($pro)&&$pro===$pv)  echo 'selected';  ?> value="{$pv}">{$pv}</option>
+                        <option<?php if(isset($pro)&&$pro==$pv)  echo 'selected';  ?> value="{$pv}">{$pv}</option>
                     <?php endforeach ; ?>
                 </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input placeholder="订单状态" value="" readonly="" class="layui-input layui-unselect" type="text"><i class="layui-edge"></i></div></div>
             </div>
@@ -75,9 +75,9 @@
             <td>{$v.user.name}</td>
             <td>{$v.user.phone}</td>
             <td>{$v.user.id_number}</td>
+            <td>{$v.city}</td>
             <td>{$v.project_name}</td>
             <td>{$v.house_number}</td>
-            <td>{$v.city}</td>
 
             <td class="td-manage">
                 <a title="查看"  onclick="x_admin_show('编辑','/admin/user/edit?project_id={$v.id}')" href="javascript:;">

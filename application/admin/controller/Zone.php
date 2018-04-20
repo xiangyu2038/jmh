@@ -9,7 +9,7 @@ class Zone extends Controller
 {
 public function index(){
 
-    $datas = EvaluationModel::with('user')->paginate(config('pagesize'));
+    $datas = EvaluationModel::with('user')->orderBy('created_at','desc')->paginate(config('pagesize'));
 
     $page=$datas->render();
 

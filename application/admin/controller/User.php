@@ -169,7 +169,7 @@ public function addProject(){
         $file = request()->file('file');
 
         // 移动到框架应用根目录/uploads/ 目录下
-        $info = $file->move('../uploads');
+        $info = $file->move('uploads');
         if ($info) {
             // 成功上传后 获取上传信息
             // 输出 jpg
@@ -178,7 +178,7 @@ public function addProject(){
             //echo $info->getSaveName();
             // 输出 42a79759f284b767dfcb2a0197904287.jpg
             // $filename= $info->getFilename();
-            $filename = BASEPATH . '\uploads\\' . $info->getSaveName();
+            $filename = 'uploads/' . $info->getSaveName();
 
             $this->goods_import($filename);
         } else {

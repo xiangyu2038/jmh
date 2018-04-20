@@ -19,7 +19,7 @@ public function tousu(){
             $keyword=trim(Request::get('keyword'));
             $query->where('project_name','like','%'.$keyword.'%');
         }
-    })->paginate(config('pagesize'));
+    })->orderBy('created_at','desc')->paginate(config('pagesize'));
     if(Request::has('keyword')){
         $keyword=trim(Request::get('keyword'));
         $this->assign('keyword',$keyword);
@@ -43,7 +43,7 @@ public function praise(){
             $keyword=trim(Request::get('keyword'));
             $query->where('project_name','like','%'.$keyword.'%');
         }
-    })->paginate(config('pagesize'));
+    })->orderBy('created_at','desc')->paginate(config('pagesize'));
 
     if(Request::has('keyword')){
         $keyword=trim(Request::get('keyword'));
