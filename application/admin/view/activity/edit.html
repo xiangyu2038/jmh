@@ -1,75 +1,68 @@
+{layout name="layout" /}
 <div class="x-body">
-    <form id="myform" class="layui-form">
-        <input type="hidden" name="project_id" value="{$project.id}">
-        <input type="hidden" name="user_id" value="{$project.user.id}">
+    <form id="myform" class="layui-form" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{$data.id}">
         <div class="layui-form-item">
             <label for="username" class="layui-form-label">
-                <span class="x-red">*</span>用户名
+                <span class="x-red">*</span>标题
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="username" value="{$project.user.name}" name="name" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="username" class="layui-form-label">
-                <span class="x-red">*</span>电话
-            </label>
-            <div class="layui-input-inline">
-                <input type="text" id="username" value="{$project.user.phone}" name="phone" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="phone" class="layui-form-label">
-                <span class="x-red">*</span>证件号
-            </label>
-            <div class="layui-input-inline">
-                <input type="text" id="phone" value="{$project.user.id_number}" name="id_number" required="" lay-verify="phone"
+                <input type="text" id="name" value="{$data.title}" name="title" required="" lay-verify="required"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="username" class="layui-form-label">
-                <span class="x-red">*</span>城市
+                <span class="x-red">*</span>描述
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="username" name="city" value="{$project.city}" required="" lay-verify="required"
+                <input type="text" id="phone" value="{$data.describe}" name="describe" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label  class="layui-form-label">
+                <span class="x-red">*</span>开始时间
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="start_time" value="{$data.start_time}" name="start_time" required=""
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="username" class="layui-form-label">
-                <span class="x-red">*</span>小区
+                <span class="x-red">*</span>结束时间
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="username" name="project_name" value="{$project.project_name}" required="" lay-verify="required"
+                <input type="text" id="end_time" name="end_time"  value="{$data.end_time}" required="" lay-verify="required"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="username" class="layui-form-label">
-                <span class="x-red">*</span>室号
+                <span class="x-red">*</span>上传图片
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="username" name="house_number" value="{$project.house_number}" required="" lay-verify="required"
-                       autocomplete="off" class="layui-input">
+                <button type="button" id="up" class="layui-btn" >
+                    <i class="layui-icon">&#xe67c;</i>上传图片
+                </button>
             </div>
         </div>
-
-
-
+        <input type="file" name="file" id="file" style="display: none" >
 
 
         <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label">
             </label>
-            <input type="button" id="submit" class="layui-btn" value="编辑">
 
+            <input type="submit" id="submit"  lay-submit lay-filter="edit" class="layui-btn" value="增加">
         </div>
 </form>
 </div>
 <script>
+    $('#up').click(function () {
+        $('#file').click();
+    });
     layui.use(['form','layer'], function(){
         $ = layui.jquery;
         var form = layui.form

@@ -2,6 +2,7 @@
 
 namespace app\index\controller;
 
+use model\ActivityModel;
 use model\EvaluationModel;
 use model\ImgModel;
 use model\Jssdk;
@@ -422,7 +423,43 @@ class Index extends Controller
         return true;
 
     }
+    public function actitity(){
 
+
+        ////正在活动
+        $data =  ActivityModel::where('display',1)->get();
+        $activity=$this->getActivity($data);
+        $over=$this->getOver($data);
+
+       $this->assign('activity',$activity);
+       $this->assign('over',$over);
+        return $this->fetch();
+    }
+    public function getActivity($data){
+        $array=[];
+        foreach ($data as $v){
+            if($v['status']==1){
+                $array[]=$v;
+            }else if($v['status']==3){
+////未设置手动开启
+$start_time=strtotime($v['start_time']);
+$end_time=strtotime($v['end_time']);
+if($start_time<=time()&&time()<$end_time){
+    $array[]=$v;
+                }
+            }
+        }
+        return $array;
+    }
+public function getOver($data){
+        $array=[];
+        foreach ($data as $v){
+            if($v['status']==2){
+                $array=$v;
+            }
+        }
+        return $array;
+}
 
 
 }

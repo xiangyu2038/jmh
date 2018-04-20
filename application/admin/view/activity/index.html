@@ -1,0 +1,181 @@
+{layout name="layout" /}
+
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">活动信息</a>
+        <a>
+          <cite>导航元素</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <div class="layui-row">
+        <!--<form class="layui-form layui-col-md12 x-so" action="{:url('admin/Activity/index')}" method="get">
+
+
+            <div class="layui-input-inline">
+                <select id="dad" name="con">
+                    <option  <?php /*if(isset($con)&&$con=='con') echo 'selected'  ; */?> value="con">搜索条件</option>
+                    <option <?php /*if(isset($con)&&$con=='name') echo 'selected'  ; */?> value="name">姓名</option>
+                    <option <?php /*if(isset($con)&&$con=='phone') echo 'selected'  ; */?> value="phone">手机号</option>
+                    <option <?php /*if(isset($con)&&$con=='project_name') echo 'selected'  ; */?> value="project_name">小区名</option>
+                </select>
+            </div>
+
+
+            <input type="text" name="keyword" value="<?php /*if(isset($keyword)) echo $keyword ; */?>"  placeholder="请输入关键词" autocomplete="off" class="layui-input">
+            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+        </form>-->
+    </div>
+    <xblock>
+        <!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>-->
+        <button class="layui-btn" onclick="x_admin_show('添加用户','/admin/Activity/add')"><i class="layui-icon"></i>添加</button>
+        <form id="myform" action="{:url('admin/user/exports')}" style="display: none" class="layui-form" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="file"  >
+        </form>
+
+
+        <span class="x-right" style="line-height:40px">共有数据：{$datas->total()} 条</span>
+    </xblock>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <!--<th>
+                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+            </th>-->
+            <th>序号</th>
+            <th>标题</th>
+            <th>描述</th>
+            <th>图片</th>
+            <th>状态</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>是否展示</th>
+            <th>操作</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <?php $index=0; foreach($datas as  $v): ; ?>
+            <tr>
+                <?php $index++ ; ?>
+
+                <!-- <td>
+                     <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+                 </td>-->
+                <td>{$index}</td>
+                <td>{$v.title}</td>
+                <td>{$v.describe}</td>
+                <td>
+
+
+                    <img src="{$v['imgurl']}"  alt="维修图片" />
+
+                </td>
+                <td>
+
+
+                        <button data-id="{$v['id']}"  data-status="3" class="layui-btn <?php if($v['status']=='3') echo 'layui-btn-normal' ; ?> status">根据开始时间和结束时间</button>
+
+                        <button data-id="{$v['id']}"  data-status="2" class="layui-btn  <?php if($v['status']=='2') echo 'layui-btn-normal' ; ?> status">结束</button>
+
+                        <button data-id="{$v['id']}"  data-status="1" class="layui-btn  <?php if($v['status']=='1') echo 'layui-btn-normal' ; ?> status">开始</button>
+
+                </td>
+
+                <td>{$v.start_time}</td>
+                <td>{$v.end_time}</td>
+                <td>
+
+                        <button class="layui-btn <?php if($v['display']==1) echo 'layui-btn-normal' ; ?>  display" data-id="{$v['id']}" data-display="1" >展示</button>
+
+                        <button class="layui-btn <?php if($v['display']==2) echo 'layui-btn-normal' ; ?> display" data-id="{$v['id']}"  data-display="2">不展示</button>
+
+                </td>
+
+                <td class="td-manage">
+                    <a title="编辑"  onclick="x_admin_show('编辑','/admin/Activity/edit?id={$v.id}')" href="javascript:;">
+                        <i class="layui-icon">&#xe642;</i>
+                    </a>
+
+                </td>
+            </tr>
+        <?php endforeach ; ?>
+        </tbody>
+    </table>
+    <div class="page">
+        <?php echo $page ; ?>
+        <!-- <div>
+             <a class="prev" href="">&lt;&lt;</a>
+             <a class="num" href="">1</a>
+             <span class="current">2</span>
+             <a class="num" href="">3</a>
+             <a class="num" href="">489</a>
+             <a class="next" href="">&gt;&gt;</a>
+         </div>-->
+    </div>
+
+</div>
+<script>
+    $('#export').click(function () {
+        $('#file').click();
+
+    });
+    $('#file').change(function () {
+        $('#myform').submit();
+    });
+
+    $('#exports').click(function () {
+        window.location.href='{:url("admin/User/export")}';
+    });
+
+    $(document).on('change','#selects',function(){
+        var v=$(this).find('option:selected').val();
+
+
+    });
+    $(function  () {
+        layui.use('form', function(){
+            var form = layui.form;
+            // layer.msg('玩命卖萌中', function(){
+            //   //关闭后的操作
+            //   });
+            //监听提交
+
+            form.on('select(test)', function(data){
+                window.location.href="/admin/User/index?pro="+data.value;
+            });
+        });
+    });
+$('.display').click(function () {
+   var id=$(this).attr('data-id');
+   var display=$(this).attr('data-display');
+    $.ajax({
+                 type: "post",
+                 url: "{:url('admin/Activity/changeDisplay')}",
+                 data: {id:id, display:display},
+                 dataType: "json",
+                 success: function(data){
+
+                     location.replace(location.href);
+                          }
+             });
+})
+
+    $('.status').click(function () {
+        var id=$(this).attr('data-id');
+        var status=$(this).attr('data-status');
+        $.ajax({
+            type: "post",
+            url: "{:url('admin/Activity/changeStatus')}",
+            data: {id:id, status:status},
+            dataType: "json",
+            success: function(data){
+
+                location.replace(location.href);
+            }
+        });
+    })
+</script>

@@ -106,6 +106,7 @@
                 </ul>
             </li>
             <?php if($userinfo['username']=='admin'): ; ?>
+
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe6ce;</i>
@@ -128,6 +129,22 @@
 
                 </ul>
             </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="iconfont">&#xe726;</i>
+                        <cite>活动设置</cite>
+                        <i class="iconfont nav_right">&#xe697;</i>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a _href="{:url('admin/Activity/index')}">
+                                <i class="iconfont">&#xe6a7;</i>
+                                <cite>活动设置</cite>
+                            </a>
+                        </li >
+
+                    </ul>
+                </li>
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe726;</i>
@@ -152,6 +169,7 @@
 <!-- 左侧菜单结束 -->
 <!-- 右侧主体开始 -->
 <div class="page-content">
+    <?php if($userinfo['username']=='admin'): ; ?>
     <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
         <ul class="layui-tab-title">
             <li>会员信息</li>
@@ -162,6 +180,7 @@
             </div>
         </div>
     </div>
+    <?php endif ; ?>
 </div>
 
 <div class="page-content-bg"></div>

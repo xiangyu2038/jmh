@@ -1,0 +1,120 @@
+{layout name="layout" /}
+<div class="x-body">
+    <form id="myform" class="layui-form" method="post" enctype="multipart/form-data" >
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>标题
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="name" name="title" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>描述
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="phone" name="describe" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label  class="layui-form-label">
+                <span class="x-red">*</span>开始时间
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="start_time" name="start_time" required=""
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>结束时间
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="end_time" name="end_time" value="" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>上传图片
+            </label>
+            <div class="layui-input-inline">
+                <button type="button" id="up" class="layui-btn" >
+                    <i class="layui-icon">&#xe67c;</i>上传图片
+                </button>
+            </div>
+        </div>
+        <input type="file" name="file" id="file" style="display: none" >
+
+
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+            </label>
+
+            <input type="submit" id="submit"  lay-submit lay-filter="add" class="layui-btn" value="增加">
+        </div>
+</form>
+</div>
+<script>
+    layui.use(['form','layer'], function(){
+        $ = layui.jquery;
+        var form = layui.form
+            ,layer = layui.layer;
+
+        //自定义验证规则
+        form.verify({
+            nikename: function(value){
+                if(value.length < 5){
+                    return '昵称至少得5个字符啊';
+                }
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,repass: function(value){
+                if($('#L_pass').val()!=$('#L_repass').val()){
+                    return '两次密码不一致';
+                }
+            }
+        });
+        form.on('submit(add)', function(data){
+            // alert(888)
+
+
+        });
+        //监听提交
+
+     /*  $('#submit').click(function () {
+       // var data=$('#myform').serialize();
+           alert('da');
+           $('#myform').submit();
+
+
+       });*/
+
+    });
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start_time' //指定元素
+            ,type: 'datetime'
+        });
+        laydate.render({
+            elem: '#end_time' //指定元素
+            ,type: 'datetime'
+        });
+    });
+   $('#up').click(function () {
+       $('#file').click();
+   })
+
+</script>
+<script>var _hmt = _hmt || []; (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();</script>

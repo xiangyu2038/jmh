@@ -20,15 +20,17 @@ class User extends BaseController
                     $query->where('project_name',$pro);
                 }
 
-            }
-            if(Request::has('con')){
-                $con=Request::get('con');
-                $keyword=trim(Request::get('keyword'));
+            }else{
+                if(Request::has('con')){
+                    $con=Request::get('con');
+                    $keyword=trim(Request::get('keyword'));
 
-                if($con=='project_name'){
-                    $query->where('project_name','like','%'.$keyword.'%');
+                    if($con=='project_name'){
+                        $query->where('project_name','like','%'.$keyword.'%');
+                    }
                 }
             }
+
         })->whereHas('user',function ($query){
             if(Request::has('con')){
                 $con=Request::get('con');

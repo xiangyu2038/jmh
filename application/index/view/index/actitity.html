@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=640,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta name="format-detection" content="adress=no"/>
+
+    <title>活动列表</title>
+    <link rel="stylesheet" href="__STATIC__/css/style.css">
+    <link rel="stylesheet" href="__STATIC__/iconfont/iconfont.css">
+    <script src="__STATIC__/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrap activity">
+    <div class="banner">
+        <img src="__STATIC__/images/img1.jpg">
+    </div>
+    <div class="parting"><span>正在进行</span></div>
+
+    <ul class="activity-list">
+        <?php foreach($activity as $v): ; ?>
+        <li class="hot">
+            <img src="{$v.imgurl}">
+            <div class="info">
+                <h2>{$v.title}</h2>
+                <p>{$v.describe}</p>
+            </div>
+            <div class="clearfix"></div>
+        </li>
+        <?php endforeach ; ?>
+    </ul>
+
+    <div class="parting"><span>金典回顾</span></div>
+
+    <ul class="activity-list">
+ <?php foreach($over as $v): ; ?>
+        <li>
+            <img src="{$v.imgurl}">
+            <div class="info">
+                <h2>{$v.title}</h2>
+                <p>{$v.describe}</p>
+            </div>
+            <div class="clearfix"></div>
+        </li>
+       <?php endforeach ; ?>
+    </ul>
+
+</div>
+</body>
+</html>
+<script src="__STATIC__/js/script.js"></script>
