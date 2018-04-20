@@ -154,6 +154,10 @@ textarea {
   top: 0;
   display: inline-block;
 }
+.list .project {
+  margin-top: -15px;
+  border-top: 1px solid #ddd;
+}
 .list .star {
   height: 80px;
 }
