@@ -46,10 +46,12 @@ class User extends BaseController
         $datas->setPath($str);
 
         $page=$datas->render();
-
+         $project_list=ProjectModel::all();
+         $project_list=$this->getProJectList($project_list);
 
           $this->assign('page',$page);
           $this->assign('datas',$datas);
+          $this->assign('project_list',$project_list);
         return $this->fetch();
 }
 
@@ -286,6 +288,7 @@ public function addProject(){
         foreach ($data as $key=> $v){
               $array[]=$this->getExportDataOne($key,$v);
           }
+
           $export=new Export();
         $headArr=['序号','城市','项目名','楼室号','客户姓名','联系电话','证件号'];
         $export->exports($array,$headArr);
@@ -301,6 +304,13 @@ public function addProject(){
        $array['id_number']=(string)$data['user']['id_number'];
        return $array;
     }
-
+public function getProJectList($data){
+ $data=$data->groupBy('project_name');
+        $array=[];
+    foreach ($data as $key=> $v){
+            $array[]=$key;
+        }
+        return $array;
+}
     
 }

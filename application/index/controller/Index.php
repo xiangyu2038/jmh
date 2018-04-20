@@ -301,7 +301,7 @@ class Index extends Controller
         $post=Request::post();
 
 //cache('dada',$post);
-
+     //   $post=cache('dada');
       $note = $post['note'];
         $name = $post['name'];
         $phone = $post['phone'];
@@ -390,8 +390,8 @@ class Index extends Controller
 
 
     public function uploadsOne($accessToken,$data){
-        $targetName = './public/uploads/' . date('YmdHis') . '.jpg';
-
+        $targetNames = '/uploads/' . date('YmdHis').rand(0,1000) .'.jpg';
+        $targetName='./public'.$targetNames;
         $ch = curl_init("http://file.api.weixin.qq.com/cgi-bin/media/get?access_token={$accessToken}&media_id={$data}");
         $fp = fopen(BASEPATH . $targetName, 'wb');
         curl_setopt($ch, CURLOPT_FILE, $fp);
@@ -399,7 +399,7 @@ class Index extends Controller
         curl_exec($ch);
         curl_close($ch);
         fclose($fp);
-        return $targetName;
+        return $targetNames;
 
     }
 

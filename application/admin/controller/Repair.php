@@ -11,13 +11,13 @@ class Repair extends Controller
 {
 public function index(){
 
-    $datas= RepairModel::with('user')->with('project')->whereHas('project',function ($query){
+    $datas= RepairModel::with('user')->with('project')->with('img')->whereHas('project',function ($query){
         if(Request::has('keyword')){
            $keyword=trim(Request::get('keyword'));
             $query->where('project_name','like','%'.$keyword.'%');
         }
-    })->paginate(10);
-
+    })->orderBy('created_at','desc')->paginate(10);
+//dd($datas->toArray());
     if(Request::has('keyword')){
         $keyword=trim(Request::get('keyword'));
         $this->assign('keyword',$keyword);
@@ -32,6 +32,7 @@ public function index(){
 
     $this->assign('page',$page);
     $this->assign('datas',$datas);
+
     return $this->fetch();
 }
     public function export(){

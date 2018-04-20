@@ -1,6 +1,7 @@
 <?php
 namespace app\admin\controller;
 
+use model\ProjectModel;
 use model\SuggestionModel;
 use think\Controller;
 use think\facade\Request;
@@ -29,6 +30,9 @@ public function tousu(){
     $datas->setPath($str);
     $page=$datas->render();
 
+    $project_list=ProjectModel::all();
+    $project_list=$this->getProJectList($project_list);
+    $this->assign('project_list',$project_list);
     $this->assign('page',$page);
     $this->assign('datas',$datas);
     return $this->fetch();
@@ -48,12 +52,23 @@ public function praise(){
     }else{
         $str='/admin/Suggestion/praise';
     }
+
     $datas->setPath($str);
     $page=$datas->render();
-
+    $project_list=ProjectModel::all();
+    $project_list=$this->getProJectList($project_list);
+    $this->assign('project_list',$project_list);
     $this->assign('page',$page);
     $this->assign('datas',$datas);
     return $this->fetch();
     return $this->fetch();
 }
+    public function getProJectList($data){
+        $data=$data->groupBy('project_name');
+        $array=[];
+        foreach ($data as $key=> $v){
+            $array[]=$key;
+        }
+        return $array;
+    }
 }
