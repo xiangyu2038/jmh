@@ -14,9 +14,17 @@ class User extends BaseController
 
 
         $datas = ProjectModel::with('user')->where(function ($query){
+            if(Request::has('pro')){
+                $pro=trim(Request::get('pro'));
+                if($pro!='请选择小区'){
+                    $query->where('project_name',$pro);
+                }
+
+            }
             if(Request::has('con')){
                 $con=Request::get('con');
                 $keyword=trim(Request::get('keyword'));
+
                 if($con=='project_name'){
                     $query->where('project_name','like','%'.$keyword.'%');
                 }
@@ -33,15 +41,25 @@ class User extends BaseController
                 }
             }
         })->orderBy('created_at','desc')->paginate(10);
-        if(Request::has('con')){
-            $con=Request::get('con');
-            $keyword=trim(Request::get('keyword'));
-            $this->assign('con',$con);
-            $this->assign('keyword',$keyword);
-            $str='/admin/User/index?con='.$con.'&keyword='.$keyword.'&';
+        if(Request::has('pro')){
+            $pro=Request::get('pro');
+            $str='/admin/User/index?pro='.$pro.'&';
+
+            $this->assign('pro',$pro);
         }else{
-            $str='/admin/User/index';
+            if(Request::has('con')){
+                $con=Request::get('con');
+                $keyword=trim(Request::get('keyword'));
+                $this->assign('con',$con);
+                $this->assign('keyword',$keyword);
+
+                $str='/admin/User/index?con='.$con.'&keyword='.$keyword.'&';
+            }else{
+                $str='/admin/User/index';
+            }
         }
+
+
 
         $datas->setPath($str);
 

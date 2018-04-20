@@ -14,7 +14,8 @@ public function index(){
     $datas= RepairModel::with('user')->with('project')->with('img')->whereHas('project',function ($query){
         if(Request::has('keyword')){
            $keyword=trim(Request::get('keyword'));
-            $query->where('project_name','like','%'.$keyword.'%');
+
+            $query->where('project_name',$keyword);
         }
     })->orderBy('created_at','desc')->paginate(10);
 //dd($datas->toArray());
