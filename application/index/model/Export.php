@@ -82,7 +82,7 @@ class Export {
 
 
 
-        $fileName = iconv("utf-8", "gb2312", '淘宝数据汇总表格' . date('Ymd') . '.xls');
+        $fileName = iconv("utf-8", "gb2312", '金茂汇客户导出' . date('Ymd') . '.xls');
 
         ob_end_clean();
         header('Content-Type: application/vnd.ms-excel');

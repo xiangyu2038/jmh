@@ -13,6 +13,8 @@
 namespace think;
 error_reporting(E_ALL);
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 define('BASEPATH', __DIR__ . '/../');
 // 加载基础文件
 require __DIR__ . '/../thinkphp/base.php';
@@ -31,6 +33,16 @@ $capsule->setAsGlobal();
 // 启动Eloquent
 $capsule->bootEloquent();
 // 支持事先使用静态方法设置Request对象和Config对象
+///注册分页
+LengthAwarePaginator::currentPageResolver(function (){
+if(isset($_GET['page'])){
+    return $_GET['page'];
+}else if(isset($_GET['?page'])){
+    return $_GET['?page'];
+}else{
+        return 1;
+    }
 
+});
 // 执行应用并响应
 Container::get('app')->run()->send();

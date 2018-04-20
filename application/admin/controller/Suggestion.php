@@ -13,7 +13,20 @@ public function index(){
 
 public function tousu(){
 
-    $datas =SuggestionModel::with('user')->where('type',2)->paginate(config('pagesize'), $columns = ['*'], $pageName = 'page', Request::get('page'));
+    $datas =SuggestionModel::with('user')->with('project')->where('type',2)->whereHas('project',function ($query){
+        if(Request::has('keyword')){
+            $keyword=trim(Request::get('keyword'));
+            $query->where('project_name','like','%'.$keyword.'%');
+        }
+    })->paginate(config('pagesize'));
+    if(Request::has('keyword')){
+        $keyword=trim(Request::get('keyword'));
+        $this->assign('keyword',$keyword);
+        $str='/admin/User/index?keyword='.$keyword.'&';
+    }else{
+        $str='/admin/Suggestion/tousu';
+    }
+    $datas->setPath($str);
     $page=$datas->render();
 
     $this->assign('page',$page);
@@ -21,9 +34,23 @@ public function tousu(){
     return $this->fetch();
 }
 public function praise(){
-    $datas =SuggestionModel::with('user')->where('type',1)->paginate(config('pagesize'), $columns = ['*'], $pageName = 'page', Request::get('page'));
+    $datas =SuggestionModel::where('type',1)->whereHas('project',function ($query){
+        if(Request::has('keyword')){
+            $keyword=trim(Request::get('keyword'));
+            $query->where('project_name','like','%'.$keyword.'%');
+        }
+    })->paginate(config('pagesize'));
+
+    if(Request::has('keyword')){
+        $keyword=trim(Request::get('keyword'));
+        $this->assign('keyword',$keyword);
+        $str='/admin/User/index?keyword='.$keyword.'&';
+    }else{
+        $str='/admin/Suggestion/praise';
+    }
+    $datas->setPath($str);
     $page=$datas->render();
-    //dd($datas->toArray());
+
     $this->assign('page',$page);
     $this->assign('datas',$datas);
     return $this->fetch();

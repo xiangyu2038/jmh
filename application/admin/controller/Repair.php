@@ -11,7 +11,23 @@ class Repair extends Controller
 {
 public function index(){
 
-    $datas= RepairModel::with('user')->with('project')->paginate(config('pagesize'), $columns = ['*'], $pageName = 'page', Request::get('page'));
+    $datas= RepairModel::with('user')->with('project')->whereHas('project',function ($query){
+        if(Request::has('keyword')){
+           $keyword=trim(Request::get('keyword'));
+            $query->where('project_name','like','%'.$keyword.'%');
+        }
+    })->paginate(10);
+
+    if(Request::has('keyword')){
+        $keyword=trim(Request::get('keyword'));
+        $this->assign('keyword',$keyword);
+        $str='/admin/User/index?keyword='.$keyword.'&';
+    }else{
+        $str='/admin/Repair/index';
+    }
+
+    $datas->setPath($str);
+
     $page=$datas->render();
 
     $this->assign('page',$page);

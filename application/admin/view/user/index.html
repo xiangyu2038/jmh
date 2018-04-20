@@ -10,36 +10,19 @@
 </div>
 <div class="x-body">
     <div class="layui-row">
-        <form class="layui-form layui-col-md12 x-so">
-            <input class="layui-input" placeholder="开始日" name="start" id="start">
-            <input class="layui-input" placeholder="截止日" name="end" id="end">
+        <form class="layui-form layui-col-md12 x-so" action="{:url('admin/user/index')}" method="get">
+
+
             <div class="layui-input-inline">
-                <select name="contrller">
-                    <option>支付状态</option>
-                    <option>已支付</option>
-                    <option>未支付</option>
+                <select name="con">
+                    <option  <?php if(isset($con)&&$con=='con') echo 'selected'  ; ?> value="con">搜索条件</option>
+                    <option <?php if(isset($con)&&$con=='name') echo 'selected'  ; ?> value="name">姓名</option>
+                    <option <?php if(isset($con)&&$con=='phone') echo 'selected'  ; ?> value="phone">手机号</option>
+                    <option <?php if(isset($con)&&$con=='project_name') echo 'selected'  ; ?> value="project_name">小区名</option>
                 </select>
             </div>
-            <div class="layui-input-inline">
-                <select name="contrller">
-                    <option>支付方式</option>
-                    <option>支付宝</option>
-                    <option>微信</option>
-                    <option>货到付款</option>
-                </select>
-            </div>
-            <div class="layui-input-inline">
-                <select name="contrller">
-                    <option value="">订单状态</option>
-                    <option value="0">待确认</option>
-                    <option value="1">已确认</option>
-                    <option value="2">已收货</option>
-                    <option value="3">已取消</option>
-                    <option value="4">已完成</option>
-                    <option value="5">已作废</option>
-                </select>
-            </div>
-            <input type="text" name="username"  placeholder="请输入订单号" autocomplete="off" class="layui-input">
+
+            <input type="text" name="keyword" value="<?php if(isset($keyword)) echo $keyword ; ?>"  placeholder="请输入关键词" autocomplete="off" class="layui-input">
             <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
     </div>
@@ -52,7 +35,7 @@
 
         <button id="export" class="layui-btn"><i class="layui-icon"></i>批量导入用户</button>
         <button id="exports" class="layui-btn"><i class="layui-icon"></i>导出会员信息</button>
-        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
+        <span class="x-right" style="line-height:40px">共有数据：{$datas->total()} 条</span>
     </xblock>
     <table class="layui-table">
         <thead>

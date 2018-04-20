@@ -310,9 +310,10 @@ abstract class AbstractPaginator {
 	 */
 	public static function resolveCurrentPage($default = 1)
 	{
-		if (isset(static::$currentPageResolver))
+
+	    if (isset(static::$currentPageResolver))
 		{
-			return call_user_func(static::$currentPageResolver);
+            return call_user_func(static::$currentPageResolver);
 		}
 
 		return $default;
@@ -326,7 +327,8 @@ abstract class AbstractPaginator {
 	 */
 	public static function currentPageResolver(Closure $resolver)
 	{
-		static::$currentPageResolver = $resolver;
+
+	    static::$currentPageResolver = $resolver;
 	}
 
 	/**

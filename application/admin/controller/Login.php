@@ -19,6 +19,7 @@ class Login extends Controller
             if(!$user){
                 $this->error('用户不存在');
             }
+
             if($user['password'] !== $this->encryptPassword($password)){
                 $this->error('密码错误');
             }

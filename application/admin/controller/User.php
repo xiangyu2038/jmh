@@ -12,10 +12,41 @@ class User extends BaseController
 {
     public function index(){
 
-        $datas = ProjectModel::with('user')->paginate(10);
 
-        $datas->setPath('/admin/User/index');
+        $datas = ProjectModel::with('user')->where(function ($query){
+            if(Request::has('con')){
+                $con=Request::get('con');
+                $keyword=trim(Request::get('keyword'));
+                if($con=='project_name'){
+                    $query->where('project_name','like','%'.$keyword.'%');
+                }
+            }
+        })->whereHas('user',function ($query){
+            if(Request::has('con')){
+                $con=Request::get('con');
+                $keyword=trim(Request::get('keyword'));
+                if($con=='name'){
+
+                    $query->where('name','like','%'.$keyword.'%');
+                }elseif ($con=='phone'){
+                    $query->where('phone','like','%'.$keyword.'%');
+                }
+            }
+        })->paginate(10);
+        if(Request::has('con')){
+            $con=Request::get('con');
+            $keyword=trim(Request::get('keyword'));
+            $this->assign('con',$con);
+            $this->assign('keyword',$keyword);
+            $str='/admin/User/index?con='.$con.'&keyword='.$keyword.'&';
+        }else{
+            $str='/admin/User/index';
+        }
+
+        $datas->setPath($str);
+
         $page=$datas->render();
+
 
           $this->assign('page',$page);
           $this->assign('datas',$datas);
@@ -257,7 +288,7 @@ public function addProject(){
        $array['house_number']=$data['house_number'];
        $array['name']=$data['user']['name'];
        $array['phone']=$data['user']['phone'];
-       $array['id_number']=$data['user']['id_number'];
+       $array['id_number']=(string)$data['user']['id_number'];
        return $array;
     }
 
