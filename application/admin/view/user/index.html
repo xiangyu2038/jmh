@@ -14,6 +14,7 @@
         <form class="layui-form layui-col-md12 x-so" action="{:url('admin/user/index')}" method="get">
             <div class="layui-input-inline">
                 <select id="selects" name="pro">
+                    <option value="请选择小区">请选择小区</option>
                     <?php foreach($project_list as $pv): ; ?>
                         <option value="{$pv}">{$pv}</option>
                     <?php endforeach ; ?>

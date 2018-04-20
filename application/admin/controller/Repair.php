@@ -29,7 +29,9 @@ public function index(){
     $datas->setPath($str);
 
     $page=$datas->render();
-
+    $project_list=ProjectModel::all();
+    $project_list=$this->getProJectList($project_list);
+    $this->assign('project_list',$project_list);
     $this->assign('page',$page);
     $this->assign('datas',$datas);
 
@@ -67,5 +69,13 @@ public function index(){
         }else{
             return '未评价';
         }
+    }
+    public function getProJectList($data){
+        $data=$data->groupBy('project_name');
+        $array=[];
+        foreach ($data as $key=> $v){
+            $array[]=$key;
+        }
+        return $array;
     }
 }

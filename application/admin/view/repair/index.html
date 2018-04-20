@@ -12,8 +12,14 @@
 <div class="x-body">
     <div class="layui-row">
         <form action="{:url('admin/Repair/index')}" class="layui-form layui-col-md12 x-so" >
-            <input type="text" name="keyword"  placeholder="请输入小区名" autocomplete="off" value="<?php if(isset($keyword)) echo $keyword ; ?>" class="layui-input">
-            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+            <div class="layui-input-inline">
+                <select id="selects" name="keyword">
+                    <option value="请选择小区">请选择小区</option>
+                    <?php foreach($project_list as $pv): ; ?>
+                        <option value="{$pv}">{$pv}</option>
+                    <?php endforeach ; ?>
+                </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input placeholder="订单状态" value="" readonly="" class="layui-input layui-unselect" type="text"><i class="layui-edge"></i></div></div>
+            </div>
         </form>
     </div>
     <xblock>
