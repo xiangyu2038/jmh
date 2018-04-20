@@ -228,15 +228,20 @@ class Index extends Controller
 
     public function getOpenId()
     {
-        define('WX_PATH', BASEPATH . '/vendor/WX/example/');
+       if(session('openid')){
+           return session('openid');
+       }else{
+           define('WX_PATH', BASEPATH . '/vendor/WX/example/');
 
-        require_once WX_PATH . 'WxPay.JsApiPay.php';
-        $jsapi = new \JsApiPay();
-        $openid = $jsapi->GetOpenid();
-        //session('openid', $openid);
+           require_once WX_PATH . 'WxPay.JsApiPay.php';
+           $jsapi = new \JsApiPay();
+           $openid = $jsapi->GetOpenid();
+           //session('openid', $openid);
 
 
-        return $openid;
+           return $openid;
+       }
+
        /* if(session('?name')){
             return 'oUPo2wRgPOudk-bPLzwahZ1YkDkc';
         }else{
@@ -301,6 +306,7 @@ class Index extends Controller
         $phone = $post['phone'];
         $openid=$post['openid'];
         $type = $post['type'];//1为表扬
+        $project_id = $post['project_id'];//1为表扬
         $server_id = $post['serverId'];
 
         $created_data = [];
@@ -309,6 +315,7 @@ class Index extends Controller
         $created_data['phone'] = $phone;
         $created_data['openid'] = $openid;
         $created_data['type'] = $type;
+        $created_data['project_id'] = $project_id;
 
         $res = SuggestionModel::create($created_data);
 
@@ -333,7 +340,7 @@ class Index extends Controller
     public function praise()
     {
         $openid=Request::get('openid');
-        $user_id=UserModel::where('openid',$openid)->first()->user_id;
+        $user_id=UserModel::where('openid',$openid)->first()->id;
         $datas = ProjectModel::where('user_id', $user_id)->get();
 
         $jssdk = new Jssdk('wxcab7c014367d6f9a', 'ad3150cc8c690605cfcd638d1a7c399a');
@@ -348,9 +355,10 @@ class Index extends Controller
     public function complaints()
     {
         $openid=Request::get('openid');
-
-        $user_id=UserModel::where('openid',$openid)->first()->user_id;
+       // $openid='oUPo2wRgPOudk-bPLzwahZ1YkDkc';
+        $user_id=UserModel::where('openid',$openid)->first()->id;
         $datas = ProjectModel::where('user_id', $user_id)->get();
+
         $jssdk = new Jssdk('wxcab7c014367d6f9a', 'ad3150cc8c690605cfcd638d1a7c399a');
 
         $signPackage = $jssdk->GetSignPackage();
