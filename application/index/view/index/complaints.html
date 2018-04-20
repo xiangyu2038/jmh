@@ -17,6 +17,41 @@
     <div class="head"></div>
     <ul class="list">
         <li>
+            <a href="javascript:;">
+                我的房产
+                <select name="project_id">
+                    <?php foreach($datas as $v): ; ?>
+                        <option  value="<?php echo $v->id ; ?>"><?php echo $v->project_name ; ?></option>
+                    <?php endforeach ; ?>
+                </select>
+            </a>
+        </li>
+        <li class="project"></li>
+        <li>
+            <label>报修说明</label>
+            <textarea class="note" name="note" cols="30" rows="3"></textarea>
+        </li>
+        <li class="update">
+            <label>上传照片</label>
+            <div class="img-list">
+                <div class="img-item">
+                    <!-- <i class="iconfont icon-close"></i> -->
+                    <i class="iconfont icon-add"></i>
+                </div>
+                <div class="img-item">
+                    <i class="iconfont icon-add"></i>
+                </div>
+                <div class="img-item">
+                    <i class="iconfont icon-add"></i>
+                </div>
+                <div class="img-item">
+                    <i class="iconfont icon-add"></i>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <ul class="list">
+        <li>
             <label>投诉说明</label>
             <textarea class="note" name="note" cols="30" rows="3"></textarea>
         </li>

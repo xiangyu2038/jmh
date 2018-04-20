@@ -333,11 +333,14 @@ class Index extends Controller
     public function praise()
     {
         $openid=Request::get('openid');
+        $user_id=UserModel::where('openid',$openid)->first()->user_id;
+        $datas = ProjectModel::where('user_id', $user_id)->get();
+
         $jssdk = new Jssdk('wxcab7c014367d6f9a', 'ad3150cc8c690605cfcd638d1a7c399a');
 
         $signPackage = $jssdk->GetSignPackage();
 
-        $this->assign(['signPackage'=>$signPackage,'openid'=>$openid]);
+        $this->assign(['signPackage'=>$signPackage,'openid'=>$openid,'datas'=>$datas]);
 
         return $this->fetch();
     }
@@ -346,12 +349,13 @@ class Index extends Controller
     {
         $openid=Request::get('openid');
 
-
+        $user_id=UserModel::where('openid',$openid)->first()->user_id;
+        $datas = ProjectModel::where('user_id', $user_id)->get();
         $jssdk = new Jssdk('wxcab7c014367d6f9a', 'ad3150cc8c690605cfcd638d1a7c399a');
 
         $signPackage = $jssdk->GetSignPackage();
 
-        $this->assign(['signPackage'=>$signPackage,'openid'=>$openid]);
+        $this->assign(['signPackage'=>$signPackage,'openid'=>$openid,'datas'=>$datas]);
 
         return $this->fetch();
     }
