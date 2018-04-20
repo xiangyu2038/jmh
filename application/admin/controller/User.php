@@ -27,12 +27,12 @@ class User extends BaseController
                 $keyword=trim(Request::get('keyword'));
                 if($con=='name'){
 
-                    $query->where('name','like','%'.$keyword.'%');
+                    $query->where('name','like','%'.$keyword.'%')->orderBy('created_at','desc');
                 }elseif ($con=='phone'){
-                    $query->where('phone','like','%'.$keyword.'%');
+                    $query->where('phone','like','%'.$keyword.'%')->orderBy('created_at','desc');
                 }
             }
-        })->paginate(10);
+        })->orderBy('created_at','desc')->paginate(10);
         if(Request::has('con')){
             $con=Request::get('con');
             $keyword=trim(Request::get('keyword'));
@@ -56,7 +56,17 @@ class User extends BaseController
     public function add(){
 if(Request::isPost()){
 $post=Request::post();
-   $res = UserModel::create($post);
+    $array=[];
+    $array['name']=$post['name'];
+    $array['phone']=$post['phone'];
+    $array['id_number']=$post['id_number'];
+   $res = UserModel::create($array);
+   $p_array=[];
+   $p_array['city']=$post['city'];
+   $p_array['project_name']=$post['project_name'];
+   $p_array['house_number']=$post['house_number'];
+   $p_array['user_id']=$res->id;
+   $res=ProjectModel::create($p_array);
 if(!$res){
     return json(['code'=>0,'msg'=>'操作失败']);
 }
