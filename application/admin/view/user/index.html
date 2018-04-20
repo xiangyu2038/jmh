@@ -120,5 +120,10 @@ $('#myform').submit();
 window.location.href='{:url("admin/User/export")}';
     });
 
+    $(document).on('change','#selects',function(){
+       var v=$(this).find('option:selected').val();
+
+       
+    });
 
 </script>
