@@ -372,7 +372,7 @@ textarea {
 .head {
   height: 80px;
   margin-bottom: 30px;
-  background: url(../images/head.png);
+  background: #eee;
 }
 .activity {
   background: #fff;
