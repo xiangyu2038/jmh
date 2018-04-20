@@ -26,7 +26,7 @@ class Login extends Controller
 
             Session::set('userInfo', $user->toArray());
 
-            $this->success('登录成功', url('admin/index/index'));
+            $this->redirect( url('admin/index/index'));
         }
         return $this->fetch();
 
