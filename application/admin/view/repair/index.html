@@ -104,7 +104,9 @@
     });
 
     $('#exports').click(function () {
-        window.location.href='{:url("admin/Repair/export")}';
+        var url=zhuanyi('{$export_str}');
+
+        window.location.href=url;
     });
 
     $(function  () {
@@ -120,4 +122,16 @@
             });
         });
     })
+    function zhuanyi (str){
+        var s = "";
+        if(str.length == 0) return "";
+
+        s = str.replace("&amp;",'&');
+        s = s.replace(/</g,"&lt;");
+        s = s.replace(/>/g,"&gt;");
+        s = s.replace(/ /g,"&nbsp;");
+        s = s.replace(/\'/g,"&#39;");
+        s = s.replace(/\"/g,"&quot;");
+        return s;
+    }
 </script>

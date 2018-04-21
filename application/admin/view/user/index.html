@@ -13,7 +13,7 @@
     <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so" action="{:url('admin/user/index')}" method="get">
             <div class="layui-input-inline">
-                <select lay-filter="test"> name="pro">
+                <select id="xiaoqu" lay-filter="test"> name="pro">
                     <option value="请选择小区">请选择小区</option>
                     <?php foreach($project_list as $pv): ; ?>
                         <option<?php if(isset($pro)&&$pro==$pv)  echo 'selected';  ?> value="{$pv}">{$pv}</option>
@@ -113,11 +113,16 @@
 
     });
     $('#file').change(function () {
-$('#myform').submit();
+
+
+        $('#myform').submit();
     });
 
     $('#exports').click(function () {
-window.location.href='{:url("admin/User/export")}';
+
+var url=zhuanyi('{$export_str}');
+
+        window.location.href=url;
     });
 
     $(document).on('change','#selects',function(){
@@ -137,6 +142,17 @@ window.location.href='{:url("admin/User/export")}';
                 window.location.href="/admin/User/index?pro="+data.value;
             });
         });
-    })
+    });
+    function zhuanyi (str){
+        var s = "";
+        if(str.length == 0) return "";
 
+        s = str.replace("&amp;",'&');
+        s = s.replace(/</g,"&lt;");
+        s = s.replace(/>/g,"&gt;");
+        s = s.replace(/ /g,"&nbsp;");
+        s = s.replace(/\'/g,"&#39;");
+        s = s.replace(/\"/g,"&quot;");
+        return s;
+    }
 </script>

@@ -46,7 +46,7 @@ class User extends BaseController
         if(Request::has('pro')){
             $pro=Request::get('pro');
             $str='/admin/User/index?pro='.$pro.'&';
-
+            $export_str='/admin/User/export?pro='.$pro.'&';
             $this->assign('pro',$pro);
         }else{
             if(Request::has('con')){
@@ -56,8 +56,10 @@ class User extends BaseController
                 $this->assign('keyword',$keyword);
 
                 $str='/admin/User/index?con='.$con.'&keyword='.$keyword.'&';
+                $export_str='/admin/User/export?con='.$con.'&keyword='.$keyword.'&';
             }else{
                 $str='/admin/User/index';
+                $export_str='/admin/User/index';
             }
         }
 
@@ -72,6 +74,7 @@ class User extends BaseController
           $this->assign('page',$page);
           $this->assign('datas',$datas);
           $this->assign('project_list',$project_list);
+          $this->assign('export_str',$export_str);
         return $this->fetch();
 }
 
@@ -299,8 +302,40 @@ public function addProject(){
      * @return mixed
      */
     public function export(){
-     $data = ProjectModel::with('user')->get();
+
+        $data = ProjectModel::with('user')->where(function ($query){
+            if(Request::has('pro')){
+                $pro=trim(Request::get('pro'));
+                if($pro!='请选择小区'){
+                    $query->where('project_name',$pro);
+                }
+
+            }else{
+                if(Request::has('con')){
+                    $con=Request::get('con');
+                    $keyword=trim(Request::get('keyword'));
+
+                    if($con=='project_name'){
+                        $query->where('project_name','like','%'.$keyword.'%');
+                    }
+                }
+            }
+
+        })->whereHas('user',function ($query){
+            if(Request::has('con')){
+                $con=Request::get('con');
+                $keyword=trim(Request::get('keyword'));
+                if($con=='name'){
+
+                    $query->where('name','like','%'.$keyword.'%')->orderBy('created_at','desc');
+                }elseif ($con=='phone'){
+                    $query->where('phone','like','%'.$keyword.'%')->orderBy('created_at','desc');
+                }
+            }
+        })->orderBy('created_at','desc')->get();
+;
      $this->getExportData($data);
+
     }
     public function getExportData($data){
         $data=$data->toarray();
@@ -332,5 +367,5 @@ public function getProJectList($data){
         }
         return $array;
 }
-    
+
 }

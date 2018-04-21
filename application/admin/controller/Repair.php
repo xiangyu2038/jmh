@@ -14,17 +14,21 @@ public function index(){
     $datas= RepairModel::with('user')->with('project')->with('img')->whereHas('project',function ($query){
         if(Request::has('keyword')){
            $keyword=trim(Request::get('keyword'));
+if($keyword!='请选择小区'){
+    $query->where('project_name',$keyword);
+}
 
-            $query->where('project_name',$keyword);
         }
     })->orderBy('created_at','desc')->paginate(10);
 //dd($datas->toArray());
     if(Request::has('keyword')){
         $keyword=trim(Request::get('keyword'));
         $this->assign('keyword',$keyword);
-        $str='/admin/User/index?keyword='.$keyword.'&';
+        $str='/admin/Repair/index?keyword='.$keyword.'&';
+        $export_str='/admin/Repair/export?keyword='.$keyword.'&';
     }else{
         $str='/admin/Repair/index';
+        $export_str='/admin/Repair/index';
     }
 
     $datas->setPath($str);
@@ -35,12 +39,22 @@ public function index(){
     $this->assign('project_list',$project_list);
     $this->assign('page',$page);
     $this->assign('datas',$datas);
+    $this->assign('export_str',$export_str);
 
     return $this->fetch();
 }
     public function export(){
 
-        $datas= RepairModel::with('user')->with('img')->with('project')->get();
+        $datas= RepairModel::with('user')->with('project')->with('img')->whereHas('project',function ($query){
+            if(Request::has('keyword')){
+                $keyword=trim(Request::get('keyword'));
+
+                if($keyword!='请选择小区'){
+                    $query->where('project_name',$keyword);
+                }
+
+            }
+        })->orderBy('created_at','desc')->get();
        $array=[];
         foreach ($datas as $key=> $v){
             $array[]=  $this->getExportDataOne($key,$v);
