@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=640,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta name="format-detection" content="adress=no"/>
+
+    <title>活动预约</title>
+    <link rel="stylesheet" href="__STATIC__/css/style.css">
+    <link rel="stylesheet" href="__STATIC__/iconfont/iconfont.css">
+    <script src="__STATIC__/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+    <div class="head"></div>
+    <ul class="list">
+        <li>
+            <label>活动时间</label>
+            <span>2017年4月17日-2017年4月24日</span>
+        </li>
+        <li>
+            <label>活动地点</label>
+            <span>大宁金茂府西区户户开现场</span>
+        </li>
+        <li>
+            <label>参与对象</label>
+            <span>大宁金茂府西区业主</span>
+        </li>
+        <li>
+            <label>活动地点</label>
+            <div>大宁金茂府西区户户开现场大宁金茂府西区户户开现场</div>
+        </li>
+    </ul>
+    <ul class="list">
+        <li>
+            <label>预约时段</label>
+            <ul class="time">
+                <li>
+                    <h2>09:00-10:00</h2>
+                    <p>剩余50组名额</p>
+                </li>
+                <li>
+                    <h2>10:00-11:00</h2>
+                    <p>剩余50组名额</p>
+                </li>
+                <li>
+                    <h2>11:00-12:00</h2>
+                    <p>剩余50组名额</p>
+                </li>
+                <li>
+                    <h2>13:00-14:00</h2>
+                    <p>剩余50组名额</p>
+                </li>
+                <li>
+                    <h2>14:00-15:00</h2>
+                    <p>剩余50组名额</p>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div class="btn">
+        <a class="bg-color1 submit" href="javascript:;">预约活动时间</a>
+    </div>
+</div>
+<div class="wrap prompt hide">
+    <i class="iconfont icon-icon-success"></i>
+    <h1 class="tit">报修提交成功</h1>
+    <p class="info">请保持手机畅通</p>
+    <p class="num">我们将与你取得联系</p>
+    <!--  <div class="type-repair btn bottom">
+        <a class="bg-color1" href="/index/index/evaluation?repair_id=3">待评价</a>
+    </div>-->
+</div>
+</body>
+</html>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="__STATIC__/js/script.js"></script>
+<script>
+    // 提交
+    $('.submit').click(function(){
+        Ajax('{:url("index/index/doRepair")}','img');
+    });
+
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=640,user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta name="format-detection" content="adress=no"/>
+
+    <title>活动预约</title>
+    <link rel="stylesheet" href="__STATIC__/css/style.css">
+    <link rel="stylesheet" href="__STATIC__/iconfont/iconfont.css">
+    <script src="__STATIC__/js/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+    <div class="head"></div>
+    <ul class="list">
+        <li>
+            <a href="javascript:;">
+                我的房产
+                <select name="project_id">
+                    <?php foreach($datas as $v): ; ?>
+                    <option  value="<?php echo $v->id ; ?>"><?php echo $v->house_number ; ?></option>
+                   <?php endforeach ; ?>
+                </select>
+            </a>
+        </li>
+        <li class="project"></li>
+    </ul>
+    <div class="btn">
+        <a class="bg-color1 submit" href="javascript:;">预约活动时间</a>
+    </div>
+</div>
+</body>
+</html>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="__STATIC__/js/script.js"></script>
+<script>
+    // 提交
+    $('.submit').click(function(){
+        Ajax('{:url("index/index/doRepair")}','img');
+    });
+
+</script>
