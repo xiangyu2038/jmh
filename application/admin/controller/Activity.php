@@ -13,7 +13,7 @@ class Activity extends BaseController
     public function index(){
 
 
-        $datas = ActivityModel::paginate(10);
+        $datas = ActivityModel::orderBy('created_at','desc')->paginate(10);
       //dd($datas->toArray());
       $str='/admin/Activity/index';
       $datas->setPath($str);
@@ -32,6 +32,7 @@ class Activity extends BaseController
            $array['describe']=$post['describe'];
            $array['start_time']=$post['start_time'];
            $array['end_time']=$post['end_time'];
+           $array['url']=$post['url'];
            $res=ActivityModel::find($id)->update($array);
            if(!$res){
                $this->error('保存失败');
@@ -80,6 +81,7 @@ if($file){
             $array['describe']=$post['describe'];
             $array['start_time']=$post['start_time'];
             $array['end_time']=$post['end_time'];
+            $array['url']=$post['url'];
            $res =    ActivityModel::create($array);
            if(!$res){
                    return json(['code'=>0,'msg'=>'添加失败']);
