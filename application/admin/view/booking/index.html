@@ -10,113 +10,96 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
 <div class="x-body">
-   <!-- <div class="layui-row">
-        <form class="layui-form layui-col-md12 x-so">
-            <input class="layui-input" placeholder="开始日" name="start" id="start">
-            <input class="layui-input" placeholder="截止日" name="end" id="end">
-            <div class="layui-input-inline">
-                <select name="contrller">
-                    <option>支付状态</option>
-                    <option>已支付</option>
-                    <option>未支付</option>
-                </select>
-            </div>
-            <div class="layui-input-inline">
-                <select name="contrller">
-                    <option>支付方式</option>
-                    <option>支付宝</option>
-                    <option>微信</option>
-                    <option>货到付款</option>
-                </select>
-            </div>
-            <div class="layui-input-inline">
-                <select name="contrller">
-                    <option value="">订单状态</option>
-                    <option value="0">待确认</option>
-                    <option value="1">已确认</option>
-                    <option value="2">已收货</option>
-                    <option value="3">已取消</option>
-                    <option value="4">已完成</option>
-                    <option value="5">已作废</option>
-                </select>
-            </div>
-            <input type="text" name="username"  placeholder="请输入订单号" autocomplete="off" class="layui-input">
-            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
-        </form>
-    </div>
-    <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','./order-add.html')"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
-    </xblock>-->
-    <table  class="layui-table" lay-filter="test3">
-        <thead>
-        <tr>
+    <fieldset class="layui-elem-field">
+        <legend>预约信息</legend>
+        <div class="layui-field-box">
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>预约时间</th>
+                    <th>预约地点</th>
+                    <th>活动对象</th>
+                    <th>活动地点</th>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <tbody>
 
-            <th>序号</th>
-            <th >预约时间</th>
-            <th>预约地点</th>
-            <th>参与对象</th>
-            <th>活动详情</th>
-            <th>预约时段</th>
+                <tr>
+                    <td>{$data[0]['start_time']} 至 {$data[0]['end_time']}</td>
+                    <td>{$data[0]['area']}</td>
+                    <td>{$data[0]['object']}</td>
+                    <td>{$data[0]['object']}</td>
+                    <td class="td-manage">
+                        <a title="编辑"  onclick="x_admin_show('编辑','/admin/Booking/edit?id={$data[0][\'id\']}')" href="javascript:;">
+                            <i class="layui-icon">&#xe642;</i>
+                        </a>
 
-            <th >操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php $index=0; foreach($data as $v): ; ?>
-        <tr>
-            <?php $index++ ; ?>
-            <td>{$index}</td>
-            <td >
-                <table class="layui-table">
+                        <!-- <a title="删除" onclick="member_del(this,'')" href="javascript:;">
+                            <i class="layui-icon">&#xe640;</i>
+                        </a>-->
+                    </td>
+                </tr>
 
-                    <tbody>
-                    <tr>
-                        <td>{$v.start_time}</td>
-                        <td>至</td>
-                        <td>{$v.end_time}</td>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <fieldset class="layui-elem-field">
+        <legend>时段信息</legend>
+        <div class="layui-field-box">
 
-                    </tr>
 
-                    </tbody>
-                </table>
-            </td>
-            <td>{$v.area}</td>
-            <td>{$v.object}</td>
-            <td>{$v.detail}</td>
-            <td>
-                <table class="layui-table">
+            <table class="layui-table">
+                <thead>
+                <tr>
 
-                    <tbody>
-                    <?php foreach($v['period'] as $vv): ; ?>
-                    <tr lay-data="{field:'sex', width:80, edit: 'text'}">
-                        <td>{$vv.start_time}</td>
-<td>至</td>
-                        <td>{$vv.end_time}</td>
+                    <th>预约时段</th>
+                    <th>详情</th>
 
-                    </tr>
-                  <?php endforeach ; ?>
-                    </tbody>
-                </table>
-            </td>
+                </tr>
+                </thead>
+                <tbody>
+               <?php foreach($data[0]['period'] as $vv): ; ?>
+                <tr>
+                    <td>{$vv['start_time']} 至 {$vv['end_time']}</td>
+                    <td>
+                        <table class="layui-table">
+                            <thead>
+                            <tr>
 
-            <td class="td-manage">
-                <a title="编辑"  onclick="x_admin_show('编辑','/admin/Booking/edit?id={$v.id}')" href="javascript:;">
-                    <i class="layui-icon">&#xe642;</i>
-                </a>
+                                <th>日期</th>
+                                <th>总人数</th>
+                                <th>已预约人数</th>
 
-                <!-- <a title="删除" onclick="member_del(this,'')" href="javascript:;">
-                    <i class="layui-icon">&#xe640;</i>
-                </a>-->
-            </td>
-        </tr>
-        <?php endforeach ; ?>
-        </tbody>
-    </table>
-    <div class="page">
-      <?php echo $page ; ?>
-    </div>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach($vv['everyday'] as $vvv): ; ?>
+                                <tr>
+
+                                    <td>{$vvv['time']}</td>
+                                    <td>{$vvv['people']}</td>
+                                    <td>{$vvv['booking_people']}</td>
+
+                                </tr>
+                            <?php endforeach ; ?>
+
+
+                            </tbody>
+                        </table>
+
+                    </td>
+
+
+                </tr>
+               <?php endforeach ; ?>
+                </tbody>
+            </table>
+
+
+        </div>
+    </fieldset>
 
 </div>
 

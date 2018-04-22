@@ -60,7 +60,12 @@
                     <input name="end_time{$v.id}" id="end_time{$v.id}"  value="{$v.end_time}" autocomplete="off" class="layui-input" type="text">
                 </div>
             </div>
-
+            <div class="layui-inline">
+                <label class="layui-form-label">总人数</label>
+                <div class="layui-input-inline">
+                    <input name="num[people,{$v.id}]" id="people"  value="{$v['everyday'][0]['people']}" autocomplete="off" class="layui-input" type="text">
+                </div>
+            </div>
         </div>
        <?php endforeach ; ?>
         <div class="layui-form-item">

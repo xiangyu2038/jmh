@@ -1,6 +1,7 @@
 <?php
 namespace app\admin\controller;
 
+use model\EverydayModel;
 use model\Export;
 use model\Pages;
 use model\PeriodModel;
@@ -14,13 +15,12 @@ use think\facade\Request;
 class Booking extends BaseController
 {
    public function index(){
-   $data = ReservationModel::paginate(1);
-
-
-
-   $str='/admin/Booking/index';
+   $data = ReservationModel::with('period.everyday')->paginate(1);
+       $str='/admin/Booking/index';
    $data->setPath($str);
+
    $page=$data->render();
+  // dd($data->toArray());
    $this->assign('page',$page);
    $this->assign('data',$data);
        return  $this->fetch();
@@ -36,7 +36,7 @@ class Booking extends BaseController
           $array1['object']=$post['object'];
           $array1['detail']=$post['detail'];
           $id=$post['id'];
-          //dd($post);
+
         $res =  ReservationModel::find($id)->update($array1);
         if(!$res){
             $this->error();
@@ -51,12 +51,14 @@ class Booking extends BaseController
 
          PeriodModel::where('re_id',$id)->where('name','第五时间')->update(['start_time'=>$post['start_time5'],'end_time'=>$post['end_time5']]);
 
+          $this->getNum($post['num']);
+         //EverydayModel::where('period_id',)
          $this->success('成功');
      }
       $id=Request::get('id');
      // $id=1;
-      $data=ReservationModel::with('period')->find($id);
-
+      $data=ReservationModel::with('period.everyday')->find($id);
+//dd($data->toArray());
       $this->assign('data',$data);
        return  $this->fetch();
    }
@@ -148,6 +150,17 @@ public function getArrayOne($data){
     $array['e']=$data['re_time'];
     $array['f']=$data['peroid']['start_time'].'至'.$data['peroid']['end_time'];
    return $array;
+}
+public function getNum($data){
+    foreach ($data as $key=> $v){
+        $this->saveOne($key,$v);
+    }
+
+}
+public function saveOne($key,$data){
+$id=explode(',',$key);
+$id=$id['1'];
+EverydayModel::where('period_id',$id)->update(['people'=>$data]);
 }
 
 }

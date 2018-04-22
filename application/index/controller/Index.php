@@ -38,7 +38,9 @@ class Index extends Controller
     {
 
         $openid=$this->getOpenId();
-
+if(Request::has('repair')){
+    $this->assign('repair',1);
+}
        // $openid='oUPo2wRgPOudk-bPLzwahZ1YkDkcll';
       $res =  UserModel::where('openid',$openid)->first();
 
@@ -73,7 +75,11 @@ class Index extends Controller
         if (!$res) {
             return json(['error_code' => 4, 'msg' => '认证失败']);//认证失败
         }
+        if(Request::has('repair')){
+            return json(['error_code' => 1, 'msg' => '成功','repair'=>1]);//认证成功
+        }
         return json(['error_code' => 1, 'msg' => '成功']);//认证成功
+
     }
 
 
@@ -115,7 +121,7 @@ class Index extends Controller
         if (!$data) {
 
             ///还没认证
-            $this->redirect('index/index/login');
+            $this->redirect('index/index/login?repair=1');
         }
         $user_id = $data->id;
         /////去寻找还有没有未评价保修

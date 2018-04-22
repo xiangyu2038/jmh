@@ -39,15 +39,25 @@ class Reservation extends Controller
             $user_id=1;
             $project_id=1;//房产id
             $re_peroid_time=1;//预约时段id
-            $re_time='2018-04-22';//预约时间
+            $re_time='2018-04-22';//预约那一天
             $re_id=1;
-dd($_POST);
+            $visitors=5;
+
             $array=[];
             $array['re_id']=$re_id;
             $array['re_time']=$re_time;
             $array['re_peroid_time']=$re_peroid_time;
             $array['project_id']=$project_id;
-            $res=   UserBookingModel    ::create($array);
+            $array['visitors']=$visitors;
+            $res=   UserBookingModel ::create($array);
+
+            ///增加一个预约人数
+            $booking_people= EverydayModel::where('period_id',$re_peroid_time)->where('time',$re_time)->first()->booking_people;
+
+            $booking_people=$booking_people+1;
+
+            $booking_people= EverydayModel::where('period_id',$re_peroid_time)->where('time',$re_time)->update(['booking_people'=>$booking_people]);
+
             dd('ok');
 
 

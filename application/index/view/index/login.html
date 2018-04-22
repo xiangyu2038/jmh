@@ -17,6 +17,10 @@
     <div class="logo"></div>
     <form class="login-form">
         <div>
+           <?php if(isset('repair')): ; ?>
+               <input class="certificate" value="{$repair}" name="repair" type="hidden" placeholder="请输入房产证姓名">
+            <?php endif ; ?>
+            <input class="certificate" name="name" type="text" placeholder="请输入房产证姓名">
             <i class="iconfont icon-people"></i>
             <input class="certificate" name="name" type="text" placeholder="请输入房产证姓名">
         </div>
