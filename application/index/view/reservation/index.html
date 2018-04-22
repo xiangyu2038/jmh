@@ -21,8 +21,8 @@
                 我的房产
                 <select name="project_id">
                     <?php foreach($datas as $v): ; ?>
-                    <option  value="<?php echo $v->id ; ?>"><?php echo $v->house_number ; ?></option>
-                   <?php endforeach ; ?>
+                        <option  value="<?php echo $v->id ; ?>"><?php echo $v->house_number ; ?></option>
+                    <?php endforeach ; ?>
                 </select>
             </a>
         </li>
@@ -39,7 +39,7 @@
 <script>
     // 提交
     $('.submit').click(function(){
-        Ajax('{:url("index/index/doRepair")}','img');
+        Ajax('{:url("index/index/doRepair")}');
     });
 
 </script>

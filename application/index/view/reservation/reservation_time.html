@@ -17,46 +17,52 @@
     <div class="head"></div>
     <ul class="list">
         <li>
+            <a href="javascript:;">
+                我的房产
+                <select name="project_id">
+                    <?php foreach($datas as $v): ; ?>
+                        <option  value="<?php echo $v->id ; ?>"><?php echo $v->house_number ; ?></option>
+                    <?php endforeach ; ?>
+                </select>
+            </a>
+        </li>
+        <li class="project"></li>
+    </ul>
+
+</div>
+<div class="wrap">
+    <div class="head"></div>
+    <ul class="list">
+        <li>
             <label>活动时间</label>
-            <span>2017年4月17日-2017年4月24日</span>
+            <span>{$yu_yue['start_time']}-{$yu_yue['end_time']}</span>
         </li>
         <li>
             <label>活动地点</label>
-            <span>大宁金茂府西区户户开现场</span>
+            <span>{$yu_yue['area']}</span>
         </li>
         <li>
             <label>参与对象</label>
-            <span>大宁金茂府西区业主</span>
+            <span>{$yu_yue['object']}</span>
         </li>
         <li>
             <label>活动地点</label>
-            <div>大宁金茂府西区户户开现场大宁金茂府西区户户开现场</div>
+            <div>{$yu_yue['place']}</div>
         </li>
     </ul>
     <ul class="list">
         <li>
             <label>预约时段</label>
             <ul class="time">
+
+                <?php foreach($yu_yue['period'] as $v): ; ?>
                 <li>
-                    <h2>09:00-10:00</h2>
-                    <p>剩余50组名额</p>
+                    <h2>{$v['start_time']}-{$v['end_time']}</h2>
+                    <p>
+                        <?php   $a= $v['people']-$v['booking_people'] ; echo '剩余'.$a.'人' ?>
+                    </p>
                 </li>
-                <li>
-                    <h2>10:00-11:00</h2>
-                    <p>剩余50组名额</p>
-                </li>
-                <li>
-                    <h2>11:00-12:00</h2>
-                    <p>剩余50组名额</p>
-                </li>
-                <li>
-                    <h2>13:00-14:00</h2>
-                    <p>剩余50组名额</p>
-                </li>
-                <li>
-                    <h2>14:00-15:00</h2>
-                    <p>剩余50组名额</p>
-                </li>
+                <?php endforeach ; ?>
             </ul>
         </li>
     </ul>

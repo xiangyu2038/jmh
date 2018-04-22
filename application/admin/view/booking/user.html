@@ -1,0 +1,119 @@
+{layout name="layout" /}
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">预约设置</a>
+        <a>
+          <cite>导航元素</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <!-- <div class="layui-row">
+         <form class="layui-form layui-col-md12 x-so">
+             <input class="layui-input" placeholder="开始日" name="start" id="start">
+             <input class="layui-input" placeholder="截止日" name="end" id="end">
+             <div class="layui-input-inline">
+                 <select name="contrller">
+                     <option>支付状态</option>
+                     <option>已支付</option>
+                     <option>未支付</option>
+                 </select>
+             </div>
+             <div class="layui-input-inline">
+                 <select name="contrller">
+                     <option>支付方式</option>
+                     <option>支付宝</option>
+                     <option>微信</option>
+                     <option>货到付款</option>
+                 </select>
+             </div>
+             <div class="layui-input-inline">
+                 <select name="contrller">
+                     <option value="">订单状态</option>
+                     <option value="0">待确认</option>
+                     <option value="1">已确认</option>
+                     <option value="2">已收货</option>
+                     <option value="3">已取消</option>
+                     <option value="4">已完成</option>
+                     <option value="5">已作废</option>
+                 </select>
+             </div>
+             <input type="text" name="username"  placeholder="请输入订单号" autocomplete="off" class="layui-input">
+             <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+         </form>
+     </div>
+     <xblock>
+         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+         <button class="layui-btn" onclick="x_admin_show('添加用户','./order-add.html')"><i class="layui-icon"></i>添加</button>
+         <span class="x-right" style="line-height:40px">共有数据：88 条</span>
+     </xblock>-->
+    <table  class="layui-table" lay-filter="test3">
+        <thead>
+        <tr>
+
+            <th>序号</th>
+            <th >姓名</th>
+            <th>预约小区</th>
+            <th>预约房产</th>
+            <th>预约时间</th>
+            <th>预约时间段</th>
+
+           <!-- <th >操作</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <?php $index=0; foreach($data as $v): ; ?>
+            <tr>
+                <?php $index++ ; ?>
+                <td>{$index}</td>
+                <td>{$v.user.name}</td>
+                <td>{$v.project.project_name}</td>
+                <td>{$v.project.house_number}</td>
+                <td>{$v.re_time}</td>
+                <td>
+                    <table class="layui-table">
+
+                        <tbody>
+                        <tr>
+                            <td>{$v.peroid.start_time}</td>
+                            <td>至</td>
+                            <td>{$v.peroid.end_time}</td>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </td>
+
+                <<!--td class="td-manage">
+                    <a title="编辑"  onclick="x_admin_show('编辑','/admin/Booking/edit?id={$v.id}')" href="javascript:;">
+                        <i class="layui-icon">&#xe642;</i>
+                    </a>
+
+                    <!-- <a title="删除" onclick="member_del(this,'')" href="javascript:;">
+                        <i class="layui-icon">&#xe640;</i>
+                    </a>-->
+                </td>-->
+            </tr>
+        <?php endforeach ; ?>
+        </tbody>
+    </table>
+    <div class="page">
+        <?php echo $page ; ?>
+    </div>
+
+</div>
+
+
+<script>
+
+
+</script>
+<script>var _hmt = _hmt || []; (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();</script>

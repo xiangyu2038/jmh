@@ -1,0 +1,134 @@
+{layout name="layout" /}
+<div class="x-body">
+    <form id="myform" class="layui-form" method="post">
+        <input type="hidden" value="{$data.id}" name="id">
+        <div class="layui-form-item">
+
+            <div class="layui-inline">
+                <label class="layui-form-label">活动时间</label>
+                <div class="layui-input-inline">
+                    <input name="start_time" id="start_time"  lay-verify="datetime" value="{$data.start_time}" autocomplete="off" class="layui-input" type="text">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">至</label>
+                <div class="layui-input-inline">
+                    <input name="end_time" id="end_time" lay-verify="datetime" value="{$data.end_time}" autocomplete="off" class="layui-input" type="text">
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>活动地点
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="area" name="area" value="{$data.area}" required="" lay-verify="required"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>参与对象
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="object" name="object" value="{$data.object}"  required="" lay-verify="required"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>活动详情
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="detail" name="detail" value="{$data.detail}"  required="" lay-verify="required"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+         <?php foreach($data['period'] as $v): ; ?>
+        <div class="layui-form-item">
+
+            <div class="layui-inline">
+                <label class="layui-form-label">预约时段</label>
+                <div class="layui-input-inline">
+                    <input name="start_time{$v.id}" id="start_time{$v.id}"   value="{$v.start_time}" autocomplete="off" class="layui-input"  type="text">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">至</label>
+                <div class="layui-input-inline">
+                    <input name="end_time{$v.id}" id="end_time{$v.id}"  value="{$v.end_time}" autocomplete="off" class="layui-input" type="text">
+                </div>
+            </div>
+
+        </div>
+       <?php endforeach ; ?>
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+            </label>
+            <input type="submit" lay-submit lay-filter="edit" id="submit" class="layui-btn" value="编辑">
+
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['form','layer'], function(){
+        $ = layui.jquery;
+        var form = layui.form
+            ,layer = layui.layer;
+
+        //自定义验证规则
+        form.verify({
+            nikename: function(value){
+                if(value.length < 5){
+                    return '昵称至少得5个字符啊';
+                }
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,repass: function(value){
+                if($('#L_pass').val()!=$('#L_repass').val()){
+                    return '两次密码不一致';
+                }
+            }
+        });
+
+        //监听提交
+
+        form.on('submit(edit)', function(data){
+            // alert(888)
+
+
+        });
+
+    });
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start_time' //指定元素
+            ,type: 'datetime'
+        });
+        laydate.render({
+            elem: '#end_time' //指定元素
+            ,type: 'datetime'
+        });
+ <?php foreach($data['period'] as $v): ; ?>
+        laydate.render({
+            elem: '#start_time{$v.id}' //指定元素
+            ,type: 'time'
+        });
+        laydate.render({
+            elem: '#end_time{$v.id}' //指定元素
+            ,type: 'time'
+        });
+        <?php endforeach ; ?>
+
+    });
+</script>
+<script>var _hmt = _hmt || []; (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();</script>

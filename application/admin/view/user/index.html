@@ -46,6 +46,8 @@
         <button id="exports" class="layui-btn"><i class="layui-icon"></i>导出会员信息</button>
         <span class="x-right" style="line-height:40px">共有数据：{$datas->total()} 条</span>
     </xblock>
+
+
     <table class="layui-table">
         <thead>
         <tr>
@@ -121,14 +123,14 @@
     $('#exports').click(function () {
 
 var url=zhuanyi('{$export_str}');
-
+alert(url);
         window.location.href=url;
     });
 
     $(document).on('change','#selects',function(){
        var v=$(this).find('option:selected').val();
 
-       
+
     });
     $(function  () {
         layui.use('form', function(){
@@ -142,7 +144,7 @@ var url=zhuanyi('{$export_str}');
                 window.location.href="/admin/User/index?pro="+data.value;
             });
         });
-    });
+    })
     function zhuanyi (str){
         var s = "";
         if(str.length == 0) return "";
