@@ -481,3 +481,9 @@ textarea {
 .times .on {
   border-color: #244289;
 }
+.reservation-info {
+  text-align: center;
+  font-size: 22px;
+  margin: 30px auto 30px;
+  line-height: 34px;
+}

@@ -50,7 +50,7 @@
     <ul class="list">
         <li>
             <label>到访人数</label>
-            <input type="text" value="" placeholder="请输入到访人数">
+            <input type="text" name="number" value="" placeholder="请输入到访人数">
         </li>
         <li>
             <label>预约日期</label>
@@ -61,7 +61,7 @@
             <ul class="times">
                 <?php foreach($yu_yue['period'] as $v): ; ?>
                 <!-- class="ban" 禁用-->
-                <li>
+                <li data-id="">
                     <!-- <h2>{$v['start_time']}-{$v['end_time']}</h2> -->
                     <h2>10:00-11:00</h2>
                     <p>
@@ -72,7 +72,8 @@
             </ul>
         </li>
     </ul>
-    <div>
+    <input type="hidden" name="user_id" value="15">
+    <div class="reservation-info">
         <p>尊敬的业主</p>
         <p>请您再次确认预约时间一经确认提交</p>
         <p>将无法修改</p>
@@ -100,5 +101,29 @@
         if($(this).hasClass('ban')) return;
         $(this).siblings().removeClass('on');
         $(this).addClass('on');
+    });
+    var state=false;
+    $(document).on('click','.times li',function(){
+        if($(this).hasClass('ban')) return;
+        $('.times li').removeClass('on');
+        $(this).addClass('on');
+    });
+    $('[name=time]').change(function(){
+        if(state) return;
+        state=true;
+        var time=$(this).val();
+        $.ajax({
+            url:'',
+            data:{time:time},
+            success:function(result){
+                state=false;
+                if(result.error_code==1){
+
+                }
+            },
+            error:function(){
+                state=false;
+            }
+        })
     });
 </script>
