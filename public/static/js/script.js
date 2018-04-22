@@ -61,6 +61,9 @@ function Ajax(url,type){
                 data[key]=$(this).val();
             });
         };
+        if(type=='reservation'){
+            
+        }
     }
     // alert('上传数据');
     $.ajax({

@@ -454,3 +454,30 @@ textarea {
   top: -50px;
   background: url(../images/hot.png) center no-repeat;
 }
+.times {
+  display: inline-block;
+  font-size: 0;
+  margin: 0 -15px;
+  padding-bottom: 15px;
+}
+.times li {
+  border: 1px solid #ddd;
+  display: inline-block;
+  width: 170px;
+  padding: 15px;
+  margin: 0 15px 15px;
+}
+.times li h2 {
+  font-size: 24px;
+  line-height: 40px;
+}
+.times li p {
+  font-size: 20px;
+  line-height: 40px;
+}
+.times .ban {
+  background: #eee;
+}
+.times .on {
+  border-color: #244289;
+}

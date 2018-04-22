@@ -28,14 +28,11 @@
         </li>
         <li class="project"></li>
     </ul>
-
-</div>
-<div class="wrap">
-    <div class="head"></div>
     <ul class="list">
         <li>
             <label>活动时间</label>
-            <span>{$yu_yue['start_time']}-{$yu_yue['end_time']}</span>
+            <span>2018-04-20 至 2018-04-22</span>
+            <!-- <span>{$yu_yue['start_time']} 至 {$yu_yue['end_time']}</span> -->
         </li>
         <li>
             <label>活动地点</label>
@@ -52,32 +49,43 @@
     </ul>
     <ul class="list">
         <li>
+            <label>到访人数</label>
+            <input type="text" value="" placeholder="请输入到访人数">
+        </li>
+        <li>
+            <label>预约日期</label>
+            <input class="time" name="time" type="date">
+        </li>
+        <li>
             <label>预约时段</label>
-            <ul class="time">
-
+            <ul class="times">
                 <?php foreach($yu_yue['period'] as $v): ; ?>
+                <!-- class="ban" 禁用-->
                 <li>
-                    <h2>{$v['start_time']}-{$v['end_time']}</h2>
+                    <!-- <h2>{$v['start_time']}-{$v['end_time']}</h2> -->
+                    <h2>10:00-11:00</h2>
                     <p>
-                        <?php   $a= $v['people']-$v['booking_people'] ; echo '剩余'.$a.'人' ?>
+                        <?php $a= $v['people']-$v['booking_people'] ; echo '剩余'.$a.'组名额' ?>
                     </p>
                 </li>
                 <?php endforeach ; ?>
             </ul>
         </li>
     </ul>
+    <div>
+        <p>尊敬的业主</p>
+        <p>请您再次确认预约时间一经确认提交</p>
+        <p>将无法修改</p>
+    </div>
     <div class="btn">
         <a class="bg-color1 submit" href="javascript:;">预约活动时间</a>
     </div>
 </div>
-<div class="wrap prompt hide">
+<div class="wrap prompt">
     <i class="iconfont icon-icon-success"></i>
-    <h1 class="tit">报修提交成功</h1>
-    <p class="info">请保持手机畅通</p>
-    <p class="num">我们将与你取得联系</p>
-    <!--  <div class="type-repair btn bottom">
-        <a class="bg-color1" href="/index/index/evaluation?repair_id=3">待评价</a>
-    </div>-->
+    <h1 class="tit">预约成功</h1>
+    <p class="info">您预约的时间是</p>
+    <p class="num"></p>
 </div>
 </body>
 </html>
@@ -86,7 +94,11 @@
 <script>
     // 提交
     $('.submit').click(function(){
-        Ajax('{:url("index/index/doRepair")}','img');
+        Ajax('{:url("index/index/doRepair")}','reservation');
     });
-
+    $('.times li').click(function(){
+        if($(this).hasClass('ban')) return;
+        $(this).siblings().removeClass('on');
+        $(this).addClass('on');
+    });
 </script>
