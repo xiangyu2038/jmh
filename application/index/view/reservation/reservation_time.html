@@ -81,7 +81,7 @@
         <a class="bg-color1 submit" href="javascript:;">预约活动时间</a>
     </div>
 </div>
-<div class="wrap prompt">
+<div class="wrap hide prompt">
     <i class="iconfont icon-icon-success"></i>
     <h1 class="tit">预约成功</h1>
     <p class="info">您预约的时间是</p>
@@ -94,7 +94,7 @@
 <script>
     // 提交
     $('.submit').click(function(){
-        Ajax('{:url("index/index/doRepair")}','reservation');
+        Ajax('{:url("index/Reservation/reservationTime")}','reservation');
     });
     $('.times li').click(function(){
         if($(this).hasClass('ban')) return;

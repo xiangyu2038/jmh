@@ -63,16 +63,91 @@ class Booking extends BaseController
 
    public function User(){
 
-      $data = UserBookingModel::with('project')->with('user')->with('peroid')->paginate(10);
+      $data = UserBookingModel::with('project')->with('user')->with('peroid')->where(function ($query){
+          if(Request::has('keyword')){
 
-//dd($data->toArray());
-       $str='/admin/Booking/User';
+              $query->whereHas('project',function ($query){
+                  $keyword=trim(Request::get('keyword'));
+                  if($keyword!='请选择小区'){
+                      $query->where('project_name','like','%'.$keyword.'%');
+                  }
+
+              });
+          }
+
+      })->paginate(10);
+
+       if(Request::has('keyword')){
+           $keyword=trim(Request::get('keyword'));
+           $this->assign('keyword',$keyword);
+           $str='/admin/Booking/User?keyword='.$keyword.'&';
+           $export_str='/admin/Booking/export?keyword='.$keyword.'&';
+       }else{
+           $str='/admin/Booking/User';
+           $export_str='/admin/Booking/export';
+       }
+
+       $project_list=ProjectModel::all();
+       $project_list=$this->getProJectList($project_list);
+       $this->assign('project_list',$project_list);
+
+
        $data->setPath($str);
        $page=$data->render();
+       $this->assign('export_str',$export_str);
        $this->assign('page',$page);
        $this->assign('data',$data);
        return  $this->fetch();
    }
 
+    public function getProJectList($data){
+        $data=$data->groupBy('project_name');
+        $array=[];
+        foreach ($data as $key=> $v){
+            $array[]=$key;
+        }
+        return $array;
+    }
+
+    public function export(){
+        $data = UserBookingModel::with('project')->with('user')->with('peroid')->where(function ($query){
+            if(Request::has('keyword')){
+
+                $query->whereHas('project',function ($query){
+                    $keyword=trim(Request::get('keyword'));
+                    if($keyword!='请选择小区'){
+                        $query->where('project_name','like','%'.$keyword.'%');
+                    }
+
+                });
+            }
+
+        })->get();
+
+
+        $export=new Export();
+        $headArr=['姓名','预约小区','预约房产','预约时间','预约时段'];
+        $array=$this->getArray($data);
+        $export->exports($array,$headArr);
+
+    }
+public function getArray($data){
+        $array=[];
+        //dd($data->toArray());
+       foreach ($data as $v){
+           $array[]=$this->getArrayOne($v);
+       }
+       return $array;
+}
+public function getArrayOne($data){
+    $array=[];
+    $array['a']=$data['user']['name'];
+    $array['b']=$data['project']['project_name'];
+    $array['c']=$data['project']['project_name'];
+    $array['d']=$data['project']['house_number'];
+    $array['e']=$data['re_time'];
+    $array['f']=$data['peroid']['start_time'].'至'.$data['peroid']['end_time'];
+   return $array;
+}
 
 }

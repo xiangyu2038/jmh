@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use model\ActivityModel;
 use model\EvaluationModel;
+use model\EverydayModel;
 use model\ImgModel;
 use model\Jssdk;
 use model\ProjectModel;
@@ -40,7 +41,7 @@ class Reservation extends Controller
             $re_peroid_time=1;//预约时段id
             $re_time='2018-04-22';//预约时间
             $re_id=1;
-
+dd($_POST);
             $array=[];
             $array['re_id']=$re_id;
             $array['re_time']=$re_time;
@@ -62,6 +63,31 @@ class Reservation extends Controller
         $this->assign('datas',$datas);
         $this->assign('yu_yue',$yu_yue);
         return $this->fetch();
+    }
+
+    public function getPeople(){
+        ////获取每个预约时间的预约人数 和剩余人数
+        $time='2018-04-22';
+  $data = EverydayModel::where('time',$time)->with('period')->get();
+
+       $data=$this->delaArray($data);
+return json(['code'=>1,'msg'=>'成功','data'=>$data]);
+    }
+
+    public function delaArray($data){
+       $array=[];
+        foreach ($data as $v){
+            $array[]=$this->delaArrayOne($v);
+        }
+        return $array;
+    }
+    public function delaArrayOne($data){
+        $array=[];
+        $array['start_time']=$data['period']['start_time'];
+        $array['end_time']=$data['period']['end_time'];
+        $array['people']=$data['people'];
+        $array['booking_people']=$data['booking_people'];
+        return $array;
     }
 
 }
