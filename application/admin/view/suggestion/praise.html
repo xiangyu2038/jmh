@@ -19,7 +19,7 @@
                     <?php foreach($project_list as $pv): ; ?>
                         <option <?php if(isset($keyword)&&$keyword==$pv) echo 'selected' ; ?> value="{$pv}">{$pv}</option>
                     <?php endforeach ; ?>
-                </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input placeholder="订单状态" value="" readonly="" class="layui-input layui-unselect" type="text"><i class="layui-edge"></i></div></div>
+                </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input placeholder="" value="" readonly="" class="layui-input layui-unselect" type="text"><i class="layui-edge"></i></div></div>
             </div>
         </form>
     </div>
@@ -54,8 +54,8 @@
                      <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
                  </td>-->
                 <td>{$index}</td>
-                <td>{$v.user.name}</td>
-                <td>{$v.user.phone}</td>
+                <td>{$v.name}</td>
+                <td>{$v.phone}</td>
                 <td>{$v.project.project_name}</td>
                 <td>{$v.note}</td>
                 <td>

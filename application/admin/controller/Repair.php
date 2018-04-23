@@ -20,7 +20,7 @@ if($keyword!='请选择小区'){
 
         }
     })->orderBy('created_at','desc')->paginate(10);
-//dd($datas->toArray());
+
     if(Request::has('keyword')){
         $keyword=trim(Request::get('keyword'));
         $this->assign('keyword',$keyword);
@@ -59,6 +59,7 @@ if($keyword!='请选择小区'){
         foreach ($datas as $key=> $v){
             $array[]=  $this->getExportDataOne($key,$v);
        }
+
         $headArr=['序号','姓名','电话','所属小区','房产地址','说明','预约上门时间','状态'];
         $export=new Export();
         $export->exports($array,$headArr);
@@ -69,8 +70,8 @@ if($keyword!='请选择小区'){
 
         $array=[];
         $array['key']=$key;
-        $array['name']=$data['user']['name'];
-        $array['phone']=$data['user']['phone'];
+        $array['name']=$data['contacts_name'];
+        $array['phone']=(string)$data['contacts_phone'];
         $array['project_name']=$data['project']['project_name'];
         $array['house_number']=$data['project']['house_number'];
         $array['note']=$data['note'];

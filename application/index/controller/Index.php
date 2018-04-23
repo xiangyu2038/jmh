@@ -38,9 +38,11 @@ class Index extends Controller
     {
 
         $openid=$this->getOpenId();
-if(Request::has('repair')){
-    $this->assign('repair',1);
-}
+        $url=Request::get('url');
+        if(!$url){
+            $url='false';
+        }
+
        // $openid='oUPo2wRgPOudk-bPLzwahZ1YkDkcll';
       $res =  UserModel::where('openid',$openid)->first();
 
@@ -50,7 +52,7 @@ if(Request::has('repair')){
           $is_login=0;
       }
 
-       // $is_login=0;
+        $this->assign('url',$url);
         $this->assign(['openid'=>$openid,'is_login'=>$is_login]);
         return $this->fetch();
     }
@@ -58,27 +60,30 @@ if(Request::has('repair')){
     public function doLogin()
     {
 
+
         $phone = Request::post('tel');
         $idcard = Request::post('idcard');
         $name = Request::post('name');
         $openid = Request::post('openid');
+        $url=Request::post('url');
         $data = UserModel::where('phone', $phone)->first();
         if (!$data) {
-            return json(['error_code' => 2, 'msg' => '认证失败']);//认证失败
+            return json(['error_code' => 2, 'msg' => '认证失败','url'=>'false']);//认证失败
         }
         if ($idcard != $data->id_number || $name != $data->name) {
-            return json(['error_code' => 3, 'msg' => '认证失败']);//认证失败
+            return json(['error_code' => 3, 'msg' => '认证失败','url'=>'false']);//认证失败
         }
 
         $res = UserModel::where('phone', $phone)->update(['openid' => $openid]);
 
         if (!$res) {
-            return json(['error_code' => 4, 'msg' => '认证失败']);//认证失败
+            return json(['error_code' => 4, 'msg' => '认证失败','url'=>'false']);//认证失败
         }
-        if(Request::has('repair')){
-            return json(['error_code' => 1, 'msg' => '成功','repair'=>1]);//认证成功
-        }
-        return json(['error_code' => 1, 'msg' => '成功']);//认证成功
+
+
+            return json(['error_code' => 1, 'msg' => '成功','url'=>$url]);//认证成功
+
+       // return json(['error_code' => 1, 'msg' => '成功']);//认证成功
 
     }
 
@@ -115,13 +120,13 @@ if(Request::has('repair')){
     public function repair()
     {
         $openid=$this->getOpenId();
-       // $openid='oUPo2wRgPOudk-bPLzwahZ1YkDkc';
+        //$openid='oUPo2wRgPOudk-bPLzwahZ1YkDkc';
         $data = UserModel::where('openid', $openid)->first();
 
         if (!$data) {
 
             ///还没认证
-            $this->redirect('index/index/login?repair=1');
+            $this->redirect('index/index/login?url=/index/index/repair');
         }
         $user_id = $data->id;
         /////去寻找还有没有未评价保修
@@ -147,6 +152,8 @@ if(Request::has('repair')){
 
     public function doRepair()
     {
+        //cache('aa',$_POST);
+
         $data=Request::post();
 
         $user_id = $data['user_id'];
@@ -170,7 +177,7 @@ if(Request::has('repair')){
 
         $res = RepairModel::create($created_data);
         if (!$res) {
-            return json(['error_code' => 2, 'msg' => '失败']);
+            return json(['error_code' => 2, 'msg' => '失败','url'=>'false']);
         }
        // return json(['error_code' => 1, 'msg' => '成功']);//认证成功
         //cache('aa',$server_id);
@@ -181,9 +188,9 @@ if(Request::has('repair')){
         $created_img = $this->getImg($img_data, $repair_id, $type = 1);
         $res = ImgModel::Insert($created_img);
         if (!$res) {
-            return json(['error_code' => 3, 'msg' => '失败']);//认证成功
+            return json(['error_code' => 3, 'msg' => '失败','url'=>'false']);//认证成功
         }
-        return json(['error_code' => 1, 'msg' => '成功','data'=>['repair_id'=>$repair_id]]);//认证成功
+        return json(['error_code' => 1, 'msg' => '成功','url'=>'false','data'=>['repair_id'=>$repair_id]]);//认证成功
 
     }
 
@@ -226,10 +233,10 @@ if(Request::has('repair')){
         $res = EvaluationModel::create($created_data);
 
         if (!$res) {
-            return json(['error_code' => 3, 'msg' => '提交失败']);
+            return json(['error_code' => 3, 'msg' => '提交失败','url'=>'false']);
         }
         RepairModel::find($repair_id)->update(['status'=>2]);///修改为已评价
-        return json(['error_code' => 1, 'msg' => '提交成功']);
+        return json(['error_code' => 1, 'msg' => '提交成功','url'=>'false']);
 
     }
 
@@ -243,7 +250,7 @@ if(Request::has('repair')){
            require_once WX_PATH . 'WxPay.JsApiPay.php';
            $jsapi = new \JsApiPay();
            $openid = $jsapi->GetOpenid();
-           //session('openid', $openid);
+           session('openid', $openid);
 
 
            return $openid;
@@ -294,7 +301,7 @@ if(Request::has('repair')){
         if (!$data) {
 
             ///还没认证
-            $this->redirect('index/index/login');
+            $this->redirect('index/index/login?url=/index/index/suggestion');
         }
 
         $this->assign(['openid'=>$openid]);
@@ -328,7 +335,7 @@ if(Request::has('repair')){
         $res = SuggestionModel::create($created_data);
 
         if (!$res) {
-            return json(['error_code' => 3, 'msg' => '保存表扬信息失败']);
+            return json(['error_code' => 3, 'msg' => '保存表扬信息失败','url'=>'false']);
         }
 
         $img_data = $this->uploads($server_id);
@@ -339,9 +346,9 @@ if(Request::has('repair')){
         $res = ImgModel::Insert($created_img);
 
         if (!$res) {
-            return json(['error_code' => 3, 'msg' => '保存表扬信息失败']);
+            return json(['error_code' => 3, 'msg' => '保存表扬信息失败','url'=>'false']);
         }
-        return json(['error_code' => 1, 'msg' => '成功']);//认证成功
+        return json(['error_code' => 1, 'msg' => '成功','url'=>'false']);//认证成功
 
     }
 
@@ -437,8 +444,8 @@ if(Request::has('repair')){
         $activity=$this->getActivity($data);
         $over=$this->getOver($data);
 
-       $this->assign('activity',$activity);
-       $this->assign('over',$over);
+        $this->assign('activity',$activity);
+        $this->assign('over',$over);
         return $this->fetch();
     }
     public function getActivity($data){
@@ -461,7 +468,7 @@ public function getOver($data){
         $array=[];
         foreach ($data as $v){
             if($v['status']==2){
-                $array=$v;
+                $array[]=$v;
             }
         }
         return $array;

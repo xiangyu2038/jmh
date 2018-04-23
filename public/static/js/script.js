@@ -41,6 +41,7 @@ function Ajax(url,type){
         data.openid=$('.openid').val();
         data.repair_id=$('.repair_id').val();
         data.name=$('.name').val();
+        data.url=$('.url').val();
     }else{
         $('input').each(function(){
             var key=$(this).attr('name');
@@ -71,8 +72,12 @@ function Ajax(url,type){
         url:url,
         data:data,
         success:function(result){
+           if(result.url!='false'){
+               window.location.href=result.url;
+           }
             ajaxState=false;
             if(result.error_code==1 && $('.prompt').length) return $('.prompt').show();
+
             alert(result.msg);
         },
         error:function(){

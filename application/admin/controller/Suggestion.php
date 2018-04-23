@@ -17,7 +17,10 @@ public function tousu(){
     $datas =SuggestionModel::with('user')->with('project')->where('type',2)->whereHas('project',function ($query){
         if(Request::has('keyword')){
             $keyword=trim(Request::get('keyword'));
-            $query->where('project_name','like','%'.$keyword.'%');
+            if($keyword!='请选择小区'){
+                $query->where('project_name','like','%'.$keyword.'%');
+            }
+
         }
     })->orderBy('created_at','desc')->paginate(config('pagesize'));
     if(Request::has('keyword')){
@@ -41,7 +44,10 @@ public function praise(){
     $datas =SuggestionModel::where('type',1)->whereHas('project',function ($query){
         if(Request::has('keyword')){
             $keyword=trim(Request::get('keyword'));
-            $query->where('project_name','like','%'.$keyword.'%');
+            if($keyword!='请选择小区'){
+                $query->where('project_name','like','%'.$keyword.'%');
+            }
+
         }
     })->orderBy('created_at','desc')->paginate(config('pagesize'));
 
