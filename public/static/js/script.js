@@ -63,8 +63,8 @@ function Ajax(url,type){
             });
         };
         if(type=='reservation'){
-            
-        }
+            data.time_id=$('.times .on').attr('data-id');
+        };
     }
     // alert('上传数据');
     $.ajax({
