@@ -50,9 +50,9 @@
             <th>链接地址</th>
             <th>描述</th>
             <th>图片</th>
-            <th>状态</th>
             <th>开始时间</th>
             <th>结束时间</th>
+            <th>状态</th>
             <th>是否展示</th>
             <th>操作</th>
 
@@ -76,20 +76,19 @@
                     <img src="{$v['imgurl']}"  alt="图片" />
 
                 </td>
-                <td >
-
-
-                        <button data-id="{$v['i `d']}"  data-status="3" class="layui-btn <?php if($v['status']=='3') echo 'layui-btn-normal' ; ?> status">默认</button>
-
-                        <button data-id="{$v['id']}"  data-status="2" class="layui-btn  <?php if($v['status']=='2') echo 'layui-btn-normal' ; ?> status">结束</button>
-
-                       <!-- <button data-id="{$v['id']}"  data-status="1" class="layui-btn  <?php /*if($v['status']=='1') echo 'layui-btn-normal' ; */?> status">开始</button>-->
-
-                </td>
 
                 <td>{$v.start_time}</td>
                 <td>{$v.end_time}</td>
+                <td >
 
+
+                    <button data-id="{$v['i `d']}"  data-status="3" class="layui-btn <?php if($v['status']=='3') echo 'layui-btn-normal' ; ?> status">默认</button>
+
+                    <button data-id="{$v['id']}"  data-status="2" class="layui-btn  <?php if($v['status']=='2') echo 'layui-btn-normal' ; ?> status">结束</button>
+
+                   <!-- <button data-id="{$v['id']}"  data-status="1" class="layui-btn  <?php /*if($v['status']=='1') echo 'layui-btn-normal' ; */?> status">开始</button>-->
+
+            </td>
                 <td>
 
                         <button class="layui-btn <?php if($v['display']==1) echo 'layui-btn-normal' ; ?>  display" data-id="{$v['id']}" data-display="1" >展示</button>

@@ -1,0 +1,18 @@
+.layui-form  .layui-form-label{
+    width: 120px;
+}
+.layui-row .layui-form{
+    text-align: left;
+}
+
+.layui-elem-field-title{
+    margin: 0 0 0 20px;
+    background: #fff;
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+    top: -20px;
+}
+.layui-elem-field{
+    margin: 10px 0 40px;
+}
