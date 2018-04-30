@@ -32,7 +32,6 @@
         <li>
             <label>活动时间</label>
             <span>{$yu_yue['start_time']} 至 {$yu_yue['end_time']}</span>
-            <!-- <span>{$yu_yue['start_time']} 至 {$yu_yue['end_time']}</span> -->
         </li>
         <li>
             <label>活动地点</label>
@@ -54,12 +53,22 @@
         </li>
         <li>
             <label>预约日期</label>
-            <input class="time" name="time" type="date">
+            <span class="time-show"></span>
+            <select class="time" style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 80px;
+                opacity: 0;
+            " name="time" type="date">
+                <option value="false">请选择</option>
+            </select>
         </li>
         <li>
             <label>预约时段</label>
             <ul class="times">
-                <p>请先选择预约日期</p>
+                <p style="font-size: 28px; ">请先选择预约日期</p>
             </ul>
         </li>
     </ul>
@@ -87,7 +96,7 @@
     // 提交
     $('.submit').click(function(){
         if(!$('[name=number]').val()) return alert('请填写到访人数！');
-        if(!$('[name=time]').val()) return alert('请填选择预约日期！');
+        if(!$('[name=time]').val() && $('[name=time]').val()!='false') return alert('请填选择预约日期！');
         if(!$('.times .on').length) return alert('请填选择预约时段！');
         $('.prompt .num').html($('.time').val()+'<br>'+$('.times .on h2').text());
         Ajax('{:url("index/Reservation/reservationTime")}','reservation');
@@ -105,11 +114,11 @@
     // 限定时间-提交时间
     var state=false;
     $('.time')
-    .attr({'min':'{$yu_yue[\'start_time\']}','max':'{$yu_yue[\'end_time\']}'})
     .change(function(){
         if(state) return;
         state=true;
         var time=$(this).val();
+        $('.time-show').text(time);
         $.ajax({
             url:'{:url("index/Reservation/getPeople")}',
             data:{time:time},
@@ -140,4 +149,30 @@
             }
         })
     });
+    // 循环获取活动有效日期
+    var allTime=[];
+    function getAll(begin, end) {
+        var ab = begin.split("-");
+        var ae = end.split("-");
+        var db = new Date();
+        db.setUTCFullYear(ab[0], ab[1] - 1, ab[2]);
+        var de = new Date();
+        de.setUTCFullYear(ae[0], ae[1] - 1, ae[2]);
+        var unixDb = db.getTime();
+        var unixDe = de.getTime();
+        for (var k = unixDb; k <= unixDe;) {
+            var t=new Date(k);
+            allTime.push(t.getFullYear()+'-'+(t.getMonth()+1)+'-'+t.getDate());
+            k = k + 24 * 60 * 60 * 1000;
+        }
+    }
+    getAll('{$yu_yue[\'start_time\']}', '{$yu_yue[\'end_time\']}');
+    var timeOption='';
+    allTime.forEach(function(t){
+        timeOption+=`
+            <option value="${t}">${t}</option>
+        `
+    });
+    $('.time').append(timeOption)
+
 </script>

@@ -2,27 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0180d36f-844b-4a6f-9864-26e7173a36d7" name="默认的" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/controller/Activity.php" afterPath="$PROJECT_DIR$/application/admin/controller/Activity.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/controller/Booking.php" afterPath="$PROJECT_DIR$/application/admin/controller/Booking.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/controller/Repair.php" afterPath="$PROJECT_DIR$/application/admin/controller/Repair.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/controller/Suggestion.php" afterPath="$PROJECT_DIR$/application/admin/controller/Suggestion.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/controller/User.php" afterPath="$PROJECT_DIR$/application/admin/controller/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/controller/Zone.php" afterPath="$PROJECT_DIR$/application/admin/controller/Zone.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/view/activity/index.html" afterPath="$PROJECT_DIR$/application/admin/view/activity/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/view/layouthome.html" afterPath="$PROJECT_DIR$/application/admin/view/layouthome.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/view/repair/index.html" afterPath="$PROJECT_DIR$/application/admin/view/repair/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/view/suggestion/praise.html" afterPath="$PROJECT_DIR$/application/admin/view/suggestion/praise.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/view/suggestion/tousu.html" afterPath="$PROJECT_DIR$/application/admin/view/suggestion/tousu.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/view/user/index.html" afterPath="$PROJECT_DIR$/application/admin/view/user/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/view/zone/index.html" afterPath="$PROJECT_DIR$/application/admin/view/zone/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/index/controller/Index.php" afterPath="$PROJECT_DIR$/application/index/controller/Index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/index/controller/Reservation.php" afterPath="$PROJECT_DIR$/application/index/controller/Reservation.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/index/view/index/actitity.html" afterPath="$PROJECT_DIR$/application/index/view/index/actitity.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/index/view/reservation/reservation_time.html" afterPath="$PROJECT_DIR$/application/index/view/reservation/reservation_time.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/static/css/style.css" afterPath="$PROJECT_DIR$/public/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/static/css/style.less" afterPath="$PROJECT_DIR$/public/static/css/style.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/static/js/script.js" afterPath="$PROJECT_DIR$/public/static/js/script.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,12 +15,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/admin/view/repair/index.html">
+      <file leaf-file-name="Repair.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/admin/controller/Repair.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="63" column="24" lean-forward="true" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="68" />
+            <state relative-caret-position="-754">
+              <caret line="21" column="11" lean-forward="false" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="11" />
+              <folding>
+                <element signature="e#2583#2790#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Reservation.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/index/controller/Reservation.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1531">
+              <caret line="141" column="5" lean-forward="false" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Index.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/index/controller/Index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="464">
+              <caret line="184" column="30" lean-forward="false" selection-start-line="184" selection-start-column="30" selection-end-line="184" selection-end-column="30" />
+              <folding>
+                <element signature="e#7559#8069#0#PHP" expanded="false" />
+                <marker date="1525111346384" expanded="true" signature="810:829" ph="..." />
+                <marker date="1525111346384" expanded="true" signature="879:893" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -46,59 +54,32 @@
       <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/static/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
+            <state relative-caret-position="842">
+              <caret line="52" column="9" lean-forward="true" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="praise.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/admin/view/suggestion/praise.html">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/admin/view/repair/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="63" column="25" lean-forward="false" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="68" />
+            <state relative-caret-position="-2476">
+              <caret line="63" column="24" lean-forward="true" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="68" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="actitity.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/index/view/index/actitity.html">
+      <file leaf-file-name="reservation_time.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/index/view/reservation/reservation_time.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="749">
-              <caret line="44" column="40" lean-forward="false" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="complaints.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/index/view/index/complaints.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-630">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/admin/view/booking/user.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tousu.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/admin/view/suggestion/tousu.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="65" column="28" lean-forward="true" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
-              <folding />
+            <state relative-caret-position="0">
+              <caret line="72" column="13" lean-forward="true" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
+              <folding>
+                <marker date="1525109863037" expanded="true" signature="4417:4626" ph="..." />
+                <marker date="1525109863037" expanded="true" signature="4519:4596" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -107,7 +88,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>export(</find>
       <find>开始日</find>
       <find>start_time</find>
       <find>login</find>
@@ -117,7 +97,6 @@
       <find>is</find>
       <find>sugges</find>
       <find>doRE</find>
-      <find>doRe</find>
       <find>acti</find>
       <find>getOver</find>
       <find>getActivity</find>
@@ -129,7 +108,6 @@
       <find>getNum</find>
       <find>getDay</find>
       <find>saveOne</find>
-      <find>time</find>
       <find>getPeople</find>
       <find>reservation</find>
       <find>reservationTime</find>
@@ -137,6 +115,9 @@
       <find>getpeop</find>
       <find>img</find>
       <find>imgArr</find>
+      <find>format</find>
+      <find>time</find>
+      <find>doRe</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -186,16 +167,16 @@
         <option value="$PROJECT_DIR$/application/admin/view/user/index.html" />
         <option value="$PROJECT_DIR$/application/admin/controller/User.php" />
         <option value="$PROJECT_DIR$/application/admin/view/layouthome.html" />
-        <option value="$PROJECT_DIR$/application/index/controller/Index.php" />
         <option value="$PROJECT_DIR$/application/admin/controller/Booking.php" />
-        <option value="$PROJECT_DIR$/application/index/controller/Reservation.php" />
-        <option value="$PROJECT_DIR$/application/index/view/reservation/reservation_time.html" />
         <option value="$PROJECT_DIR$/public/static/css/style.less" />
         <option value="$PROJECT_DIR$/public/static/css/style.css" />
         <option value="$PROJECT_DIR$/application/admin/view/repair/index.html" />
         <option value="$PROJECT_DIR$/application/admin/view/suggestion/praise.html" />
         <option value="$PROJECT_DIR$/application/admin/view/suggestion/tousu.html" />
         <option value="$PROJECT_DIR$/public/static/js/script.js" />
+        <option value="$PROJECT_DIR$/application/index/view/reservation/reservation_time.html" />
+        <option value="$PROJECT_DIR$/application/index/controller/Reservation.php" />
+        <option value="$PROJECT_DIR$/application/index/controller/Index.php" />
       </list>
     </option>
   </component>
@@ -251,6 +232,13 @@
               <item name="jinmaohui" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="jinmaohui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jinmaohui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -265,7 +253,22 @@
               <item name="jinmaohui" type="b2602c69:ProjectViewProjectNode" />
               <item name="jinmaohui" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="repair" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="jinmaohui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jinmaohui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="index" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="jinmaohui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jinmaohui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="index" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="jinmaohui" type="b2602c69:ProjectViewProjectNode" />
@@ -281,6 +284,14 @@
               <item name="index" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="index" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="jinmaohui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jinmaohui" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="index" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="reservation" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="jinmaohui" type="b2602c69:ProjectViewProjectNode" />
@@ -343,12 +354,12 @@
       <workItem from="1524546462309" duration="350000" />
       <workItem from="1524547107211" duration="229000" />
       <workItem from="1524735865754" duration="974000" />
-      <workItem from="1525051072271" duration="16690000" />
+      <workItem from="1525051072271" duration="20060000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152350000" />
+    <option name="totallyTimeSpent" value="155720000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
@@ -574,16 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/controller/Repair.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="104" column="41" lean-forward="true" selection-start-line="101" selection-start-column="6" selection-end-line="104" selection-end-column="41" />
-          <folding>
-            <element signature="e#2583#2790#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/view/zone/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
@@ -662,17 +663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/index/controller/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="349" column="13" lean-forward="false" selection-start-line="349" selection-start-column="13" selection-end-line="349" selection-end-column="13" />
-          <folding>
-            <marker date="1525089351899" expanded="true" signature="810:829" ph="..." />
-            <marker date="1525089351899" expanded="true" signature="879:893" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/index/model/PeriodModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -713,29 +703,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/index/view/reservation/reservation_time.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1478">
-          <caret line="126" column="50" lean-forward="false" selection-start-line="126" selection-start-column="50" selection-end-line="126" selection-end-column="50" />
-          <folding>
-            <marker date="1525107098275" expanded="true" signature="4169:4378" ph="..." />
-            <marker date="1525107098275" expanded="true" signature="4271:4348" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/static/css/style.less">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="327">
           <caret line="493" column="8" lean-forward="false" selection-start-line="493" selection-start-column="8" selection-end-line="493" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/index/controller/Reservation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="99" column="26" lean-forward="false" selection-start-line="99" selection-start-column="16" selection-end-line="99" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -752,22 +723,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="246">
           <caret line="63" column="25" lean-forward="false" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/view/repair/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="63" column="24" lean-forward="true" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/static/js/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="51" column="33" lean-forward="false" selection-start-line="51" selection-start-column="33" selection-end-line="51" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -801,6 +756,63 @@
         <state relative-caret-position="546">
           <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/view/reservation/reservation_time.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="72" column="13" lean-forward="true" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="13" />
+          <folding>
+            <marker date="1525109863037" expanded="true" signature="4417:4626" ph="..." />
+            <marker date="1525109863037" expanded="true" signature="4519:4596" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/static/js/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="842">
+          <caret line="52" column="9" lean-forward="true" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/view/repair/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2476">
+          <caret line="63" column="24" lean-forward="true" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/controller/Reservation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1531">
+          <caret line="141" column="5" lean-forward="false" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/controller/Repair.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-754">
+          <caret line="21" column="11" lean-forward="false" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="11" />
+          <folding>
+            <element signature="e#2583#2790#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/controller/Index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="184" column="30" lean-forward="false" selection-start-line="184" selection-start-column="30" selection-end-line="184" selection-end-column="30" />
+          <folding>
+            <element signature="e#7559#8069#0#PHP" expanded="false" />
+            <marker date="1525111346384" expanded="true" signature="810:829" ph="..." />
+            <marker date="1525111346384" expanded="true" signature="879:893" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

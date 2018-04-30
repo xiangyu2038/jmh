@@ -65,8 +65,8 @@ class Reservation extends Controller
 
         }
 
-        //$openid=$this->getOpenId();
-        $openid='oUPo2wRf7e1SFpuyyLIc-5M46ACw';
+        $openid=$this->getOpenId();
+        //$openid='oUPo2wRf7e1SFpuyyLIc-5M46ACw';
         $data = UserModel::where('openid', $openid)->first();
         $user_id=$data->id;
         $datas = ProjectModel::where('user_id', $user_id)->get();
@@ -80,8 +80,8 @@ class Reservation extends Controller
 
     public function getPeople(){
         ////获取每个预约时间的预约人数 和剩余人数
-        $time='2018-04-27';
-        //$time=Request::get('time');
+        //$time='2018-04-27';
+        $time=Request::get('time');
   $data = EverydayModel::where('time',$time)->with('period')->get();
 
        $data=$this->delaArray($data);
@@ -117,5 +117,27 @@ return json(['code'=>1,'msg'=>'成功','data'=>$data]);
         dd($array);
     }
 
+    public function getOpenId()
+    {
+        if(session('openid')){
+            return session('openid');
+        }else{
+            define('WX_PATH', BASEPATH . '/vendor/WX/example/');
 
+            require_once WX_PATH . 'WxPay.JsApiPay.php';
+            $jsapi = new \JsApiPay();
+            $openid = $jsapi->GetOpenid();
+            session('openid', $openid);
+
+
+            return $openid;
+        }
+
+        /* if(session('?name')){
+             return 'oUPo2wRgPOudk-bPLzwahZ1YkDkc';
+         }else{
+
+         }*/
+
+    }
 }

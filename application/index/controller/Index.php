@@ -152,10 +152,10 @@ class Index extends Controller
 
     public function doRepair()
     {
-        //cache('aa',$_POST);
 
-        $data=Request::post();
 
+       // $data=Request::post();
+$data=cache('aa');
         $user_id = $data['user_id'];
 
         $contacts_name = $data['name'];
@@ -163,7 +163,8 @@ class Index extends Controller
         $visit_time = $data['time'];
         $project_id = $data['project_id'];
         $note =$data['note'];
-        $server_id = $data['serverId'];
+
+
 
         $created_data = [];
         $created_data['user_id'] = $user_id;
@@ -181,15 +182,20 @@ class Index extends Controller
         }
        // return json(['error_code' => 1, 'msg' => '成功']);//认证成功
         //cache('aa',$server_id);
-        $img_data = $this->uploads($server_id);
-
-
         $repair_id = $res->id;
-        $created_img = $this->getImg($img_data, $repair_id, $type = 1);
-        $res = ImgModel::Insert($created_img);
-        if (!$res) {
-            return json(['error_code' => 3, 'msg' => '失败','url'=>'false']);//认证成功
+        if(Request::has('serverId')){
+        $server_id = $data['serverId'];
+            $img_data = $this->uploads($server_id);
+
+
+
+            $created_img = $this->getImg($img_data, $repair_id, $type = 1);
+            $res = ImgModel::Insert($created_img);
+            if (!$res) {
+                return json(['error_code' => 3, 'msg' => '失败','url'=>'false']);//认证成功
+            }
         }
+
         return json(['error_code' => 1, 'msg' => '成功','url'=>'false','data'=>['repair_id'=>$repair_id]]);//认证成功
 
     }
