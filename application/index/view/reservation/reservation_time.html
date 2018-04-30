@@ -128,11 +128,11 @@
                 if(res.code==1){
                     var html='';
                     res.data.forEach(function (t) {
-                        var state=Number(t.people)-Number(t.booking_people);
-                        var num=state;
-                        if(state<1) state='ban';
+                        var ban=Number(t.people)-Number(t.booking_people);
+                        var num=ban;
+                        if(ban<1) ban='ban';
                         html+=`
-                        <li clsaa="${state}" data-id="${t.id}">
+                        <li class="${ban}" data-id="${t.id}">
                             <h2>${t.start_time}<br>${t.end_time}</h2>
                             <p>
                                 剩余${num}组名额
@@ -162,11 +162,12 @@
         var unixDe = de.getTime();
         for (var k = unixDb; k <= unixDe;) {
             var t=new Date(k);
-            allTime.push(t.getFullYear()+'-'+(t.getMonth()+1)+'-'+t.getDate());
+            allTime.push(t.getFullYear()+'-'+(t.getMonth()+1)+'-'+t.getUTCDate());
             k = k + 24 * 60 * 60 * 1000;
         }
     }
-    getAll('{$yu_yue[\'start_time\']}', '{$yu_yue[\'end_time\']}');
+    getAll('{$yu_yue['start_time']}', '{$yu_yue['end_time']}');
+
     var timeOption='';
     allTime.forEach(function(t){
         timeOption+=`

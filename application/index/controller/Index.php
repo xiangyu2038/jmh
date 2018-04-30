@@ -154,8 +154,8 @@ class Index extends Controller
     {
 
 
-       // $data=Request::post();
-$data=cache('aa');
+        $data=Request::post();
+//$data=cache('aa');
         $user_id = $data['user_id'];
 
         $contacts_name = $data['name'];
@@ -328,7 +328,7 @@ $data=cache('aa');
         $openid=$post['openid'];
         $type = $post['type'];//1为表扬
         $project_id = $post['project_id'];//1为表扬
-        $server_id = $post['serverId'];
+
 
         $created_data = [];
         $created_data['note'] = $note;
@@ -343,12 +343,13 @@ $data=cache('aa');
         if (!$res) {
             return json(['error_code' => 3, 'msg' => '保存表扬信息失败','url'=>'false']);
         }
-
-        if($server_id){
+        $repair_id = $res->id;
+        if(Request::has('serverId')){
+            $server_id = $post['serverId'];
             $img_data = $this->uploads($server_id);
 
 
-            $repair_id = $res->id;
+
             $created_img = $this->getImg($img_data, $repair_id, $type = 1);
             $res = ImgModel::Insert($created_img);
             if (!$res) {
@@ -448,7 +449,15 @@ $data=cache('aa');
     }
     public function actitity(){
 
+        $openid=$this->getOpenId();
+        //$openid='oUPo2wRgPOudk-bPLzwahZ1YkDkc';
+        $data = UserModel::where('openid', $openid)->first();
 
+        if (!$data) {
+
+            ///还没认证
+            $this->redirect('index/index/login?url=/index/index/actitity');
+        }
         ////正在活动
         $data =  ActivityModel::where('display',1)->get();
         $activity=$this->getActivity($data);
@@ -480,7 +489,7 @@ public function getOver($data){
         $array=[];
         foreach ($data as $v){
             $end_time=strtotime($v['end_time']);
-            if($end_time>time()){
+            if($end_time<time()){
                 $array[]=$v;
             }
         }

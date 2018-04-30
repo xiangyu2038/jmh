@@ -64,8 +64,16 @@ class Reservation extends Controller
 
 
         }
-
+//$openid='oUPo2wRgPOudk-bPLzwahZ1YkDkc';
         $openid=$this->getOpenId();
+
+        $data = UserModel::where('openid', $openid)->first();
+
+        if (!$data) {
+
+            ///还没认证
+            $this->redirect('index/index/login?url=/index/Reservation/reservationTime');
+        }
         //$openid='oUPo2wRf7e1SFpuyyLIc-5M46ACw';
         $data = UserModel::where('openid', $openid)->first();
         $user_id=$data->id;
@@ -80,9 +88,10 @@ class Reservation extends Controller
 
     public function getPeople(){
         ////获取每个预约时间的预约人数 和剩余人数
-        //$time='2018-04-27';
+
         $time=Request::get('time');
-  $data = EverydayModel::where('time',$time)->with('period')->get();
+       // $time='2018-4-28';
+        $data = EverydayModel::where('time',$time)->with('period')->get();
 
        $data=$this->delaArray($data);
 return json(['code'=>1,'msg'=>'成功','data'=>$data]);
@@ -96,9 +105,10 @@ return json(['code'=>1,'msg'=>'成功','data'=>$data]);
         return $array;
     }
     public function delaArrayOne($data){
+
         $array=[];
-        $array['start_time']=date('Y-m-d',strtotime($data['period']['start_time']));
-        $array['end_time']=date('Y-m-d',strtotime($data['period']['end_time']));
+        $array['start_time']=$data['period']['start_time'];
+        $array['end_time']=$data['period']['end_time'];
         $array['people']=$data['people'];
         $array['booking_people']=$data['booking_people'];
         $array['id']=$data['id'];
