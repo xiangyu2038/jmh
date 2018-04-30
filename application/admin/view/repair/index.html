@@ -42,6 +42,7 @@
             <th>说明</th>
             <th>预约上门时间</th>
             <th>状态</th>
+            <th>操作</th>
 
         </tr>
         </thead>
@@ -58,11 +59,11 @@
                 <td>{$v.contacts_phone}</td>
                 <td>{$v.project.project_name}</td>
                 <td>{$v.project.house_number}</td>
-
                 <td>
                     <?php foreach($v['img'] as $vv): ; ?>
-
-                        <img src="{$vv['img_link']}"  alt="维修图片" />
+                        <a href="{$vv['img_link']}" target="_blank">
+                        <img width="30" height="30" src="{$vv['img_link']}"  alt="维修图片" />
+                        </a>
                     <?php endforeach ; ?>
                 </td>
 
@@ -76,6 +77,12 @@
                        <button class="layui-btn layui-btn-normal">已处理</button>
                 <?php endif ; ?>
 
+                </td>
+                <td class="td-manage">
+
+                    <a title="删除" onclick="member_dels(this,'{$v.id}')" href="javascript:;">
+                        <i class="layui-icon">&#xe640;</i>
+                    </a>
                 </td>
             </tr>
         <?php endforeach ; ?>
@@ -133,5 +140,31 @@
         s = s.replace(/\'/g,"&#39;");
         s = s.replace(/\"/g,"&quot;");
         return s;
+    }
+
+    function member_dels(obj,id){
+
+        layer.confirm('确认要删除吗？',function(index){
+
+            //发异步删除数据
+            $.ajax({
+                type: "get",
+                url: "{:url('admin/Repair/delRepair')}",
+                data: {id:id},
+                dataType: "json",
+                success: function(data){
+                    if(data.code==1){
+                        $(obj).parents("tr").remove();
+
+                        layer.msg(data.msg,{icon:1,time:1000});
+                    }else{
+                        layer.msg(data.msg,{icon:1,time:1000});
+                    }
+                }
+            });
+
+
+        });
+
     }
 </script>

@@ -77,4 +77,13 @@ public function praise(){
         }
         return $array;
     }
+
+    public function delSuggestion(){
+        $id=Request::get('id');
+        $res = SuggestionModel::find($id)->delete();
+        if(!$res){
+            return ['msg'=>'删除失败','code'=>0];
+        }
+        return ['msg'=>'删除成功','code'=>1];
+    }
 }

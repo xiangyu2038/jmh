@@ -49,12 +49,7 @@ function Ajax(url,type){
         });
         if($('textarea').length) data[$('textarea').attr('name')]=$('textarea').val();
         if(type=='img'){
-            if(imgArr.length==0){
-                ajaxState=false;
-                return alert('请上传图片!');
-            }else{
-                data.serverId=imgArr;
-            }
+            data.serverId=imgArr;
         }
         if($('select').length){
             $('select').each(function(){
@@ -64,6 +59,7 @@ function Ajax(url,type){
         };
         if(type=='reservation'){
             data.time_id=$('.times .on').attr('data-id');
+            data.re_id=1;
         };
     }
     // alert('上传数据');
@@ -72,17 +68,16 @@ function Ajax(url,type){
         url:url,
         data:data,
         success:function(result){
-           if(result.url!='false'){
+           if(result.url!='false' && result.url){
                window.location.href=result.url;
            }
             ajaxState=false;
             if(result.error_code==1 && $('.prompt').length) return $('.prompt').show();
-
             alert(result.msg);
         },
         error:function(){
             ajaxState=false;
-            alert('服务器异常，请稍后再试！');
+            alert('系统繁忙，请稍后再试！');
         }
     });
 };

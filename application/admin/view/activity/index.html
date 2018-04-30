@@ -73,17 +73,17 @@
                 <td>
 
 
-                    <img src="{$v['imgurl']}"  alt="维修图片" />
+                    <img src="{$v['imgurl']}"  alt="图片" />
 
                 </td>
                 <td >
 
 
-                        <button data-id="{$v['id']}"  data-status="3" class="layui-btn <?php if($v['status']=='3') echo 'layui-btn-normal' ; ?> status">默认</button>
+                        <button data-id="{$v['i `d']}"  data-status="3" class="layui-btn <?php if($v['status']=='3') echo 'layui-btn-normal' ; ?> status">默认</button>
 
                         <button data-id="{$v['id']}"  data-status="2" class="layui-btn  <?php if($v['status']=='2') echo 'layui-btn-normal' ; ?> status">结束</button>
 
-                        <button data-id="{$v['id']}"  data-status="1" class="layui-btn  <?php if($v['status']=='1') echo 'layui-btn-normal' ; ?> status">开始</button>
+                       <!-- <button data-id="{$v['id']}"  data-status="1" class="layui-btn  <?php /*if($v['status']=='1') echo 'layui-btn-normal' ; */?> status">开始</button>-->
 
                 </td>
 
@@ -101,6 +101,9 @@
                 <td class="td-manage">
                     <a title="编辑"  onclick="x_admin_show('编辑','/admin/Activity/edit?id={$v.id}')" href="javascript:;">
                         <i class="layui-icon">&#xe642;</i>
+                    </a>
+                    <a title="删除" onclick="member_dels(this,'{$v.id}')" href="javascript:;">
+                        <i class="layui-icon">&#xe640;</i>
                     </a>
 
                 </td>
@@ -180,5 +183,31 @@ $('.display').click(function () {
                 location.replace(location.href);
             }
         });
-    })
+    });
+    function member_dels(obj,id){
+
+        layer.confirm('确认要删除吗？',function(index){
+
+            //发异步删除数据
+            $.ajax({
+                type: "get",
+                url: "{:url('admin/Activity/delActivity')}",
+                data: {id:id},
+                dataType: "json",
+                success: function(data){
+                    if(data.code==1){
+                        $(obj).parents("tr").remove();
+
+                        layer.msg(data.msg,{icon:1,time:1000});
+                    }else{
+                        layer.msg(data.msg,{icon:1,time:1000});
+                    }
+                }
+            });
+
+
+        });
+
+    }
+
 </script>

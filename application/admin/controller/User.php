@@ -27,6 +27,9 @@ class User extends BaseController
 
                     if($con=='project_name'){
                         $query->where('project_name','like','%'.$keyword.'%');
+                    }else if($con=='city'){
+
+                        $query->where('city','like','%'.$keyword.'%');
                     }
                 }
             }
@@ -317,6 +320,8 @@ public function addProject(){
 
                     if($con=='project_name'){
                         $query->where('project_name','like','%'.$keyword.'%');
+                    }else if($con=='city'){
+                        $query->where('city','like','%'.$keyword.'%');
                     }
                 }
             }

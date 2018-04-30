@@ -338,16 +338,20 @@ class Index extends Controller
             return json(['error_code' => 3, 'msg' => '保存表扬信息失败','url'=>'false']);
         }
 
-        $img_data = $this->uploads($server_id);
+        if($server_id){
+            $img_data = $this->uploads($server_id);
 
 
-        $repair_id = $res->id;
-        $created_img = $this->getImg($img_data, $repair_id, $type = 1);
-        $res = ImgModel::Insert($created_img);
-
-        if (!$res) {
-            return json(['error_code' => 3, 'msg' => '保存表扬信息失败','url'=>'false']);
+            $repair_id = $res->id;
+            $created_img = $this->getImg($img_data, $repair_id, $type = 1);
+            $res = ImgModel::Insert($created_img);
+            if (!$res) {
+                return json(['error_code' => 3, 'msg' => '保存表扬信息失败','url'=>'false']);
+            }
         }
+
+
+
         return json(['error_code' => 1, 'msg' => '成功','url'=>'false']);//认证成功
 
     }
@@ -451,23 +455,26 @@ class Index extends Controller
     public function getActivity($data){
         $array=[];
         foreach ($data as $v){
-            if($v['status']==1){
-                $array[]=$v;
-            }else if($v['status']==3){
-////未设置手动开启
+
 $start_time=strtotime($v['start_time']);
 $end_time=strtotime($v['end_time']);
 if($start_time<=time()&&time()<$end_time){
+
+if($v['status']!=2){
     $array[]=$v;
+}
+
                 }
-            }
+
         }
+
         return $array;
     }
 public function getOver($data){
         $array=[];
         foreach ($data as $v){
-            if($v['status']==2){
+            $end_time=strtotime($v['end_time']);
+            if($end_time>time()){
                 $array[]=$v;
             }
         }

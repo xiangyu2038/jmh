@@ -41,6 +41,7 @@
             <th>表扬信息</th>
             <th>图片</th>
             <th>时间</th>
+            <th>操作</th>
 
 
         </tr>
@@ -60,11 +61,18 @@
                 <td>{$v.note}</td>
                 <td>
                     <?php foreach($v['img'] as $vv): ; ?>
-                        <img src="{$vv['img_link']}"  alt="投诉图片" />
+                        <a href="{$vv['img_link']}" target="_blank">
+                            <img width="30" height="30" src="{$vv['img_link']}"  alt="投诉图片" />
+                        </a>
                     <?php endforeach ; ?>
                 </td>
                 <td>{$v.created_at}</td>
+                <td class="td-manage">
 
+                    <a title="删除" onclick="member_dels(this,'{$v.id}')" href="javascript:;">
+                        <i class="layui-icon">&#xe640;</i>
+                    </a>
+                </td>
             </tr>
         <?php endforeach ; ?>
         </tbody>
@@ -107,5 +115,29 @@
             });
         });
     })
+    function member_dels(obj,id){
 
+        layer.confirm('确认要删除吗？',function(index){
+
+            //发异步删除数据
+            $.ajax({
+                type: "get",
+                url: "{:url('admin/Suggestion/delSuggestion')}",
+                data: {id:id},
+                dataType: "json",
+                success: function(data){
+                    if(data.code==1){
+                        $(obj).parents("tr").remove();
+
+                        layer.msg(data.msg,{icon:1,time:1000});
+                    }else{
+                        layer.msg(data.msg,{icon:1,time:1000});
+                    }
+                }
+            });
+
+
+        });
+
+    }
 </script>

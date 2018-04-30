@@ -33,6 +33,7 @@
             <th>方案清晰</th>
             <th>服务态度</th>
             <th>房修师工号</th>
+            <th>操作</th>
 
 
         </tr>
@@ -54,7 +55,12 @@
                 <td>{$v.plan}</td>
                 <td>{$v.serviece}</td>
                 <td>{$v.repair_man_id}</td>
+                <td class="td-manage">
 
+                    <a title="删除" onclick="member_dels(this,'{$v.id}')" href="javascript:;">
+                        <i class="layui-icon">&#xe640;</i>
+                    </a>
+                </td>
 
 
             </tr>
@@ -86,4 +92,29 @@
     $('#exports').click(function () {
         window.location.href='{:url("admin/User/export")}';
     })
+    function member_dels(obj,id){
+
+        layer.confirm('确认要删除吗？',function(index){
+
+            //发异步删除数据
+            $.ajax({
+                type: "get",
+                url: "{:url('admin/Zone/delZone')}",
+                data: {id:id},
+                dataType: "json",
+                success: function(data){
+                    if(data.code==1){
+                        $(obj).parents("tr").remove();
+
+                        layer.msg(data.msg,{icon:1,time:1000});
+                    }else{
+                        layer.msg(data.msg,{icon:1,time:1000});
+                    }
+                }
+            });
+
+
+        });
+
+    }
 </script>
