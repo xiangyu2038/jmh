@@ -3,8 +3,6 @@
       <span class="layui-breadcrumb">
         <a href="">首页</a>
         <a href="">评价信息</a>
-        <a>
-          <cite>导航元素</cite></a>
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
@@ -12,8 +10,6 @@
 <div class="x-body">
     <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
-
-
 
         </form>
     </div>
@@ -33,16 +29,14 @@
             <th>方案清晰</th>
             <th>服务态度</th>
             <th>房修师工号</th>
+            <td>评价总分</td>
             <th>操作</th>
-
-
         </tr>
         </thead>
         <tbody>
         <?php $index=0; foreach($datas as  $v): ; ?>
             <tr>
                 <?php $index++ ; ?>
-
                 <!-- <td>
                      <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
                  </td>-->
@@ -55,6 +49,7 @@
                 <td>{$v.plan}</td>
                 <td>{$v.serviece}</td>
                 <td>{$v.repair_man_id}</td>
+                <td>{$v.satisfy+$v.convenient+$v.clean+$v.plan+$v.serviece}</td>
                 <td class="td-manage">
 
                     <a title="删除" onclick="member_dels(this,'{$v.id}')" href="javascript:;">

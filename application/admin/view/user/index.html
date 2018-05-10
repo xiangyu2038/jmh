@@ -3,8 +3,6 @@
       <span class="layui-breadcrumb">
         <a href="">首页</a>
         <a href="">会员信息</a>
-        <a>
-          <cite>导航元素</cite></a>
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
@@ -30,20 +28,17 @@
                     <option <?php if(isset($con)&&$con=='city') echo 'selected'  ; ?> value="city">城市</option>
                 </select>
             </div>
-
-
             <input type="text" name="keyword" value="<?php if(isset($keyword)) echo $keyword ; ?>"  placeholder="请输入关键词" autocomplete="off" class="layui-input">
             <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
     </div>
     <xblock>
         <!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>-->
-        <button class="layui-btn" onclick="x_admin_show('添加用户','/admin/user/add')"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加会员','/admin/user/add')"><i class="layui-icon"></i>添加会员</button>
         <form id="myform" action="{:url('admin/user/exports')}" style="display: none" class="layui-form" method="post" enctype="multipart/form-data">
         <input type="file" name="file" id="file"  >
         </form>
-
-        <button id="export" class="layui-btn"><i class="layui-icon"></i>批量导入用户</button>
+        <button id="export" class="layui-btn"><i class="layui-icon"></i>批量导入会员</button>
         <button id="exports" class="layui-btn"><i class="layui-icon"></i>导出会员信息</button>
         <span class="x-right" style="line-height:40px">共有数据：{$datas->total()} 条</span>
     </xblock>
@@ -62,15 +57,14 @@
             <th>城市</th>
             <th>小区</th>
             <th>室号</th>
+            <th>积分</th>
             <th>操作</th>
-
         </tr>
         </thead>
         <tbody>
         <?php $index=0; foreach($datas as  $v): ; ?>
         <tr>
         <?php $index++ ; ?>
-
            <!-- <td>
                 <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>-->
@@ -81,17 +75,17 @@
             <td>{$v.city}</td>
             <td>{$v.project_name}</td>
             <td>{$v.house_number}</td>
-
+            <td>0</td>
             <td class="td-manage">
                 <a title="查看"  onclick="x_admin_show('编辑','/admin/user/edit?project_id={$v.id}')" href="javascript:;">
                     <i class="layui-icon">&#xe642;</i>
                 </a>
-                <a title="添加"  onclick="x_admin_show('添加项目','/admin/user/addProject?user_id={$v.user.id}')" href="javascript:;">
+                <!-- <a title="添加"  onclick="x_admin_show('添加项目','/admin/user/addProject?user_id={$v.user.id}')" href="javascript:;">
                     <i class="layui-icon">&#xe654;</i>
-                </a>
-                <!-- <a title="删除" onclick="member_del(this,'')" href="javascript:;">
+                </a> -->
+                <a title="删除" onclick="member_del(this,'')" href="javascript:;">
                     <i class="layui-icon">&#xe640;</i>
-                </a>-->
+                </a>
             </td>
         </tr>
         <?php endforeach ; ?>

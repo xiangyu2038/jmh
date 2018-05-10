@@ -3,8 +3,6 @@
       <span class="layui-breadcrumb">
         <a href="">首页</a>
         <a href="">报修信息</a>
-        <a>
-          <cite>导航元素</cite></a>
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
@@ -72,9 +70,9 @@
 
                 <td class="td-manage">
                    <?php if($v['status']==1): ; ?>
-                    <button class="layui-btn">未处理</button>
+                    <button class="layui-btn">等待上门</button>
                        <?php else: ; ?>
-                       <button class="layui-btn layui-btn-normal">已处理</button>
+                       <button class="layui-btn layui-btn-normal">已完成</button>
                 <?php endif ; ?>
 
                 </td>

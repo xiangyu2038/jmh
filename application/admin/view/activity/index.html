@@ -4,8 +4,6 @@
       <span class="layui-breadcrumb">
         <a href="">首页</a>
         <a href="">活动信息</a>
-        <a>
-          <cite>导航元素</cite></a>
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
@@ -31,7 +29,7 @@
     </div>
     <xblock>
         <!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>-->
-        <button class="layui-btn" onclick="x_admin_show('添加用户','/admin/Activity/add')"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加活动','/admin/Activity/add')"><i class="layui-icon"></i>添加</button>
         <form id="myform" action="{:url('admin/user/exports')}" style="display: none" class="layui-form" method="post" enctype="multipart/form-data">
             <input type="file" name="file" id="file"  >
         </form>
@@ -53,7 +51,7 @@
             <th>开始时间</th>
             <th>结束时间</th>
             <th>状态</th>
-            <th>是否展示</th>
+            <th>是否显示</th>
             <th>操作</th>
 
         </tr>
@@ -83,18 +81,18 @@
                 <td >
 
 
-                    <button data-id="{$v['i `d']}"  data-status="3" class="layui-btn <?php if($v['status']=='3') echo 'layui-btn-normal' ; ?> status">默认</button>
+                    <button data-id="{$v['i `d']}"  data-status="3" class="layui-btn <?php if($v['status']=='3') echo 'layui-btn-normal' ; ?> status">开启</button>
 
-                    <button data-id="{$v['id']}"  data-status="2" class="layui-btn  <?php if($v['status']=='2') echo 'layui-btn-normal' ; ?> status">结束</button>
+                    <button data-id="{$v['id']}"  data-status="2" class="layui-btn  <?php if($v['status']=='2') echo 'layui-btn-normal' ; ?> status">关闭</button>
 
                    <!-- <button data-id="{$v['id']}"  data-status="1" class="layui-btn  <?php /*if($v['status']=='1') echo 'layui-btn-normal' ; */?> status">开始</button>-->
 
             </td>
                 <td>
 
-                        <button class="layui-btn <?php if($v['display']==1) echo 'layui-btn-normal' ; ?>  display" data-id="{$v['id']}" data-display="1" >展示</button>
+                        <button class="layui-btn <?php if($v['display']==1) echo 'layui-btn-normal' ; ?>  display" data-id="{$v['id']}" data-display="1" >显示</button>
 
-                        <button class="layui-btn <?php if($v['display']==2) echo 'layui-btn-normal' ; ?> display" data-id="{$v['id']}"  data-display="2">不展示</button>
+                        <button class="layui-btn <?php if($v['display']==2) echo 'layui-btn-normal' ; ?> display" data-id="{$v['id']}"  data-display="2">隐藏</button>
 
                 </td>
 
