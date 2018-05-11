@@ -81,18 +81,18 @@
                 <td >
 
 
-                    <button data-id="{$v['i `d']}"  data-status="3" class="layui-btn <?php if($v['status']=='3') echo 'layui-btn-normal' ; ?> status">开启</button>
+                    <button data-id="{$v['i `d']}"  data-status="3" class="layui-btn layui-btn-sm <?php if($v['status']=='3') echo 'layui-btn-primary' ; ?> status">开启</button>
 
-                    <button data-id="{$v['id']}"  data-status="2" class="layui-btn  <?php if($v['status']=='2') echo 'layui-btn-normal' ; ?> status">关闭</button>
+                    <button data-id="{$v['id']}"  data-status="2" class="layui-btn layui-btn-sm  <?php if($v['status']=='2') echo 'layui-btn-primary' ; ?> status">关闭</button>
 
                    <!-- <button data-id="{$v['id']}"  data-status="1" class="layui-btn  <?php /*if($v['status']=='1') echo 'layui-btn-normal' ; */?> status">开始</button>-->
 
             </td>
                 <td>
 
-                        <button class="layui-btn <?php if($v['display']==1) echo 'layui-btn-normal' ; ?>  display" data-id="{$v['id']}" data-display="1" >显示</button>
+                        <button class="layui-btn layui-btn-sm <?php if($v['display']==1) echo 'layui-btn-primary' ; ?>  display" data-id="{$v['id']}" data-display="1" >显示</button>
 
-                        <button class="layui-btn <?php if($v['display']==2) echo 'layui-btn-normal' ; ?> display" data-id="{$v['id']}"  data-display="2">隐藏</button>
+                        <button class="layui-btn layui-btn-sm <?php if($v['display']==2) echo 'layui-btn-primary' ; ?> display" data-id="{$v['id']}"  data-display="2">隐藏</button>
 
                 </td>
 
