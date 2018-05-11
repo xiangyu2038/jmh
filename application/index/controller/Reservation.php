@@ -90,7 +90,6 @@ class Reservation extends Controller
         ////获取每个预约时间的预约人数 和剩余人数
 
         $time=Request::get('time');
-       // $time='2018-4-28';
         $data = EverydayModel::where('time',$time)->with('period')->get();
 
        $data=$this->delaArray($data);
@@ -105,7 +104,6 @@ return json(['code'=>1,'msg'=>'成功','data'=>$data]);
         return $array;
     }
     public function delaArrayOne($data){
-
         $array=[];
         $array['start_time']=$data['period']['start_time'];
         $array['end_time']=$data['period']['end_time'];
