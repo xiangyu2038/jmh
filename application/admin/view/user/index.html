@@ -83,7 +83,7 @@
                 <!-- <a title="添加"  onclick="x_admin_show('添加项目','/admin/user/addProject?user_id={$v.user.id}')" href="javascript:;">
                     <i class="layui-icon">&#xe654;</i>
                 </a> -->
-                <a title="删除" onclick="member_del(this,'')" href="javascript:;">
+                <a title="删除" onclick="member_dels(this,'{$v.user.id}')" href="javascript:;">
                     <i class="layui-icon">&#xe640;</i>
                 </a>
             </td>
@@ -151,5 +151,31 @@ var url=zhuanyi('{$export_str}');
         s = s.replace(/\'/g,"&#39;");
         s = s.replace(/\"/g,"&quot;");
         return s;
+    }
+
+    function member_dels(obj,id){
+
+        layer.confirm('确认要删除吗？',function(index){
+
+            //发异步删除数据
+            $.ajax({
+                type: "get",
+                url: "{:url('admin/User/del')}",
+                data: {user_id:id},
+                dataType: "json",
+                success: function(data){
+                    if(data.code==1){
+                        $(obj).parents("tr").remove();
+
+                        layer.msg(data.msg,{icon:1,time:1000});
+                    }else{
+                        layer.msg(data.msg,{icon:1,time:1000});
+                    }
+                }
+            });
+
+
+        });
+
     }
 </script>

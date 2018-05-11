@@ -79,7 +79,7 @@ class Booking extends BaseController
               });
           }
 
-      })->paginate(10);
+      })->paginate(config('pagesize'));
 
        if(Request::has('keyword')){
            $keyword=trim(Request::get('keyword'));

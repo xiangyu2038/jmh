@@ -9,11 +9,20 @@
 </div>
 <div class="x-body">
     <div class="layui-row">
-        <form class="layui-form layui-col-md12 x-so">
+        <form id="myform" class="layui-form layui-col-md12 x-so">
+            <div class="layui-input-inline">
+                <select id="dad" name="con">
+                    <option  <?php if(isset($con)&&$con=='con') echo 'selected'  ; ?> value="con">搜索条件</option>
+                    <option <?php if(isset($con)&&$con=='name') echo 'selected'  ; ?> value="name">姓名</option>
+                    <option <?php if(isset($con)&&$con=='phone') echo 'selected'  ; ?> value="phone">手机号</option>
 
+                </select>
+            </div>
+            <input type="text" name="keyword" value="<?php if(isset($keyword)) echo $keyword ; ?>"  placeholder="请输入关键词" autocomplete="off" class="layui-input">
+            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
     </div>
-
+    <button id="exportss" class="layui-btn"><i class="layui-icon"></i>导出报修信息</button>
     <table class="layui-table">
         <thead>
         <tr>
@@ -86,6 +95,20 @@
 
     $('#exports').click(function () {
         window.location.href='{:url("admin/User/export")}';
+    });
+
+    $(function  () {
+        layui.use('form', function(){
+            var form = layui.form;
+            // layer.msg('玩命卖萌中', function(){
+            //   //关闭后的操作
+            //   });
+            //监听提交
+
+            form.on('select(test)', function(data){
+                $('#myform').submit();
+            });
+        });
     })
     function member_dels(obj,id){
 
@@ -111,5 +134,23 @@
 
         });
 
+    }
+    $('#exportss').click(function () {
+
+        var url=zhuanyi('{$export_str}');
+
+        window.location.href=url;
+    });
+    function zhuanyi (str){
+        var s = "";
+        if(str.length == 0) return "";
+
+        s = str.replace("&amp;",'&');
+        s = s.replace(/</g,"&lt;");
+        s = s.replace(/>/g,"&gt;");
+        s = s.replace(/ /g,"&nbsp;");
+        s = s.replace(/\'/g,"&#39;");
+        s = s.replace(/\"/g,"&quot;");
+        return s;
     }
 </script>

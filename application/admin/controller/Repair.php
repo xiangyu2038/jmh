@@ -19,7 +19,7 @@ if($keyword!='请选择小区'){
 }
 
         }
-    })->orderBy('created_at','desc')->paginate(10);
+    })->orderBy('created_at','desc')->paginate(config('pagesize'));
 
     if(Request::has('keyword')){
         $keyword=trim(Request::get('keyword'));
@@ -28,7 +28,7 @@ if($keyword!='请选择小区'){
         $export_str='/admin/Repair/export?keyword='.$keyword.'&';
     }else{
         $str='/admin/Repair/index';
-        $export_str='/admin/Repair/index';
+        $export_str='/admin/Repair/export';
     }
 
     $datas->setPath($str);

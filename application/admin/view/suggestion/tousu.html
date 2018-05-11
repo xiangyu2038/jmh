@@ -23,7 +23,7 @@
     </div>
     <xblock>
         <!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>-->
-
+        <button id="exportss" class="layui-btn"><i class="layui-icon"></i>导出投诉信息</button>
         <span class="x-right" style="line-height:40px">共有数据：{$datas->total()} 条</span>
     </xblock>
     <table class="layui-table">
@@ -136,4 +136,24 @@
         });
 
     }
+
+    $('#exportss').click(function () {
+
+        var url=zhuanyi('{$export_str}');
+
+        window.location.href=url;
+    });
+    function zhuanyi (str){
+        var s = "";
+        if(str.length == 0) return "";
+
+        s = str.replace("&amp;",'&');
+        s = s.replace(/</g,"&lt;");
+        s = s.replace(/>/g,"&gt;");
+        s = s.replace(/ /g,"&nbsp;");
+        s = s.replace(/\'/g,"&#39;");
+        s = s.replace(/\"/g,"&quot;");
+        return s;
+    }
+
 </script>
