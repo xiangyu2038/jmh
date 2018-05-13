@@ -84,6 +84,7 @@
          if(!note) return alert('请填写投诉说明!');
          if(!name) return alert('请填写联系人!');
          if(!phone) return alert('请填写联系电话!');
+         if(ztel(phone)==false) return;
         Ajax('/index/index/doSuggestion','img');
     });
 

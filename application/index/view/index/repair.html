@@ -93,6 +93,7 @@
         if(!name) return alert('请填写联系人!');
         if(!phone) return alert('请填写联系电话!');
         if(!time) return alert('请填写上门时间!');
+        if(ztel(phone)==false) return;
 //        alert('调用Ajax');
         Ajax('{:url("index/index/doRepair")}','img');
     });

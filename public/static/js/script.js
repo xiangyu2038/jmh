@@ -62,7 +62,6 @@ function Ajax(url,type){
             data.re_id=1;
         };
     }
-    // alert('上传数据');
     $.ajax({
         type:'post',
         url:url,
@@ -92,7 +91,13 @@ function proJect(txt){
 };
 proJect($('[name=project_id]').find("option:selected").text());
 
-
+// 手机号验证
+function ztel(phone){ 
+    if(!(/^1[3|4|5|6|7|8][0-9]{9}$/.test(phone))){ 
+        alert("请输入正确的11位手机号"); 
+        return false;
+    } 
+} 
 
 
 

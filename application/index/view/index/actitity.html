@@ -15,9 +15,9 @@
 <body>
 <div class="wrap activity">
     <div class="banner">
-        <img src="__STATIC__/images/img1.jpg">
+        <img src="__STATIC__/images/banner.png">
     </div>
-    <div class="parting"><span>正在进行</span></div>
+    <div class="parting"><span class="icon1">正在进行</span></div>
 
     <ul class="activity-list">
         <?php foreach($activity as $v): ; ?>
@@ -40,7 +40,7 @@
         </li></a>
         <?php endforeach ; ?>
     </ul>
-    <div class="parting"><span>经典回顾</span></div>
+    <div class="parting"><span class="icon2">经典回顾</span></div>
     <ul class="activity-list">
         <?php foreach($over as $v): ; ?>
         <a href="{$v.url}">

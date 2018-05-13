@@ -21,3 +21,6 @@
     line-height: 28px;
     font-size: 12px;
 }
+#think_page_trace,#think_page_trace_open{
+    display: none !important;
+}
