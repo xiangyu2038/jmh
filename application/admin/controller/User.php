@@ -12,60 +12,71 @@ class User extends BaseController
 {
     public function index(){
 
+//dd($_SERVER["QUERY_STRING"]);
 
         $datas = ProjectModel::with('user')->where(function ($query){
-            if(Request::has('pro')){
+
+            if(Request::has('pro')&&(Request::get('pro')!='请选择小区')){
                 $pro=trim(Request::get('pro'));
-                if($pro!='请选择小区'){
-                    $query->where('project_name',$pro);
-                }
+               // $array[]=['project_name','=',$pro];
+             $query->where('project_name','=',$pro);
 
-            }else{
-                if(Request::has('con')){
-                    $con=Request::get('con');
-                    $keyword=trim(Request::get('keyword'));
 
-                    if($con=='project_name'){
-                        $query->where('project_name','like','%'.$keyword.'%');
-                    }else if($con=='city'){
+            }
+        })->where(function ($query){
+            if(Request::has('con')){
 
-                        $query->where('city','like','%'.$keyword.'%');
-                    }
+                $con=Request::get('con');
+                $keyword=trim(Request::get('keyword'));
+
+                if($con=='city'){
+
+                     $query->where('city','like','%'.$keyword.'%');
+                    //$array[]=['city','like','%'.$keyword.'%'];
+
                 }
             }
+
+
 
         })->whereHas('user',function ($query){
             if(Request::has('con')){
                 $con=Request::get('con');
                 $keyword=trim(Request::get('keyword'));
                 if($con=='name'){
-
                     $query->where('name','like','%'.$keyword.'%')->orderBy('created_at','desc');
                 }elseif ($con=='phone'){
                     $query->where('phone','like','%'.$keyword.'%')->orderBy('created_at','desc');
                 }
             }
         })->orderBy('created_at','desc')->paginate(config('pagesize'));
+
+
+        $par=[];
         if(Request::has('pro')){
             $pro=Request::get('pro');
-            $str='/admin/User/index?pro='.$pro.'&';
-            $export_str='/admin/User/export?pro='.$pro.'&';
+
+          //  $export_str='/admin/User/export?pro='.$pro.'&';
             $this->assign('pro',$pro);
-        }else{
-            if(Request::has('con')){
-                $con=Request::get('con');
-                $keyword=trim(Request::get('keyword'));
-                $this->assign('con',$con);
-                $this->assign('keyword',$keyword);
-
-                $str='/admin/User/index?con='.$con.'&keyword='.$keyword.'&';
-                $export_str='/admin/User/export?con='.$con.'&keyword='.$keyword.'&';
-            }else{
-                $str='/admin/User/index';
-                $export_str='/admin/User/index';
-            }
+            $par['pro']=$pro;
         }
+         if(Request::has('con')){
+             $con=Request::get('con');
+             $keyword=trim(Request::get('keyword'));
+             $this->assign('con',$con);
+             $this->assign('keyword',$keyword);
+             $par['con']=$con;
+             $par['keyword']=$keyword;
 
+           //  $str='/admin/User/index?con='.$con.'&keyword='.$keyword.'&';
+           //  $export_str='/admin/User/export?con='.$con.'&keyword='.$keyword.'&';
+         }
+        $str='/admin/user/index?';
+        $export_str='/admin/User/export?';
+         foreach ($par as $key=>$v){
+             $str.=$key.'='.$v.'&';
+             $export_str.=$key.'='.$v.'&';
+         }
 
 
         $datas->setPath($str);
@@ -306,32 +317,36 @@ public function addProject(){
      */
     public function export(){
 
-        $data = ProjectModel::with('user')->where(function ($query){
-            if(Request::has('pro')){
+        $datas = ProjectModel::with('user')->where(function ($query){
+
+            if(Request::has('pro')&&(Request::get('pro')!='请选择小区')){
                 $pro=trim(Request::get('pro'));
-                if($pro!='请选择小区'){
-                    $query->where('project_name',$pro);
-                }
+                // $array[]=['project_name','=',$pro];
+                $query->where('project_name','=',$pro);
 
-            }else{
-                if(Request::has('con')){
-                    $con=Request::get('con');
-                    $keyword=trim(Request::get('keyword'));
 
-                    if($con=='project_name'){
-                        $query->where('project_name','like','%'.$keyword.'%');
-                    }else if($con=='city'){
-                        $query->where('city','like','%'.$keyword.'%');
-                    }
+            }
+        })->where(function ($query){
+            if(Request::has('con')){
+
+                $con=Request::get('con');
+                $keyword=trim(Request::get('keyword'));
+
+                if($con=='city'){
+
+                    $query->where('city','like','%'.$keyword.'%');
+                    //$array[]=['city','like','%'.$keyword.'%'];
+
                 }
             }
+
+
 
         })->whereHas('user',function ($query){
             if(Request::has('con')){
                 $con=Request::get('con');
                 $keyword=trim(Request::get('keyword'));
                 if($con=='name'){
-
                     $query->where('name','like','%'.$keyword.'%')->orderBy('created_at','desc');
                 }elseif ($con=='phone'){
                     $query->where('phone','like','%'.$keyword.'%')->orderBy('created_at','desc');
@@ -339,7 +354,7 @@ public function addProject(){
             }
         })->orderBy('created_at','desc')->get();
 ;
-     $this->getExportData($data);
+     $this->getExportData($datas);
 
     }
     public function getExportData($data){

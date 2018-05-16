@@ -10,27 +10,54 @@ use think\facade\Request;
 class Repair extends Controller
 {
 public function index(){
+   // $keyword=trim(Request::get('pro'));
 
-    $datas= RepairModel::with('user')->with('project')->with('img')->whereHas('project',function ($query){
-        if(Request::has('keyword')){
-           $keyword=trim(Request::get('keyword'));
-if($keyword!='请选择小区'){
+    $datas= RepairModel::with('user')->with('project')->with('img')->where(function ($query){
+        if(Request::has('con')){
+            $con=Request::get('con');
+            $keyword=trim(Request::get('keyword'));
+            if($con=='name'){
+                $query->where('contacts_name','like','%'.$keyword.'%')->orderBy('created_at','desc');
+            }elseif ($con=='phone'){
+                $query->where('contacts_phone','like','%'.$keyword.'%')->orderBy('created_at','desc');
+            }
+        }
+    })->whereHas('project',function ($query){
+
+        if(Request::has('pro')&&(Request::get('pro')!='请选择小区')){
+
+            $keyword=trim(Request::get('pro'));
+
+            if($keyword!='请选择小区'){
     $query->where('project_name',$keyword);
 }
 
         }
     })->orderBy('created_at','desc')->paginate(config('pagesize'));
-
-    if(Request::has('keyword')){
+    $par=[];
+    if(Request::has('pro')&&(Request::get('pro')!='请选择小区')){
+        $pro=trim(Request::get('pro'));
+        $this->assign('pro',$pro);
+        $par['pro']=$pro;
+    }
+    if(Request::has('con')){
+        $con=Request::get('con');
         $keyword=trim(Request::get('keyword'));
+        $this->assign('con',$con);
         $this->assign('keyword',$keyword);
-        $str='/admin/Repair/index?keyword='.$keyword.'&';
-        $export_str='/admin/Repair/export?keyword='.$keyword.'&';
-    }else{
-        $str='/admin/Repair/index';
-        $export_str='/admin/Repair/export';
+
+        $par['con']=$con;
+        $par['keyword']=$keyword;
+
+    }
+    $str='/admin/Repair/index?';
+    $export_str='/admin/Repair/export?';
+    foreach ($par as $key=>$v){
+        $str.=$key.'='.$v.'&';
+        $export_str.=$key.'='.$v.'&';
     }
 
+//dd($datas->toArray());
     $datas->setPath($str);
 
     $page=$datas->render();
@@ -45,9 +72,21 @@ if($keyword!='请选择小区'){
 }
     public function export(){
 
-        $datas= RepairModel::with('user')->with('project')->with('img')->whereHas('project',function ($query){
-            if(Request::has('keyword')){
+        $datas= RepairModel::with('user')->with('project')->with('img')->where(function ($query){
+            if(Request::has('con')){
+                $con=Request::get('con');
                 $keyword=trim(Request::get('keyword'));
+                if($con=='name'){
+                    $query->where('contacts_name','like','%'.$keyword.'%')->orderBy('created_at','desc');
+                }elseif ($con=='phone'){
+                    $query->where('contacts_phone','like','%'.$keyword.'%')->orderBy('created_at','desc');
+                }
+            }
+        })->whereHas('project',function ($query){
+
+            if(Request::has('pro')&&(Request::get('pro')!='请选择小区')){
+
+                $keyword=trim(Request::get('pro'));
 
                 if($keyword!='请选择小区'){
                     $query->where('project_name',$keyword);

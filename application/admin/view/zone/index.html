@@ -11,14 +11,14 @@
     <div class="layui-row">
         <form id="myform" class="layui-form layui-col-md12 x-so">
             <div class="layui-input-inline">
-                <select id="dad" name="con">
-                    <option  <?php if(isset($con)&&$con=='con') echo 'selected'  ; ?> value="con">搜索条件</option>
-                    <option <?php if(isset($con)&&$con=='name') echo 'selected'  ; ?> value="name">姓名</option>
-                    <option <?php if(isset($con)&&$con=='phone') echo 'selected'  ; ?> value="phone">手机号</option>
-
-                </select>
+                <select id="xiaoqu" lay-filter="test" name="pro">
+                    <option value="请选择小区">请选择小区</option>
+                    <?php foreach($project_list as $pv): ; ?>
+                        <option <?php if(isset($pro)&&$pro==$pv)  echo 'selected';  ?> value="{$pv}">{$pv}</option>
+                    <?php endforeach ; ?>
+                </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input placeholder="订单状态" value="" readonly="" class="layui-input layui-unselect" type="text"><i class="layui-edge"></i></div></div>
             </div>
-            <input type="text" name="keyword" value="<?php if(isset($keyword)) echo $keyword ; ?>"  placeholder="请输入关键词" autocomplete="off" class="layui-input">
+
             <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
     </div>
@@ -30,6 +30,7 @@
                 <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>-->
             <th>序号</th>
+            <th>小区</th>
             <th>姓名</th>
             <th>电话</th>
             <th>整体满意度</th>
@@ -50,6 +51,7 @@
                      <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
                  </td>-->
                 <td>{$index}</td>
+                <td>{$v.repair.project.project_name}</td>
                 <td>{$v.user.name}</td>
                 <td>{$v.user.phone}</td>
                 <td>{$v.satisfy}</td>
@@ -137,7 +139,7 @@
     }
     $('#exportss').click(function () {
 
-        var url=zhuanyi('{$export_str}');
+        url='<?php echo $export_str ; ?>';
 
         window.location.href=url;
     });

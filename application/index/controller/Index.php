@@ -155,7 +155,10 @@ class Index extends Controller
 
 
         $data=Request::post();
+      //  cache('aa',$data);
+
 //$data=cache('aa');
+
         $user_id = $data['user_id'];
 
         $contacts_name = $data['name'];
@@ -183,6 +186,7 @@ class Index extends Controller
        // return json(['error_code' => 1, 'msg' => '成功']);//认证成功
         //cache('aa',$server_id);
         $repair_id = $res->id;
+        //Request::has('serverId')
         if(Request::has('serverId')){
         $server_id = $data['serverId'];
             $img_data = $this->uploads($server_id);
@@ -321,7 +325,8 @@ class Index extends Controller
         $post=Request::post();
 
 //cache('dada',$post);
-     //   $post=cache('dada');
+        //$post=cache('dada');
+       // dd($post);
       $note = $post['note'];
         $name = $post['name'];
         $phone = $post['phone'];
@@ -424,6 +429,8 @@ class Index extends Controller
         curl_exec($ch);
         curl_close($ch);
         fclose($fp);
+
+
         return $targetNames;
 
     }

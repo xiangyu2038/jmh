@@ -10,4 +10,8 @@ class EvaluationModel extends \Illuminate\Database\Eloquent\Model
 public function user(){
     return $this->belongsTo('model\UserModel','openid','openid');
 }
+public function repair(){
+
+    return $this->belongsTo('model\RepairModel','repair_id');
+}
 }

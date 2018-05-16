@@ -11,31 +11,32 @@ class Zone extends Controller
 {
 public function index(){
 
-    $datas = EvaluationModel::with('user')->whereHas('user',function ($query){
-        if(Request::has('con')){
-            $con=Request::get('con');
-            $keyword=trim(Request::get('keyword'));
-            if($con=='name'){
+    $datas = EvaluationModel::with('user')->with('repair.project')->whereHas('repair.project',function ($query){
 
-                $query->where('name','like','%'.$keyword.'%')->orderBy('created_at','desc');
-            }elseif ($con=='phone'){
-                $query->where('phone','like','%'.$keyword.'%')->orderBy('created_at','desc');
+        if(Request::has('pro')&&(Request::get('pro')!='请选择小区')){
+
+            $keyword=trim(Request::get('pro'));
+
+            if($keyword!='请选择小区'){
+                $query->where('project_name',$keyword);
             }
+
         }
     })->orderBy('created_at','desc')->paginate(config('pagesize'));
 
-
-    if(Request::has('keyword')){
-        $keyword=trim(Request::get('keyword'));
-        $con=Request::get('con');
-        $this->assign('keyword',$keyword);
-        $this->assign('con',$con);
-        $str='/admin/Zone/index?keyword='.$keyword.'&';
-        $export_str='/admin/Zone/export?keyword='.$keyword.'&con='.$con.'&';
-    }else{
-        $str='/admin/Zone/index';
-        $export_str='/admin/Zone/export';
+    $par=[];
+    if(Request::has('pro')&&(Request::get('pro')!='请选择小区')){
+        $pro=trim(Request::get('pro'));
+        $this->assign('pro',$pro);
+        $par['pro']=$pro;
     }
+    $str='/admin/Zone/index?';
+    $export_str='/admin/Zone/export?';
+    foreach ($par as $key=>$v){
+        $str.=$key.'='.$v.'&';
+        $export_str.=$key.'='.$v.'&';
+    }
+//dd($datas->toArray());
     $page=$datas->render();
     $datas->setPath($str);
     $project_list=ProjectModel::all();
@@ -68,16 +69,16 @@ public function index(){
     public function export(){
 
 
-        $datas = EvaluationModel::with('user')->whereHas('user',function ($query){
-            if(Request::has('con')){
-                $con=Request::get('con');
-                $keyword=trim(Request::get('keyword'));
-                if($con=='name'){
+        $datas = EvaluationModel::with('user')->with('repair.project')->whereHas('repair.project',function ($query){
 
-                    $query->where('name','like','%'.$keyword.'%')->orderBy('created_at','desc');
-                }elseif ($con=='phone'){
-                    $query->where('phone','like','%'.$keyword.'%')->orderBy('created_at','desc');
+            if(Request::has('pro')&&(Request::get('pro')!='请选择小区')){
+
+                $keyword=trim(Request::get('pro'));
+
+                if($keyword!='请选择小区'){
+                    $query->where('project_name',$keyword);
                 }
+
             }
         })->orderBy('created_at','desc')->get();
         $array=[];
@@ -85,7 +86,7 @@ public function index(){
             $array[]=  $this->getExportDataOne($key,$v);
         }
 
-        $headArr=['序号','姓名','电话','整体满意度','保修便利','现场清洁','方案清晰','服务态度','房修师工号','评价总分'];
+        $headArr=['序号','小区','姓名','电话','整体满意度','保修便利','现场清洁','方案清晰','服务态度','房修师工号','评价总分'];
         $export=new Export();
         $export->exports($array,$headArr);
     }
@@ -93,6 +94,7 @@ public function index(){
 
         $array=[];
         $array['key']=$key;
+        $array['project_name']=$data['repair']['project']['project_name'];
         $array['name']=$data['user']['name'];
         $array['phone']=$data['phone'];
         $array['satisfy']=$data['satisfy'];

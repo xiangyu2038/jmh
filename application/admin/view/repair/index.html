@@ -10,22 +10,23 @@
 <div class="x-body">
     <div class="layui-row">
         <form id="myform" action="{:url('admin/Repair/index')}" class="layui-form layui-col-md12 x-so" >
+
             <div class="layui-input-inline">
-                <select  name="keyword"  lay-filter="test">>
+                <select id="xiaoqu" lay-filter="test" name="pro">
                     <option value="请选择小区">请选择小区</option>
-                    <?php  foreach($project_list as $pv): ; ?>
-                        <option <?php if(isset($keyword)&&$keyword==$pv) echo 'selected' ; ?> value="{$pv}">{$pv}</option>
+                    <?php foreach($project_list as $pv): ; ?>
+                        <option <?php if(isset($pro)&&$pro==$pv)  echo 'selected';  ?> value="{$pv}">{$pv}</option>
                     <?php endforeach ; ?>
                 </select><div class="layui-unselect layui-form-select"><div class="layui-select-title"><input placeholder="订单状态" value="" readonly="" class="layui-input layui-unselect" type="text"><i class="layui-edge"></i></div></div>
             </div>
-
             <div class="layui-input-inline">
                 <select id="dad" name="con">
                     <option  <?php if(isset($con)&&$con=='con') echo 'selected'  ; ?> value="con">搜索条件</option>
+
                     <option <?php if(isset($con)&&$con=='name') echo 'selected'  ; ?> value="name">姓名</option>
-                    <option <?php if(isset($con)&&$con=='phone') echo 'selected'  ; ?> value="phone">房号</option>
-                    <option <?php if(isset($con)&&$con=='project_name') echo 'selected'  ; ?> value="project_name">手机号</option>
-                    <option <?php if(isset($con)&&$con=='city') echo 'selected'  ; ?> value="city">城市</option>
+                   <!-- <option <?php /*if(isset($con)&&$con=='phone') echo 'selected'  ; */?> value="phone">房号</option>-->
+                    <option <?php if(isset($con)&&$con=='phone') echo 'selected'  ; ?> value="phone">手机号</option>
+                    <!--<option <?php /*if(isset($con)&&$con=='city') echo 'selected'  ; */?> value="city">城市</option>-->
                 </select>
             </div>
             <input type="text" name="keyword" value="<?php if(isset($keyword)) echo $keyword ; ?>"  placeholder="请输入关键词" autocomplete="off" class="layui-input">
@@ -121,7 +122,7 @@
     });
 
     $('#exports').click(function () {
-        var url=zhuanyi('{$export_str}');
+        url='<?php echo $export_str ; ?>';
 
         window.location.href=url;
     });
