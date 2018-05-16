@@ -36,8 +36,8 @@ input, input[type="button"], input[type="submit"], input[type="reset"], textarea
     position: relative;
 }
 // 颜色
-@color1:#244289;
-@color2:#d9bc4e;
+@color1:#F5A623;
+@color2:#244289;
 @color3:#ff5c5c;
 @color4:#42a1ef;
 
@@ -263,14 +263,15 @@ input, input[type="button"], input[type="submit"], input[type="reset"], textarea
 
 // 登录认证
 .login{
-    background: url(../images/bg.jpg) no-repeat center 800px #fff;
-    padding-top: 50px;
+    // background: url(../images/bg.jpg) no-repeat center 800px #fff;
+    background: #fff;
     .logo{
-        height: 300px;
+        height: 620px;
         background: url(../images/logo.png)  no-repeat center;
     }
     .login-form{
         padding: 30px;
+        padding-bottom: 0;
         >div{
             margin-bottom: 15px;
             position: relative;
@@ -388,17 +389,15 @@ input, input[type="button"], input[type="submit"], input[type="reset"], textarea
 }
 
 .head{
-    height: 80px;
+    height: 293px;
     margin-bottom: 30px;
-    // background: url(../images/head.png);
-    background: #eee;
+    background: url(../images/head.png);
 }
 
 // 活动
 .activity{
     background: #fff;
     .banner{
-        height: 400px;
         background: #fff;
         overflow: hidden;
         img{
@@ -417,9 +416,18 @@ input, input[type="button"], input[type="submit"], input[type="reset"], textarea
     }
     .parting span{
         position: relative;
-        padding: 0 30px;
+        padding: 0 0 0 40px;
         z-index: 1;
         font-size: 24px;
+        display: inline-block;
+    }
+    .parting span.icon1{
+        background: url(../images/icon1.png) no-repeat left center;
+    }
+    .parting span.icon2{
+        background: url(../images/icon2.png) no-repeat left center;
+        line-height: 70px;
+        height: 70px;
     }
     .parting span:before,
     .parting span:after{
@@ -431,10 +439,10 @@ input, input[type="button"], input[type="submit"], input[type="reset"], textarea
         border-bottom: 1px solid #f0f0f0;
     }
     .parting span:before{
-        right: 100%;
+        right: 120%;
     }
     .parting span:after{
-        left: 100%;
+        left: 120%;
     }
 
     .activity-list{
@@ -474,12 +482,22 @@ input, input[type="button"], input[type="submit"], input[type="reset"], textarea
             position: absolute;
             right: 30px;
             top: -50px;
-            background: url(../images/hot.png) center no-repeat;
+            // background: url(../images/hot.png) center no-repeat;
         }
     }
 }
 
+// 表扬投诉
+.suggestion{
+    padding-top: 520px;
+    background: url(../images/suggestion.png) center top no-repeat;
+}
+
 // 预约
+.reservation{
+    height: 360px;
+    background: url(../images/reservation.jpg) no-repeat;
+}
 .times{
     display: inline-block;
     font-size: 0;
@@ -514,4 +532,8 @@ input, input[type="button"], input[type="submit"], input[type="reset"], textarea
     font-size: 22px;
     margin: 30px auto 30px;
     line-height: 34px;
+}
+
+#think_page_trace,#think_page_trace_open{
+    display: none !important;
 }

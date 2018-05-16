@@ -87,8 +87,8 @@
          var certificate=$('.certificate').val();
          if(!certificate) return alert('请填写房产证上的姓名!');
          if(!idcard) return alert('请填写证件号!');
-         if(isNaN(phone) || phone.length!=11) return alert('请检查手机号是否正确!');
-
+         if(!phone) return alert('请填写联系电话!');
+         if(ztel(phone)==false) return;
         // 提交
         Ajax('{:url("index/index/doLogin")}');
     });
