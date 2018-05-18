@@ -59,17 +59,21 @@ class Index extends Controller
 
     public function doLogin()
     {
+$post=Request::post();
 
 
-        $phone = Request::post('tel');
-        $idcard = Request::post('idcard');
-        $name = Request::post('name');
-        $openid = Request::post('openid');
-        $url=Request::post('url');
+        $phone = $post['tel'];
+        $idcard = $post['idcard'];
+        $name = $post['name'];
+        $openid = $post['openid'];
+        $url=$post['url'];
         $data = UserModel::where('phone', $phone)->first();
+        //cache('aa',Request::post());
+
         if (!$data) {
             return json(['error_code' => 2, 'msg' => '认证失败','url'=>'false']);//认证失败
         }
+
         if ($idcard != $data->id_number || $name != $data->name) {
             return json(['error_code' => 3, 'msg' => '认证失败','url'=>'false']);//认证失败
         }
@@ -120,7 +124,7 @@ class Index extends Controller
     public function repair()
     {
         $openid=$this->getOpenId();
-        //$openid='oUPo2wRgPOudk-bPLzwahZ1YkDkc';
+       // $openid='oUPo2wRgPOudk-bPLzwahZ1YkDkc';
         $data = UserModel::where('openid', $openid)->first();
 
         if (!$data) {
@@ -217,6 +221,7 @@ class Index extends Controller
     public function doEvaluation()
     {
         $post=Request::post();
+//cache('dd',$post);
 
         $satisfy = $post['satisfied'];
         $convenient =$post['convenient'];

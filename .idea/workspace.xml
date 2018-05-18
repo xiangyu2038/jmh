@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0180d36f-844b-4a6f-9864-26e7173a36d7" name="默认的" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/controller/Repair.php" afterPath="$PROJECT_DIR$/application/admin/controller/Repair.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/controller/User.php" afterPath="$PROJECT_DIR$/application/admin/controller/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/controller/Zone.php" afterPath="$PROJECT_DIR$/application/admin/controller/Zone.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/view/repair/index.html" afterPath="$PROJECT_DIR$/application/admin/view/repair/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/view/user/index.html" afterPath="$PROJECT_DIR$/application/admin/view/user/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/view/zone/index.html" afterPath="$PROJECT_DIR$/application/admin/view/zone/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/index/controller/Index.php" afterPath="$PROJECT_DIR$/application/index/controller/Index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/index/model/EvaluationModel.php" afterPath="$PROJECT_DIR$/application/index/model/EvaluationModel.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,11 +13,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Repair.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/admin/controller/Repair.php">
+      <file leaf-file-name="Index.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/index/controller/Index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="48" column="25" lean-forward="true" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
+            <state relative-caret-position="286">
+              <caret line="66" column="30" lean-forward="true" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
+              <folding>
+                <marker date="1526458664226" expanded="true" signature="810:829" ph="..." />
+                <marker date="1526458664226" expanded="true" signature="879:893" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/index/view/index/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="574">
+              <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -115,7 +120,6 @@
         <option value="$PROJECT_DIR$/application/admin/view/suggestion/tousu.html" />
         <option value="$PROJECT_DIR$/application/admin/controller/Login.php" />
         <option value="$PROJECT_DIR$/application/admin/controller/Maike.php" />
-        <option value="$PROJECT_DIR$/application/index/controller/Index.php" />
         <option value="$PROJECT_DIR$/vendor/illuminate/database/Query/Builder.php" />
         <option value="$PROJECT_DIR$/application/admin/view/user/index.html" />
         <option value="$PROJECT_DIR$/application/admin/view/repair/index.html" />
@@ -124,6 +128,7 @@
         <option value="$PROJECT_DIR$/application/index/model/EvaluationModel.php" />
         <option value="$PROJECT_DIR$/application/admin/view/zone/index.html" />
         <option value="$PROJECT_DIR$/application/admin/controller/Zone.php" />
+        <option value="$PROJECT_DIR$/application/index/controller/Index.php" />
       </list>
     </option>
   </component>
@@ -168,50 +173,6 @@
               <item name="jinmaohui" type="b2602c69:ProjectViewProjectNode" />
               <item name="jinmaohui" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="jinmaohui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jinmaohui" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="jinmaohui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jinmaohui" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="jinmaohui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jinmaohui" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="jinmaohui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jinmaohui" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="repair" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="jinmaohui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jinmaohui" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="user" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="jinmaohui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jinmaohui" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="admin" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="zone" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="jinmaohui" type="b2602c69:ProjectViewProjectNode" />
@@ -308,12 +269,12 @@
       <workItem from="1526359714364" duration="1221000" />
       <workItem from="1526373855568" duration="3548000" />
       <workItem from="1526431358271" duration="4982000" />
-      <workItem from="1526440874461" duration="10921000" />
+      <workItem from="1526440874461" duration="13969000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="190761000" />
+    <option name="totallyTimeSpent" value="193809000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
@@ -498,13 +459,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/index/view/index/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/controller/BaseController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -636,14 +590,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/index/controller/Reservation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2142">
-          <caret line="67" column="15" lean-forward="false" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/index/model/TestModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -655,17 +601,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2520">
           <caret line="60" column="45" lean-forward="false" selection-start-line="60" selection-start-column="45" selection-end-line="60" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/index/controller/Index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="848">
-          <caret line="129" column="9" lean-forward="true" selection-start-line="129" selection-start-column="9" selection-end-line="129" selection-end-column="9" />
-          <folding>
-            <marker date="1526431457745" expanded="true" signature="810:829" ph="..." />
-            <marker date="1526431457745" expanded="true" signature="879:893" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -752,32 +688,59 @@
           <caret line="124" column="39" lean-forward="false" selection-start-line="124" selection-start-column="7" selection-end-line="124" selection-end-column="42" />
           <folding>
             <element signature="n#div#0;n#form#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <marker date="1526452600613" expanded="true" signature="2153:2161" ph="..." />
-            <marker date="1526452600613" expanded="false" signature="2213:2522" ph="..." />
-            <marker date="1526452600613" expanded="true" signature="2554:3282" ph="..." />
-            <marker date="1526452600613" expanded="true" signature="2570:3036" ph="..." />
-            <marker date="1526452600613" expanded="true" signature="2583:3019" ph="..." />
-            <marker date="1526452600613" expanded="true" signature="2601:2754" ph="..." />
-            <marker date="1526452600613" expanded="true" signature="3052:3282" ph="..." />
-            <marker date="1526452600613" expanded="true" signature="3122:3282" ph="..." />
-            <marker date="1526452600613" expanded="true" signature="3181:3280" ph="..." />
-            <marker date="1526452600613" expanded="true" signature="3309:3317" ph="..." />
-            <marker date="1526452600613" expanded="true" signature="3598:3636" ph="..." />
-            <marker date="1526452600613" expanded="true" signature="4026:4058" ph="..." />
-            <marker date="1526452600613" expanded="true" signature="4393:4455" ph="..." />
-            <marker date="1526452600613" expanded="true" signature="4535:4543" ph="..." />
-            <marker date="1526452600613" expanded="true" signature="4694:5045" ph="..." />
-            <marker date="1526452600613" expanded="true" signature="4738:5032" ph="..." />
-            <marker date="1526452600613" expanded="true" signature="5062:5069" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="2153:2161" ph="..." />
+            <marker date="1526454895916" expanded="false" signature="2213:2522" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="2554:3282" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="2570:3036" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="2583:3019" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="2601:2754" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="3052:3282" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="3122:3282" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="3181:3280" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="3309:3317" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="3598:3636" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="4030:4062" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="4397:4459" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="4539:4547" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="4698:5049" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="4742:5036" ph="..." />
+            <marker date="1526454895916" expanded="true" signature="5066:5073" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/controller/Repair.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="48" column="25" lean-forward="true" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
+        <state relative-caret-position="1184">
+          <caret line="54" column="15" lean-forward="false" selection-start-line="54" selection-start-column="15" selection-end-line="54" selection-end-column="15" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/controller/Reservation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="791">
+          <caret line="67" column="15" lean-forward="false" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/view/index/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="574">
+          <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/index/controller/Index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="66" column="30" lean-forward="true" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
+          <folding>
+            <marker date="1526458664226" expanded="true" signature="810:829" ph="..." />
+            <marker date="1526458664226" expanded="true" signature="879:893" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
