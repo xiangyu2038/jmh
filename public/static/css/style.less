@@ -177,7 +177,7 @@ input, input[type="button"],.select-time, input[type="submit"], input[type="rese
         border-bottom-right-radius: 0;
     }
     li.two + li{
-        margin-top: -14px;
+        margin-top: -15px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
     }
@@ -289,6 +289,7 @@ input, input[type="button"],.select-time, input[type="submit"], input[type="rese
 .login{
     // background: url(../images/bg.jpg) no-repeat center 800px #fff;
     background: #fff;
+    padding: 0 40px;
     .logo{
         height: 620px;
         background: url(../images/logo.png)  no-repeat center;
@@ -308,30 +309,33 @@ input, input[type="button"],.select-time, input[type="submit"], input[type="rese
             font-size: 30px;
             width: 80px;
             text-align: center;
-            color: #999;
+            color: @color2;
         }
         input[type=text],input[type=tel]{
             line-height: 70px;
             height: 70px;
-            border: 1px solid #ddd;
-            border-radius: 40px;
             display: block;
+            border-bottom: 1px solid #ddd;
             width: 100%;
             padding: 20px 15px 20px 80px;
             font-size: 24px;
+            border-radius: 0;
         }
         a{
             font-size: 22px;
             color: #666;
+        }
+        input.code{
+            width: 300px;
         }
         .send-code{
             position: absolute;
             right: 0;
             top: 0;
             line-height: 70px;
-            background: @color1;
+            background: @color2;
             color: #fff;
-            border-radius: 100px;
+            border-radius: 10px;
             padding: 0 30px;
         }
         span{

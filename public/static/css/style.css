@@ -171,7 +171,7 @@ textarea {
   border-bottom-right-radius: 0;
 }
 .list li.two + li {
-  margin-top: -14px;
+  margin-top: -15px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
@@ -275,6 +275,7 @@ textarea {
 }
 .login {
   background: #fff;
+  padding: 0 40px;
 }
 .login .logo {
   height: 620px;
@@ -296,31 +297,34 @@ textarea {
   font-size: 30px;
   width: 80px;
   text-align: center;
-  color: #999;
+  color: #2490e9;
 }
 .login .login-form input[type=text],
 .login .login-form input[type=tel] {
   line-height: 70px;
   height: 70px;
-  border: 1px solid #ddd;
-  border-radius: 40px;
   display: block;
+  border-bottom: 1px solid #ddd;
   width: 100%;
   padding: 20px 15px 20px 80px;
   font-size: 24px;
+  border-radius: 0;
 }
 .login .login-form a {
   font-size: 22px;
   color: #666;
+}
+.login .login-form input.code {
+  width: 300px;
 }
 .login .login-form .send-code {
   position: absolute;
   right: 0;
   top: 0;
   line-height: 70px;
-  background: #f5a623;
+  background: #2490e9;
   color: #fff;
-  border-radius: 100px;
+  border-radius: 10px;
   padding: 0 30px;
 }
 .login .login-form span {
