@@ -54,14 +54,12 @@
             <th>预约上门时间</th>
             <th>状态</th>
             <th>操作</th>
-
         </tr>
         </thead>
         <tbody>
         <?php $index=0; foreach($datas as  $v): ; ?>
             <tr>
                 <?php $index++ ; ?>
-
                 <!-- <td>
                      <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
                  </td>-->
@@ -77,20 +75,16 @@
                         </a>
                     <?php endforeach ; ?>
                 </td>
-
                 <td>{$v.note}</td>
                 <td>{$v.visit_time}</td>
-
                 <td class="td-manage">
                    <?php if($v['status']==1): ; ?>
                     <button class="layui-btn layui-btn-warm layui-btn-sm">等待上门</button>
                        <?php else: ; ?>
                        <button class="layui-btn layui-btn-primary layui-btn-sm">已完成</button>
                 <?php endif ; ?>
-
                 </td>
                 <td class="td-manage">
-
                     <a title="删除" onclick="member_dels(this,'{$v.id}')" href="javascript:;">
                         <i class="layui-icon">&#xe640;</i>
                     </a>

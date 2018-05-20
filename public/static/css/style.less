@@ -22,7 +22,7 @@ a{
     text-decoration: none;
     color: #333;
 }
-input, input[type="button"], input[type="submit"], input[type="reset"], textarea{
+input, input[type="button"],.select-time, input[type="submit"], input[type="reset"], textarea{
     -webkit-appearance: none;
     outline: none;
     border: none;
@@ -36,8 +36,8 @@ input, input[type="button"], input[type="submit"], input[type="reset"], textarea
     position: relative;
 }
 // 颜色
-@color1:#F5A623;
-@color2:#244289;
+@color1:#f5a623;
+@color2:#2490e9;
 @color3:#ff5c5c;
 @color4:#42a1ef;
 
@@ -200,6 +200,11 @@ input, input[type="button"], input[type="submit"], input[type="reset"], textarea
         i.on{
             color: @color3;
         }
+    }
+    .select-time{
+        background: #fff;
+        font-size: 28px;
+        width: 300px;
     }
     // 图片上传
     .update{

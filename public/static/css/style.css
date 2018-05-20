@@ -24,6 +24,7 @@ a {
 }
 input,
 input[type="button"],
+.select-time,
 input[type="submit"],
 input[type="reset"],
 textarea {
@@ -44,12 +45,12 @@ textarea {
   color: #fff;
 }
 .bg-color1 {
-  background: #F5A623;
-  box-shadow: 0 0 15px #F5A623;
+  background: #f5a623;
+  box-shadow: 0 0 15px #f5a623;
 }
 .bg-color2 {
-  background: #244289;
-  box-shadow: 0 0 15px #244289;
+  background: #2490e9;
+  box-shadow: 0 0 15px #2490e9;
 }
 .bg-color3 {
   background: #ff5c5c;
@@ -58,10 +59,10 @@ textarea {
   background: #42a1ef;
 }
 .ft-color1 {
-  color: #F5A623;
+  color: #f5a623;
 }
 .ft-color2 {
-  color: #244289;
+  color: #2490e9;
 }
 .ft-color3 {
   color: #ff5c5c;
@@ -195,6 +196,11 @@ textarea {
 .list .star i.on {
   color: #ff5c5c;
 }
+.list .select-time {
+  background: #fff;
+  font-size: 28px;
+  width: 300px;
+}
 .list .update {
   background: none;
   box-shadow: none;
@@ -311,7 +317,7 @@ textarea {
   right: 0;
   top: 0;
   line-height: 70px;
-  background: #F5A623;
+  background: #f5a623;
   color: #fff;
   border-radius: 100px;
   padding: 0 30px;
@@ -380,7 +386,7 @@ textarea {
 .prompt i {
   display: block;
   margin: 0 auto;
-  color: #F5A623;
+  color: #f5a623;
   font-size: 150px;
   text-align: center;
   line-height: 300px;
@@ -525,7 +531,7 @@ textarea {
   background: #eee;
 }
 .times .on {
-  border-color: #F5A623;
+  border-color: #f5a623;
 }
 .reservation-info {
   text-align: center;
