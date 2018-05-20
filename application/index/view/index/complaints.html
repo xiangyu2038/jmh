@@ -26,6 +26,21 @@
                 </select>
             </a>
         </li>
+    </ul>
+    <ul class="list">
+        <li>
+            <label>联系人</label>
+            <input class="name" name="name" type="text">
+        </li>
+        <li style="margin-top: -13px;">
+            <label>联系电话</label>
+            <input class="phone" name="phone" maxlength="11" type="tel">
+
+            <input class="openid" name="openid" value="{$openid}"  type="hidden">
+            <input  name="type" value="2"  type="hidden">
+        </li>
+    </ul>
+    <ul class="list">
         <li class="project"></li>
         <li>
             <label>投诉说明</label>
@@ -47,19 +62,6 @@
                     <i class="iconfont icon-add"></i>
                 </div>
             </div>
-        </li>
-    </ul>
-    <ul class="list">
-        <li>
-            <label>联系人</label>
-            <input class="name" name="name" type="text">
-        </li>
-        <li>
-            <label>联系电话</label>
-            <input class="phone" name="phone" maxlength="11" type="tel">
-
-            <input class="openid" name="openid" value="{$openid}"  type="hidden">
-            <input  name="type" value="2"  type="hidden">
         </li>
     </ul>
     <div class="btn">

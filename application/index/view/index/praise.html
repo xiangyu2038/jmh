@@ -22,11 +22,25 @@
                 <select name="project_id">
                     <?php foreach($datas as $v): ; ?>
                     <option  value="<?php echo $v->id ; ?>"><?php echo $v->house_number ; ?></option>
-                   <?php endforeach ; ?>
+                    <?php endforeach ; ?>
                 </select>
             </a>
         </li>
         <li class="project"></li>
+    </ul>
+    <ul class="list">
+        <li class="two">
+            <label>联系人</label>
+            <input class="name" name="name" type="text">
+        </li>
+        <li>
+            <label>联系电话</label>
+            <input class="phone" name="phone" maxlength="11" type="tel">
+            <input class="openid" name="openid" value="{$openid}"  type="hidden">
+            <input  name="type" value="1"  type="hidden">
+        </li>
+    </ul>
+    <ul class="list">
         <li>
             <label>表扬说明</label>
             <textarea class="note" name="note" cols="30" rows="3"></textarea>
@@ -47,19 +61,6 @@
                     <i class="iconfont icon-add"></i>
                 </div>
             </div>
-        </li>
-    </ul>
-    <ul class="list">
-        <li>
-            <label>联系人</label>
-            <input class="name" name="name" type="text">
-        </li>
-        <li>
-            <label>联系电话</label>
-            <input class="phone" name="phone" maxlength="11" type="tel">
-
-            <input class="openid" name="openid" value="{$openid}"  type="hidden">
-            <input  name="type" value="1"  type="hidden">
         </li>
     </ul>
     <div class="btn">
