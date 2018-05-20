@@ -73,7 +73,7 @@ input, input[type="button"],.select-time, input[type="submit"], input[type="rese
 
 // 按钮
 .btn,.btn-sm{
-    padding: 30px 30px 45px;
+    padding: 60px 30px;
     font-size: 0;
     a{
         font-size: 28px;
@@ -82,10 +82,15 @@ input, input[type="button"],.select-time, input[type="submit"], input[type="rese
         text-align: center;
     }
 }
-.btn a{
-    display: block;
-    width: 320px;
-    margin: 0 auto;
+.btn{
+    a{
+        display: block;
+        width: 320px;
+        margin: 0 auto;
+    }
+    a+a{
+        margin-top: 45px;
+    }
 }
 .btn-sm{
     a{
@@ -163,10 +168,8 @@ input, input[type="button"],.select-time, input[type="submit"], input[type="rese
         }
         .time{
             background: #fff !important;
-            position: absolute;
-            right: 0;
-            top: 0;
             display: inline-block;
+            width: 300px;
         }
     }
     li.two{
@@ -259,7 +262,7 @@ input, input[type="button"],.select-time, input[type="submit"], input[type="rese
     }
 }
 .list+.list{
-    margin-top: 60px;
+    margin-top: 30px;
 }
 
 .text-center{
