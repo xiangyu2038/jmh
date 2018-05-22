@@ -122,7 +122,7 @@ function sendCode(){
     if(ztel(phone)==false) return;
     $.ajax({
         type:'post',
-        url:'',
+        url:'/index/smsdk/sendSms',
         data:{phone:phone},
         success:function(res){
             console.log(res)
